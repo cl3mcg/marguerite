@@ -1,0 +1,333 @@
+:root {
+    --font-standard:'Fira Sans', Helvetica, Arial, 'Liberation Sans', 'TwemojiMozilla', sans-serif;
+    --font-monospace:'Fira Mono', Menlo, Consolas, 'Courier New', monospace;
+    --font-special:"ChicagoFLF", Impact, sans-serif;
+
+    --neutral-950: #0a0a0a;
+    --neutral-900: #171717;
+    --neutral-800: #262626;
+    --neutral-700: #404040;
+    --neutral-600: #525252;
+    --neutral-500: #737373;
+    --neutral-400: #a3a3a3;
+    --neutral-300: #d4d4d4;
+    --neutral-200: #e5e5e5;
+    --neutral-100: #f5f5f5;
+    --neutral-50: #fafafa;
+
+    --grey-950: #030712;
+    --grey-900: #111827;
+    --grey-800: #1e293b;
+    --grey-700: #374151;
+    --grey-600: #4b5563;
+    --grey-500: #6b7280;
+    --grey-400: #9ca3af;
+    --grey-300: #d1d5db;
+    --grey-200: #e5e7eb;
+    --grey-100: #f3f4f6;
+    --grey-50: #f9fafb;
+
+    --cyan-900: #164e63;
+    --cyan-700: #0e7490;
+    --cyan-500: #06b6d4;
+    --cyan-300: #67e8f9;
+    --cyan-100: #cffafe;
+
+    --blue-900: #0c4a6e;
+    --blue-700: #0369a1;
+    --blue-500: #0ea5e9;
+    --blue-300: #7dd3fc;
+    --blue-100: #e0f2fe;
+
+    --purple-900: #581c87;
+    --purple-700: #7e22ce;
+    --purple-500: #a855f7;
+    --purple-300: #d8b4fe;
+    --purple-100: #f3e8ff;
+
+    --green-900: #064e3b;
+    --green-700: #047857;
+    --green-500: #10b981;
+    --green-300: #6ee7b7;
+    --green-100: #d1fae5;
+
+    --yellow-900: #713f12;
+    --yellow-700: #a16207;
+    --yellow-500: #eab308;
+    --yellow-300: #fde047;
+    --yellow-100: #fef9c3;
+
+    --orange-900: #7c2d12;
+    --orange-700: #c2410c;
+    --orange-500: #f97316;
+    --orange-300: #fdba74;
+    --orange-100: #ffedd5;
+
+    --red-900: #7f1d1d;
+    --red-700: #b91c1c;
+    --red-500: #ef4444;
+    --red-300: #fca5a5;
+    --red-100: #fee2e2;
+
+    --pink-900: #831843;
+    --pink-700: #be185d;
+    --pink-500: #ec4899;
+    --pink-300: #f9a8d4;
+    --pink-100: #fce7f3;
+
+    
+    --primary-darker: var(--neutral-950);
+    --primary-dark: var(--neutral-800);
+    --primary-dark-overlay: #00000050;
+    --primary-light: var(--neutral-100);
+    --primary-light-grey: var(--neutral-400);
+    --primary-dark-grey:var(--neutral-500);
+    --primary-light-hover: var(--neutral-300);
+    --primary-light-active:var(--grey-300);
+    --primary-light-nav:var(--neutral-300);
+    --primary-lighter: var(--neutral-50);
+}
+
+:root {
+    font-family: var(--font-standard);
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 1rem;
+  
+    color-scheme: light dark;
+    color: var(--primary-light);
+    background-color: var(--primary-dark);
+  
+    font-variant-ligatures: no-common-ligatures;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: var(--primary-dark);
+      background-color: var(--primary-light);
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color: var(--primary-light);
+      background-color: var(--primary-dark);
+    }
+  }
+
+@keyframes neutral-blink-animation {
+  0% {
+    background-color: var(--primary-darker);
+    color: var(--primary-lighter);
+  }
+  50% {
+    background-color: var(--primary-lighter);
+    color: var(--primary-darker);
+  }
+  100% {
+    background-color: var(--primary-darker);
+    color: var(--primary-lighter);
+  }
+}
+
+@keyframes danger-blink-animation {
+  0% {
+    background-color: var(--red-700);
+    color: var(--primary-lighter);
+  }
+  50% {
+    background-color: var(--primary-lighter);
+    color: var(--red-700);
+  }
+  100% {
+    background-color: var(--red-700);
+    color: var(--primary-lighter);
+  }
+}
+
+@keyframes success-blink-animation {
+  0% {
+    background-color: var(--green-700);
+    color: var(--primary-lighter);
+  }
+  50% {
+    background-color: var(--primary-lighter);
+    color: var(--green-700);
+  }
+  100% {
+    background-color: var(--green-700);
+    color: var(--primary-lighter);
+  }
+}
+
+:focus:not(:active) {
+  outline: 3px solid var(--blue-900); 
+  transition: none !important;
+}
+
+code {
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+}
+
+menu * {
+  font-family: var(--font-special);
+}
+
+a.button, li.button, div.button, button {
+  font-family: var(--font-special);
+  font-size: 0.85em;
+  color: var(--primary-dark);
+  background-color: var(--primary-lighter);
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  height: 2.5em;
+  text-align: center;
+	text-decoration: none;
+	border: 1px solid var(--primary-dark);
+	box-shadow: 5px 5px 0px var(--primary-dark);
+	transition: ease-in-out 0.1s;
+}
+
+a:not(.button) {
+  color: var(--blue-900);
+  text-decoration: underline;
+  text-decoration-color: var(--blue-900);
+	transition: 0.1s ease-in-out;
+}
+
+a:not(.button):hover {
+	background-color: var(--primary-light-hover);
+  color: var(--primary-darker);
+}
+
+button:not(:disabled):active,
+a.button:not(:disabled):active,
+li.button:not(:disabled):active {
+  animation-name: neutral-blink-animation;
+  animation-duration: 0.05s;
+  animation-iteration-count: 2;
+}
+
+button.danger:not(:disabled):active,
+a.button.danger:not(:disabled):active,
+li.button.danger:not(:disabled):active {
+  animation-name: danger-blink-animation;
+  animation-duration: 0.05s;
+  animation-iteration-count: 2;
+}
+
+button.success:not(:disabled):active,
+a.button.success:not(:disabled):active,
+li.button.success:not(:disabled):active {
+  animation-name: success-blink-animation;
+  animation-duration: 0.05s;
+  animation-iteration-count: 2;
+}
+
+button:not(:disabled):hover {
+	background-color: var(--primary-light-hover);
+	box-shadow: 2px 2px 0px var(--primary-dark);
+}
+
+button.danger:not(:disabled) {
+	background-color: var(--red-100);
+  box-shadow: 5px 5px 0px var(--red-900);
+	transition: 0.1s ease-in-out;
+}
+
+button.danger:not(:disabled):hover {
+  background-color: var(--red-300);
+	box-shadow: 2px 2px 0px var(--red-900);
+}
+
+button.success:not(:disabled) {
+	background-color: var(--green-100);
+  box-shadow: 5px 5px 0px var(--green-900);
+	transition: 0.1s ease-in-out;
+}
+
+button.success:not(:disabled):hover {
+  background-color: var(--green-300);
+	box-shadow: 2px 2px 0px var(--green-900);
+}
+
+a.router-link-active {
+	font-weight: 600;
+	background-color: var(--primary-light-active);
+	color: var(--primary-darker);
+	border-color: var(--primary-dark);
+}
+
+nav.topnav a.button:not(:disabled),
+nav.topnav-responsive a.button:not(:disabled),
+menu li.button:not(:disabled) {
+    height: 1.75em;
+    box-shadow: 2px 2px 0px var(--primary-dark);
+}
+
+a.button:not(:disabled):hover, menu li.button:not(:disabled):hover {
+	background-color: var(--primary-light-hover);
+	box-shadow: 1px 1px 0px var(--primary-dark);
+}
+
+button:disabled,
+a.button:disabled,
+li.button:disabled {
+  cursor:not-allowed;
+  color: var(--neutral-300);
+  box-shadow: 2px 2px 0px var(--primary-light-grey);
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+	border: 1px solid var(--primary-dark);
+	background-color: var(--primary-lighter);
+	border-radius: 0%;
+	height: 2em;
+	padding: 0 0.5em;
+}
+
+input[type="checkbox"] {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid var(--primary-dark);
+	background-color: var(--primary-lighter);
+    color:var(--primary-dark);
+	border-radius: 0%;
+    height: 1.5em;
+    width: 1.5em;
+}
+
+input[type="checkbox"]:checked:before {
+	content: "×";
+	font-size: 2.5rem;
+}
+
+fieldset {
+    border: 1px solid var(--primary-light-grey);
+}
+
+legend {
+	background-color: var(--primary-dark);
+	color: var(--primary-light);
+}
+
+legend > * {
+	margin: 0 1em;
+}
