@@ -32,4 +32,4 @@ For the time being, the documentation of this project would be listed below, but
 
 ## License
 
-[Marguerite project](https://github.com/cl3mcg/marguerite) by [cl3mcg](http://www.linkedin.com/in/cl3mcg) is licensed under [CC BY-NC-SA 4.0](https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1](http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
+[Marguerite project](https://github.com/cl3mcg/marguerite) by [cl3mcg](http://www.linkedin.com/in/cl3mcg) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
