@@ -15,7 +15,7 @@ Marguerite is a project based on web technologies.
 #### Backend
 
 The backend of Marguerite is based on an Express server that would handle API requests as well as async operations (document handling, emails etc.).
-The backend is stored in a separate private repository for now.
+The backend is stored in a separate **private repository** for now.
 
 #### Frontend
 
@@ -28,7 +28,8 @@ When necessary, unstyled components from PrimeVue would be used (e.g. date picke
 ## Documentation
 
 For the time being, the documentation of this project would be listed below, but ultimatly it should be moved to a dedicated space.
+**The project has been moved from GitLab to GitHub in Oct-2023.**
 
 ## License
 
-[Marguerite project](http://www.linkedin.com/in/cl3mcg) by cl3mcg is licensed under [CC BY-NC-SA 4.0![](https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1)![](https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1)![](https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1)![](https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1)](http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
+[Marguerite project](https://github.com/cl3mcg/marguerite) by [cl3mcg](http://www.linkedin.com/in/cl3mcg) is licensed under [CC BY-NC-SA 4.0](https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1](http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1).
