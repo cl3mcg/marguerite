@@ -13,6 +13,7 @@
 			<form
 				v-if="displayedItems.selectionMenu"
 				v-on:submit.prevent="newSelection"
+				id="selectionForm"
 			>
 				<label for="selectedPOL">Port of loading:</label>
 				<input
@@ -34,17 +35,17 @@
 					v-model="selection.selectedPOD"
 					required
 				/>
-				<label for="">Date range</label>
+				<label for="selectedDates">Date range</label>
 				<Calendar
 					v-model="selection.selectedDates"
 					selectionMode="range"
-					:manualInput="false"
 					dateFormat="dd-M-yy"
-					:minDate="minDate"
-					:maxDate="maxDate"
-					hideOnRangeSelection="true"
+					v-bind:minDate="minDate"
+					v-bind:maxDate="maxDate"
+					hideOnRangeSelection
 					showButtonBar
 					placeholder="Select a date range"
+					inputId="selectedDates"
 				/>
 				<button>Apply selection</button>
 			</form>
@@ -69,13 +70,13 @@
 					</tr>
 					<tr>
 						<td>Date range</td>
-						<td>{{ displayDate(0) }} - {{ displayDate(1) }}</td>
+						<td>{{ displayDate(0) }} → {{ displayDate(1) }}</td>
 					</tr>
 				</table>
 				<h3>Average</h3>
 				The average data lol
 				<h3>Graph</h3>
-				<LineChart></LineChart>
+				<LineChart v-bind:data="data"></LineChart>
 			</div>
 		</div>
 	</section>
@@ -108,9 +109,22 @@ const selection = reactive({
 	selectedPOL: "",
 	selectedPOD: "",
 	selectedDates: null,
+	isValid: function () {
+		if (
+			this.selectedPOL.length === 5 &&
+			this.selectedPOD.length === 5 &&
+			this.selectedDates
+		) {
+			return true;
+		}
+		return false;
+	},
 });
 
 const displayDate = function (index) {
+	if (!selection.isValid()) {
+		return;
+	}
 	!index ? (index = 0) : index;
 	const date = new Date(selection.selectedDates[index]);
 	const day = date.getDate().toString().padStart(2, "0");
@@ -121,6 +135,9 @@ const displayDate = function (index) {
 };
 
 const toggle = function (item) {
+	if (!selection.isValid() && item === "dataRecap") {
+		return;
+	}
 	const object = displayedItems;
 	for (const key in object) {
 		if (key === item) {
@@ -132,6 +149,9 @@ const toggle = function (item) {
 };
 
 const newSelection = function () {
+	if (!selection.isValid()) {
+		return;
+	}
 	displayedItems.selectionMenu = false;
 	displayedItems.dataRecap = true;
 	console.log(`New selection function fired !`);
@@ -139,6 +159,16 @@ const newSelection = function () {
 	console.log(`Current selected POD: ${selection.selectedPOD}`);
 	console.log(`Current selected dates: ${selection.selectedDates}`);
 };
+
+const data = ref([
+	{ month: 2010, rate: 10 },
+	{ month: 2011, rate: 20 },
+	{ month: 2012, rate: 15 },
+	{ month: 2013, rate: 25 },
+	{ month: 2014, rate: 22 },
+	{ month: 2015, rate: 30 },
+	{ month: 2016, rate: 28 },
+]);
 </script>
 
 <style scoped>

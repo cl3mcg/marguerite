@@ -8,15 +8,23 @@ import Chart from "chart.js/auto";
 Chart.defaults.font.family =
 	"'Fira Mono', Menlo, Consolas, 'Courier New', monospace";
 
-const data = ref([
-	{ year: 2010, count: 10 },
-	{ year: 2011, count: 20 },
-	{ year: 2012, count: 15 },
-	{ year: 2013, count: 25 },
-	{ year: 2014, count: 22 },
-	{ year: 2015, count: 30 },
-	{ year: 2016, count: 28 },
-]);
+const props = defineProps({
+	data: {
+		type: Object,
+		defaults: {},
+	},
+});
+
+// Below and example of the data expected
+// const data = ref([
+// 	{ month: 2010, rate: 10 },
+// 	{ month: 2011, rate: 20 },
+// 	{ month: 2012, rate: 15 },
+// 	{ month: 2013, rate: 25 },
+// 	{ month: 2014, rate: 22 },
+// 	{ month: 2015, rate: 30 },
+// 	{ month: 2016, rate: 28 },
+// ]);
 
 onMounted(() => {
 	const chartElement = document.getElementById("chart");
@@ -24,11 +32,11 @@ onMounted(() => {
 		new Chart(chartElement, {
 			type: "line",
 			data: {
-				labels: data.value.map((row) => row.year),
+				labels: props.data.map((row) => row.month),
 				datasets: [
 					{
 						label: "Rates",
-						data: data.value.map((row) => row.count),
+						data: props.data.map((row) => row.rate),
 						fill: true,
 						borderColor: "#737373",
 						tension: 0.15,
