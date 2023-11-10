@@ -331,3 +331,27 @@ legend {
 legend > * {
 	margin: 0 1em;
 }
+
+select {
+	box-sizing: border-box;
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+	border: 1px solid var(--primary-dark);
+	background-color: var(--primary-lighter);
+	border-radius: 0%;
+	height: 2em;
+	padding: 0 0.5em;
+}
+
+select option {
+  font-family: var(--font-monospace);
+  background-color: var(--primary-light);
+  color: var(--primary-darker);
+  border-radius: 0%;
+}
+
+select option:checked {
+  background-color: var(--primary-darker);
+  color: var(--primary-lighter);
+  border-radius: 0%;
+}

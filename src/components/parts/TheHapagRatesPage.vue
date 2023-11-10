@@ -16,17 +16,30 @@
 				id="selectionForm"
 			>
 				<label for="selectedPOL">Port of loading:</label>
-				<input
+				<select id="selectedPOL" v-model="selection.selectedPOL" required>
+					<option value="" selected disabled>Select a POL</option>
+					<option v-for="port in portsAvailable" v-bind:value="port">
+						{{ port }}
+					</option>
+				</select>
+				<!-- <input
 					type="text"
 					id="selectedPOL"
+					list="ports"
 					placeholder="5-letter POL code"
 					minlength="5"
 					maxlength="5"
 					v-model="selection.selectedPOL"
 					required
-				/>
+				/> -->
 				<label for="selectedPOD">Port of discharge:</label>
-				<input
+				<select id="selectedPOD" v-model="selection.selectedPOD" required>
+					<option value="" selected disabled>Select a POD</option>
+					<option v-for="port in portsAvailable" v-bind:value="port">
+						{{ port }}
+					</option>
+				</select>
+				<!-- <input
 					type="text"
 					id="selectedPOD"
 					placeholder="5-letter POD code"
@@ -34,8 +47,13 @@
 					maxlength="5"
 					v-model="selection.selectedPOD"
 					required
-				/>
+				/> -->
 				<label for="selectedDates">Date range</label>
+				<datalist id="ports">
+					<option v-for="port in portsAvailable" v-bind:value="port">
+						{{ port }}
+					</option>
+				</datalist>
 				<Calendar
 					v-model="selection.selectedDates"
 					selectionMode="range"
@@ -92,12 +110,36 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 import months from "../../assets/json/months.json";
-
 import Calendar from "primevue/calendar";
 import LineChart from "../ui/TheLineChart.vue";
 
 const minDate = ref(new Date("2023-01-01"));
 const maxDate = ref(new Date());
+
+const portsAvailable = ref([]);
+
+onBeforeMount(async function () {
+	try {
+		const response = await fetch(`http://localhost:3000/rate/getPort`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const dataReceived = await response.json();
+
+		if (response.ok) {
+			portsAvailable.value = dataReceived.data;
+			return true;
+		} else {
+			console.log("FAIL port request");
+			console.log(response);
+			return false;
+		}
+	} catch (error) {
+		return console.error("Error:", error);
+	}
+});
 
 const displayedItems = reactive({
 	selectionMenu: false,
@@ -148,10 +190,110 @@ const toggle = function (item) {
 	}
 };
 
-const newSelection = function () {
+let data = reactive({
+	"20GP": [
+		{ month: 2010, rate: 10 },
+		{ month: 2011, rate: 20 },
+		{ month: 2012, rate: 15 },
+		{ month: 2013, rate: 25 },
+		{ month: 2014, rate: 22 },
+		{ month: 2015, rate: 30 },
+		{ month: 2016, rate: 28 },
+	],
+	"40GP": [
+		{ month: 2010, rate: 40 },
+		{ month: 2011, rate: 45 },
+		{ month: 2012, rate: 34 },
+		{ month: 2013, rate: 70 },
+		{ month: 2014, rate: 56 },
+		{ month: 2015, rate: 26 },
+		{ month: 2016, rate: 35 },
+	],
+	"40HC": [
+		{ month: 2010, rate: 78 },
+		{ month: 2011, rate: 65 },
+		{ month: 2012, rate: 54 },
+		{ month: 2013, rate: 43 },
+		{ month: 2014, rate: 79 },
+		{ month: 2015, rate: 85 },
+		{ month: 2016, rate: 98 },
+	],
+});
+
+const updateLineChartData = function (dataReceived) {
+	const average = function (array) {
+		if (!array || array.length === 0) {
+			return 0;
+		}
+
+		const sum = array.reduce((acc, value) => acc + value, 0);
+		return sum / array.length;
+	};
+
+	const formattedData = {};
+
+	for (const month in dataReceived.data.absolute) {
+		if (dataReceived.data.absolute.hasOwnProperty(month)) {
+			const oceanFreightData = dataReceived.data.absolute[month].oceanFreight;
+			const surchargeData = dataReceived.data.absolute[month].surcharge;
+
+			for (const containerType in oceanFreightData) {
+				if (!formattedData[containerType]) {
+					formattedData[containerType] = [];
+				}
+
+				const averageOceanFreight = average(oceanFreightData[containerType]);
+				const averageSurcharge = average(surchargeData[containerType]);
+
+				formattedData[containerType].push({
+					month: month,
+					oceanFreight: averageOceanFreight,
+					surcharge: averageSurcharge,
+				});
+			}
+		}
+	}
+
+	// Assuming your data variable is reactive
+	data = formattedData;
+	console.log(data);
+};
+
+const retrieveRates = async function () {
+	try {
+		const response = await fetch(`http://localhost:3000/rate/getRate`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				portOfLoading: selection.selectedPOL,
+				portOfDestination: selection.selectedPOD,
+				startTimeFrame: selection.selectedDates[0],
+				endTimeFrame: selection.selectedDates[1],
+			}),
+		});
+		const dataReceived = await response.json();
+
+		if (response.ok) {
+			console.log("Response received");
+			console.log(dataReceived);
+			updateLineChartData(dataReceived);
+			return true;
+		} else {
+			console.log("FAIL rates request");
+			return false;
+		}
+	} catch (error) {
+		return console.error("Error:", error);
+	}
+};
+
+const newSelection = async function () {
 	if (!selection.isValid()) {
 		return;
 	}
+	await retrieveRates();
 	displayedItems.selectionMenu = false;
 	displayedItems.dataRecap = true;
 	console.log(`New selection function fired !`);
@@ -159,16 +301,6 @@ const newSelection = function () {
 	console.log(`Current selected POD: ${selection.selectedPOD}`);
 	console.log(`Current selected dates: ${selection.selectedDates}`);
 };
-
-const data = ref([
-	{ month: 2010, rate: 10 },
-	{ month: 2011, rate: 20 },
-	{ month: 2012, rate: 15 },
-	{ month: 2013, rate: 25 },
-	{ month: 2014, rate: 22 },
-	{ month: 2015, rate: 30 },
-	{ month: 2016, rate: 28 },
-]);
 </script>
 
 <style scoped>
@@ -298,7 +430,7 @@ span[data-pc-name="calendar"] input {
 	background-color: var(--primary-lighter);
 	border-radius: 0%;
 	width: 100%;
-	height: 2.15em;
+	height: 2em;
 	padding: 0 0.5em;
 }
 div[data-pc-section="group"] {
