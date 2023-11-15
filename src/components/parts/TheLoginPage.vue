@@ -1,5 +1,5 @@
 <template>
-	<div class="login-form">
+	<section class="login-form">
 		<menu class="form-type">
 			<li class="button" tabindex="0" v-on:click="formType = 'login'">Login</li>
 			<li class="button" tabindex="0" v-on:click="formType = 'create'">
@@ -11,7 +11,7 @@
 			v-show="formType === 'create'"
 			v-on:switch-tab="formType = 'login'"
 		></CreateAccountForm>
-	</div>
+	</section>
 </template>
 
 <script setup>
@@ -42,9 +42,6 @@ menu {
 	justify-content: center;
 	width: auto;
 	height: auto;
-	border: 1px solid var(--primary-dark);
-	box-shadow: 5px 5px 0px var(--primary-dark);
-	background-color: var(--primary-light-nav);
 }
 
 menu li {
@@ -89,6 +86,7 @@ menu li:hover {
 
 @media screen and (max-height: 600px) {
 	.login-form {
+		margin-top: 1em;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;

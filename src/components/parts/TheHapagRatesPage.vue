@@ -22,16 +22,6 @@
 						{{ port }}
 					</option>
 				</select>
-				<!-- <input
-					type="text"
-					id="selectedPOL"
-					list="ports"
-					placeholder="5-letter POL code"
-					minlength="5"
-					maxlength="5"
-					v-model="selection.selectedPOL"
-					required
-				/> -->
 				<label for="selectedPOD">Port of discharge:</label>
 				<select id="selectedPOD" v-model="selection.selectedPOD" required>
 					<option value="" selected disabled>Select a POD</option>
@@ -39,15 +29,6 @@
 						{{ port }}
 					</option>
 				</select>
-				<!-- <input
-					type="text"
-					id="selectedPOD"
-					placeholder="5-letter POD code"
-					minlength="5"
-					maxlength="5"
-					v-model="selection.selectedPOD"
-					required
-				/> -->
 				<label for="selectedDates">Date range</label>
 				<datalist id="ports">
 					<option v-for="port in portsAvailable" v-bind:value="port">
@@ -70,7 +51,10 @@
 			<h2
 				v-on:click="toggle('dataRecap')"
 				v-on:keydown.enter="toggle('dataRecap')"
-				v-bind:class="displayedItems.dataRecap ? 'expanded' : ''"
+				v-bind:class="
+					(displayedItems.dataRecap ? 'expanded' : '',
+					!selection.isValid() ? 'disabled' : '')
+				"
 				tabindex="0"
 			>
 				Data recap'
@@ -92,7 +76,7 @@
 					</tr>
 				</table>
 				<h3>Average</h3>
-				The average data lol
+				<TheAverageTable v-bind:data="averageData"></TheAverageTable>
 				<h3>Graph</h3>
 				<LineChart v-bind:data="data"></LineChart>
 			</div>
@@ -112,6 +96,7 @@ const router = useRouter();
 import months from "../../assets/json/months.json";
 import Calendar from "primevue/calendar";
 import LineChart from "../ui/TheLineChart.vue";
+import TheAverageTable from "../ui/TheAverageTable.vue";
 
 const minDate = ref(new Date("2023-01-01"));
 const maxDate = ref(new Date());
@@ -142,9 +127,8 @@ onBeforeMount(async function () {
 });
 
 const displayedItems = reactive({
-	selectionMenu: false,
+	selectionMenu: true,
 	dataRecap: false,
-	// danger: false,
 });
 
 const selection = reactive({
@@ -180,12 +164,11 @@ const toggle = function (item) {
 	if (!selection.isValid() && item === "dataRecap") {
 		return;
 	}
-	const object = displayedItems;
-	for (const key in object) {
+	for (const key in displayedItems) {
 		if (key === item) {
-			object[key] = !object[key];
+			displayedItems[key] = !displayedItems[key];
 		} else {
-			object[key] = false;
+			displayedItems[key] = false;
 		}
 	}
 };
@@ -219,6 +202,8 @@ let data = reactive({
 		{ month: 2016, rate: 98 },
 	],
 });
+
+const averageData = ref([]);
 
 const updateLineChartData = function (dataReceived) {
 	const average = function (array) {
@@ -256,6 +241,7 @@ const updateLineChartData = function (dataReceived) {
 
 	// Assuming your data variable is reactive
 	data = formattedData;
+	averageData.value = dataReceived.data.average;
 	console.log(data);
 };
 
@@ -278,6 +264,14 @@ const retrieveRates = async function () {
 		if (response.ok) {
 			console.log("Response received");
 			console.log(dataReceived);
+			if (dataReceived.data.months.length <= 0) {
+				userStore.triggerFlash(
+					"warning",
+					"No match",
+					"There's no data matching your selection."
+				);
+				return false;
+			}
 			updateLineChartData(dataReceived);
 			return true;
 		} else {
@@ -285,6 +279,11 @@ const retrieveRates = async function () {
 			return false;
 		}
 	} catch (error) {
+		userStore.triggerFlash(
+			"danger",
+			"Server error",
+			"The rates cannot be retrived for the time being."
+		);
 		return console.error("Error:", error);
 	}
 };
@@ -293,13 +292,16 @@ const newSelection = async function () {
 	if (!selection.isValid()) {
 		return;
 	}
-	await retrieveRates();
-	displayedItems.selectionMenu = false;
-	displayedItems.dataRecap = true;
 	console.log(`New selection function fired !`);
 	console.log(`Current selected POL: ${selection.selectedPOL}`);
 	console.log(`Current selected POD: ${selection.selectedPOD}`);
 	console.log(`Current selected dates: ${selection.selectedDates}`);
+	const request = await retrieveRates();
+	if (request) {
+		displayedItems.selectionMenu = false;
+		displayedItems.dataRecap = true;
+		return;
+	}
 };
 </script>
 
@@ -328,6 +330,14 @@ div h2 {
 
 div h2:not(.expanded):hover {
 	background-color: var(--primary-light-hover);
+}
+
+div h2.disabled {
+	cursor: not-allowed;
+}
+
+[data-theme="dark"] div h2:not(.expanded):hover {
+	background-color: var(--grey-500);
 }
 
 div h2::before {

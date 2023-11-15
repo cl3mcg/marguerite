@@ -4,6 +4,7 @@ export const useUserStore = defineStore("userStore", {
     state: function () {
         return {
             accountToken: null,
+            darkMode: false,
             isLoading: false,
             shownModal: null,
             // shownModal: {

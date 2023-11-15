@@ -1,5 +1,5 @@
 :root {
-    --font-standard:'Fira Sans', Helvetica, Arial, 'Liberation Sans', 'TwemojiMozilla', sans-serif;
+    --font-standard:'Fira GO', Helvetica, Arial, 'Liberation Sans', 'TwemojiMozilla', sans-serif;
     --font-monospace:'Fira Mono', Menlo, Consolas, 'Courier New', monospace;
     --font-special:"ChicagoFLF", Impact, sans-serif;
 
@@ -92,87 +92,81 @@
     font-family: var(--font-standard);
     line-height: 1.5;
     font-weight: 400;
-    font-size: 1rem;
-  
+    font-size: 1.05rem;
     color-scheme: light dark;
-    color: var(--primary-light);
-    background-color: var(--primary-dark);
-  
     font-variant-ligatures: no-common-ligatures;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    color: var(--primary-dark);
+    background-color: var(--primary-light);
   }
 
-  @media (prefers-color-scheme: light) {
-    :root {
-      color: var(--primary-dark);
-      background-color: var(--primary-light);
+  @keyframes neutral-blink-animation {
+    0% {
+      background-color: var(--primary-darker);
+      color: var(--primary-lighter);
+    }
+    50% {
+      background-color: var(--primary-lighter);
+      color: var(--primary-darker);
+    }
+    100% {
+      background-color: var(--primary-darker);
+      color: var(--primary-lighter);
     }
   }
   
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color: var(--primary-light);
-      background-color: var(--primary-dark);
+  @keyframes danger-blink-animation {
+    0% {
+      background-color: var(--red-700);
+      color: var(--primary-lighter);
+    }
+    50% {
+      background-color: var(--primary-lighter);
+      color: var(--red-700);
+    }
+    100% {
+      background-color: var(--red-700);
+      color: var(--primary-lighter);
     }
   }
-
-@keyframes neutral-blink-animation {
-  0% {
-    background-color: var(--primary-darker);
-    color: var(--primary-lighter);
+  
+  @keyframes success-blink-animation {
+    0% {
+      background-color: var(--green-700);
+      color: var(--primary-lighter);
+    }
+    50% {
+      background-color: var(--primary-lighter);
+      color: var(--green-700);
+    }
+    100% {
+      background-color: var(--green-700);
+      color: var(--primary-lighter);
+    }
   }
-  50% {
-    background-color: var(--primary-lighter);
-    color: var(--primary-darker);
+  
+  :focus:not(:active) {
+    outline: 3px solid var(--blue-900); 
+    transition: none !important;
   }
-  100% {
-    background-color: var(--primary-darker);
-    color: var(--primary-lighter);
-  }
-}
-
-@keyframes danger-blink-animation {
-  0% {
-    background-color: var(--red-700);
-    color: var(--primary-lighter);
-  }
-  50% {
-    background-color: var(--primary-lighter);
-    color: var(--red-700);
-  }
-  100% {
-    background-color: var(--red-700);
-    color: var(--primary-lighter);
-  }
-}
-
-@keyframes success-blink-animation {
-  0% {
-    background-color: var(--green-700);
-    color: var(--primary-lighter);
-  }
-  50% {
-    background-color: var(--primary-lighter);
-    color: var(--green-700);
-  }
-  100% {
-    background-color: var(--green-700);
-    color: var(--primary-lighter);
-  }
-}
-
-:focus:not(:active) {
-  outline: 3px solid var(--blue-900); 
-  transition: none !important;
-}
 
 code {
   font-family: var(--font-monospace);
   font-size: 0.9em;
+}
+
+menu {
+	border: 1px solid var(--primary-dark);
+	box-shadow: 5px 5px 0px var(--primary-dark);
+	background-color: var(--primary-light-nav);
+}
+
+[data-theme="dark"] menu {
+	box-shadow: 5px 5px 0px var(--primary-light);
 }
 
 menu * {
@@ -196,6 +190,22 @@ a.button, li.button, div.button, button {
 	transition: ease-in-out 0.1s;
 }
 
+[data-theme="dark"] section :not(menu) a.button,
+[data-theme="dark"] section :not(menu) li.button,
+[data-theme="dark"] section :not(menu) div.button,
+[data-theme="dark"] section :not(menu) button {
+	background-color: var(--grey-200);
+	box-shadow: 5px 5px 0px var(--primary-light);
+}
+
+[data-theme="dark"] section :not(menu) a.button:hover,
+[data-theme="dark"] section :not(menu) li.button:hover,
+[data-theme="dark"] section :not(menu) div.button:hover,
+[data-theme="dark"] section :not(menu) button:hover {
+	background-color: var(--primary-lighter);
+	box-shadow: 2px 2px 0px var(--primary-light);
+}
+
 a:not(.button) {
   color: var(--blue-900);
   text-decoration: underline;
@@ -206,6 +216,17 @@ a:not(.button) {
 a:not(.button):hover {
 	background-color: var(--primary-light-hover);
   color: var(--primary-darker);
+}
+
+[data-theme="dark"] section a:not(.button) {
+	color: var(--blue-100);
+  text-decoration-color: var(--blue-100);
+}
+
+[data-theme="dark"] section a:not(.button):hover {
+	color: var(--blue-900);
+  text-decoration-color: var(--blue-900);
+  background-color: var(--blue-100);
 }
 
 button:not(:disabled):active,
@@ -319,6 +340,20 @@ input[type="checkbox"]:checked:before {
 	font-size: 2.5rem;
 }
 
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="number"] {
+	border: 1px solid var(--primary-light);
+	background-color: var(--grey-100);
+}
+
+[data-theme="dark"] input[type="checkbox"] {
+	border: 1px solid var(--primary-light);
+	background-color: var(--grey-100);
+  color:var(--primary-dark);
+}
+
 fieldset {
     border: 1px solid var(--primary-light-grey);
 }
@@ -343,6 +378,11 @@ select {
 	padding: 0 0.5em;
 }
 
+[data-theme="dark"] select {
+	border: 1px solid var(--primary-light);
+	background-color: var(--grey-100);
+}
+
 select option {
   font-family: var(--font-monospace);
   background-color: var(--primary-light);
@@ -350,8 +390,42 @@ select option {
   border-radius: 0%;
 }
 
+[data-theme="dark"] select option {
+	background-color: var(--grey-100);
+}
+
 select option:checked {
   background-color: var(--primary-darker);
   color: var(--primary-lighter);
   border-radius: 0%;
+}
+
+[data-theme="dark"] {
+  &:root {
+    color: var(--primary-lighter);
+    background-color: var(--neutral-600);
+  }
+  &:focus:not(:active) {
+  outline: 3px solid var(--blue-500); 
+  transition: none !important;
+  }
+  &legend {
+    background-color: var(--grey-300);
+    color: var(--primary-dark);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--primary-lighter);
+    background-color: var(--neutral-600);
+  }
+  :focus:not(:active) {
+  outline: 3px solid var(--blue-500); 
+  transition: none !important;
+  }
+  legend {
+    background-color: var(--grey-300);
+    color: var(--primary-dark);
+  }
 }

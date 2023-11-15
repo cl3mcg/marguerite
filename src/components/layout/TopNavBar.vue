@@ -8,13 +8,14 @@
 			<router-link class="button" to="/about">About</router-link>
 		</div>
 		<div>
+			<TheDarkModeButton></TheDarkModeButton>
 			<router-link class="button" to="/account">Account</router-link>
 			<a
 				class="button icon"
 				tabindex="0"
-				v-on:mousedown="toggleNav()"
-				v-on:keypress.enter="toggleNav()"
-				v-on:focusout="closeNav($event)"
+				@mousedown="toggleNav"
+				@keypress.enter="toggleNav"
+				@focusout="closeNav"
 				>{{ navResponsive ? "⨉" : "☰" }}</a
 			>
 		</div>
@@ -22,7 +23,7 @@
 	<nav
 		v-if="navResponsive"
 		class="topnav-responsive"
-		v-on:focusout="closeNav($event)"
+		@focusout="closeNav"
 		ref="nav"
 	>
 		<router-link class="button" to="/home">Home</router-link>
@@ -35,19 +36,18 @@
 
 <script setup>
 import { ref } from "vue";
+import TheDarkModeButton from "../ui/TheDarkModeButton.vue";
 
-const accountInnerText = ref("");
-const accountLink = ref("");
 const navResponsive = ref(false);
 const nav = ref(null);
 
-const toggleNav = function () {
-	return (navResponsive.value = !navResponsive.value);
+const toggleNav = () => {
+	navResponsive.value = !navResponsive.value;
 };
 
-const closeNav = function (event) {
-	if (!nav.value.contains(event.relatedTarget)) {
-		return (navResponsive.value = false);
+const closeNav = (event) => {
+	if (!nav.value || !nav.value.contains(event.relatedTarget)) {
+		navResponsive.value = false;
 	}
 };
 </script>
@@ -64,6 +64,14 @@ const closeNav = function (event) {
 	display: flex; /* Use flexbox */
 	align-items: center; /* Center children vertically */
 	justify-content: space-between;
+}
+
+.darkModeIcon {
+	margin: 0 0.4em;
+	width: 20px;
+	max-width: 20px;
+	background-color: transparent;
+	transition: ease-in-out 0.25s;
 }
 
 a {

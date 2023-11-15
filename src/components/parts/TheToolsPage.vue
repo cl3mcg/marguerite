@@ -14,7 +14,6 @@
 import { ref } from "vue";
 
 import TheToolCard from "../ui/TheToolCard.vue";
-import { RouterView } from "vue-router";
 
 const toolsList = ref([
 	{

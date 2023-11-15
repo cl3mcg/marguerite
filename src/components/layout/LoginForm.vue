@@ -160,5 +160,9 @@ a.button {
 	.form-button button:last-of-type {
 		margin-top: 0;
 	}
+
+	.form-button *:last-child {
+		margin-top: 0;
+	}
 }
 </style>
