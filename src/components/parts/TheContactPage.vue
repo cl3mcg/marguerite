@@ -14,6 +14,7 @@
 					href="https://fosstodon.org/@cl3mcg"
 					target="_blank"
 					rel="noopener noreferrer"
+					tabindex="0"
 				>
 					<img
 						src="../../assets/icons/mastodon.svg"
@@ -24,6 +25,7 @@
 					href="https://twitter.com/cl3mcg"
 					target="_blank"
 					rel="noopener noreferrer"
+					tabindex="0"
 				>
 					<img
 						src="../../assets/icons/twitter.svg"
@@ -35,6 +37,7 @@
 					href="https://www.linkedin.com/in/cl3mcg/?locale=en_US"
 					target="_blank"
 					rel="noopener noreferrer"
+					tabindex="0"
 				>
 					<img
 						src="../../assets/icons/linkedin.svg"
@@ -54,6 +57,7 @@
 					href="https://paypal.me/clemcg?country.x=FR&locale.x=en_EN"
 					target="_blank"
 					rel="noopener noreferrer"
+					tabindex="0"
 				>
 					<img
 						src="../../assets/icons/money.svg"

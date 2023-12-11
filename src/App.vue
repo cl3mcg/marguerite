@@ -16,12 +16,15 @@ import { ref, watch, onBeforeMount } from "vue";
 import { useUserStore } from "./stores/UserStore.js";
 const userStore = useUserStore();
 
-const displayLoadingModal = ref(userStore.isLoading)
+const displayLoadingModal = ref(userStore.isLoading);
 const displayFlash = ref(false);
 
-watch(() => userStore.isLoading, function (newValue) {
-    displayLoadingModal.value = newValue;
-});
+watch(
+	() => userStore.isLoading,
+	function (newValue) {
+		displayLoadingModal.value = newValue;
+	}
+);
 
 watch(userStore.flashMessages, function () {
 	displayFlash.value = true;
@@ -29,10 +32,9 @@ watch(userStore.flashMessages, function () {
 
 onBeforeMount(function () {
 	if (localStorage.accountToken) {
-		userStore.accountToken = localStorage.accountToken
+		userStore.accountToken = localStorage.accountToken;
 	}
-})
-
+});
 </script>
 
 <style scoped></style>

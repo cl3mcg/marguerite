@@ -1,5 +1,5 @@
 <template>
-	<button @click="switchDarkMode">
+	<button @click="switchDarkMode" v-bind:class="backgroundColor">
 		<img :src="darkModeIconSrc" class="darkModeIcon" />
 	</button>
 </template>
@@ -13,6 +13,9 @@ const userStore = useUserStore();
 // Create a media query list
 const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
+// Create the darkBackground variable
+const backgroundColor = ref("dark");
+
 // Function to update the theme
 const updateTheme = () => {
 	userStore.darkMode = darkModeMediaQuery.matches;
@@ -20,6 +23,9 @@ const updateTheme = () => {
 		"data-theme",
 		userStore.darkMode ? "dark" : "light"
 	);
+	userStore.darkMode
+		? (backgroundColor.value = "light")
+		: (backgroundColor.value = "dark");
 };
 
 // Update the theme on mount and whenever the media query changes
@@ -32,6 +38,9 @@ const switchDarkMode = () => {
 		"data-theme",
 		userStore.darkMode ? "dark" : "light"
 	);
+	userStore.darkMode
+		? (backgroundColor.value = "light")
+		: (backgroundColor.value = "dark");
 };
 
 const darkModeIconSrc = ref(
@@ -52,8 +61,18 @@ watch(
 
 <style scoped>
 button {
-	margin: 0 0.75em;
+	width: 2.5em;
+	margin: 0.75em;
+}
+button.light {
+	border: 1px solid var(--primary-darker);
+	background-color: var(--primary-light);
 	box-shadow: 2px 2px 0px var(--primary-dark);
+}
+button.dark {
+	border: 1px solid var(--primary-lighter);
+	background-color: var(--primary-dark);
+	box-shadow: 2px 2px 0px var(--primary-light);
 }
 button img {
 	transition: ease-in-out 0.1s;
@@ -69,6 +88,5 @@ img {
 	color: var(--primary-dark);
 	text-align: center;
 	text-decoration: none;
-	margin: 0 0.2em;
 }
 </style>

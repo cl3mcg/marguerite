@@ -88,71 +88,102 @@
     --primary-lighter: var(--neutral-50);
 }
 
-:root {
-    font-family: var(--font-standard);
-    line-height: 1.5;
-    font-weight: 400;
-    font-size: 1.05rem;
-    color-scheme: light dark;
-    font-variant-ligatures: no-common-ligatures;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    color: var(--primary-dark);
-    background-color: var(--primary-light);
+@keyframes neutral-blink-animation {
+  0% {
+    background-color: var(--primary-darker);
+    color: var(--primary-lighter);
   }
+  50% {
+    background-color: var(--primary-lighter);
+    color: var(--primary-darker);
+  }
+  100% {
+    background-color: var(--primary-darker);
+    color: var(--primary-lighter);
+  }
+}
 
-  @keyframes neutral-blink-animation {
-    0% {
-      background-color: var(--primary-darker);
-      color: var(--primary-lighter);
-    }
-    50% {
-      background-color: var(--primary-lighter);
-      color: var(--primary-darker);
-    }
-    100% {
-      background-color: var(--primary-darker);
-      color: var(--primary-lighter);
-    }
+@keyframes danger-blink-animation {
+  0% {
+    background-color: var(--red-700);
+    color: var(--primary-lighter);
   }
-  
-  @keyframes danger-blink-animation {
-    0% {
-      background-color: var(--red-700);
-      color: var(--primary-lighter);
-    }
-    50% {
-      background-color: var(--primary-lighter);
-      color: var(--red-700);
-    }
-    100% {
-      background-color: var(--red-700);
-      color: var(--primary-lighter);
-    }
+  50% {
+    background-color: var(--primary-lighter);
+    color: var(--red-700);
   }
-  
-  @keyframes success-blink-animation {
-    0% {
-      background-color: var(--green-700);
-      color: var(--primary-lighter);
-    }
-    50% {
-      background-color: var(--primary-lighter);
-      color: var(--green-700);
-    }
-    100% {
-      background-color: var(--green-700);
-      color: var(--primary-lighter);
-    }
+  100% {
+    background-color: var(--red-700);
+    color: var(--primary-lighter);
   }
-  
-  :focus:not(:active) {
-    outline: 3px solid var(--blue-900); 
-    transition: none !important;
+}
+
+@keyframes success-blink-animation {
+  0% {
+    background-color: var(--green-700);
+    color: var(--primary-lighter);
   }
+  50% {
+    background-color: var(--primary-lighter);
+    color: var(--green-700);
+  }
+  100% {
+    background-color: var(--green-700);
+    color: var(--primary-lighter);
+  }
+}
+
+:root {
+  font-family: var(--font-standard);
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color-scheme: light dark;
+  font-variant-ligatures: no-common-ligatures;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
+}
+
+:focus:not(:active) {
+  outline: 3px solid var(--yellow-300); 
+  transition: none !important;
+}
+
+:focus:active {
+  outline: 3px solid var(--yellow-700); 
+  transition: none !important;
+}
+
+::selection {
+  background: var(--blue-300);
+  color: var(--primary-darker);
+  text-shadow: none;
+}
+
+*.font-mono,
+*.font-monospace,
+*.monospace {
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--primary-dark);
+  margin: 1em 0;
+  padding: 0;
+}
+
+[data-theme="dark"] hr {
+  border-top: 1px solid var(--primary-light);
+}
 
 code {
   font-family: var(--font-monospace);
@@ -194,8 +225,8 @@ a.button, li.button, div.button, button {
 [data-theme="dark"] section :not(menu) li.button,
 [data-theme="dark"] section :not(menu) div.button,
 [data-theme="dark"] section :not(menu) button {
-	background-color: var(--grey-200);
-	box-shadow: 5px 5px 0px var(--primary-light);
+  background-color: var(--primary-light);
+	box-shadow: 5px 5px 0px var(--primary-lighter);
 }
 
 [data-theme="dark"] section :not(menu) a.button:hover,
@@ -203,7 +234,7 @@ a.button, li.button, div.button, button {
 [data-theme="dark"] section :not(menu) div.button:hover,
 [data-theme="dark"] section :not(menu) button:hover {
 	background-color: var(--primary-lighter);
-	box-shadow: 2px 2px 0px var(--primary-light);
+	box-shadow: 2px 2px 0px var(--yellow-300);
 }
 
 a:not(.button) {
@@ -282,7 +313,7 @@ button.success:not(:disabled):hover {
 
 a.router-link-active {
 	font-weight: 600;
-	background-color: var(--primary-light-active);
+background-color: var(--primary-light-active);  
 	color: var(--primary-darker);
 	border-color: var(--primary-dark);
 }
@@ -320,6 +351,14 @@ input[type="number"] {
 	padding: 0 0.5em;
 }
 
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="number"] {
+	border: 1px solid var(--primary-light);
+	background-color: var(--grey-100);
+}
+
 input[type="checkbox"] {
 	appearance: none;
 	-webkit-appearance: none;
@@ -333,25 +372,20 @@ input[type="checkbox"] {
 	border-radius: 0%;
     height: 1.5em;
     width: 1.5em;
-}
-
-input[type="checkbox"]:checked:before {
-	content: "×";
-	font-size: 2.5rem;
-}
-
-[data-theme="dark"] input[type="email"],
-[data-theme="dark"] input[type="password"],
-[data-theme="dark"] input[type="text"],
-[data-theme="dark"] input[type="number"] {
-	border: 1px solid var(--primary-light);
-	background-color: var(--grey-100);
+    min-height: 1.5em;
+    min-width: 1.5em;
 }
 
 [data-theme="dark"] input[type="checkbox"] {
 	border: 1px solid var(--primary-light);
 	background-color: var(--grey-100);
   color:var(--primary-dark);
+}
+
+input[type="checkbox"]:checked:before {
+	content: "×";
+  padding-bottom: 2px;
+	font-size: 2.5rem;
 }
 
 fieldset {
@@ -398,6 +432,11 @@ select option:checked {
   background-color: var(--primary-darker);
   color: var(--primary-lighter);
   border-radius: 0%;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
 }
 
 [data-theme="dark"] {

@@ -1,5 +1,7 @@
 <template>
-	<canvas id="chart"></canvas>
+	<div class="chart-container">
+		<canvas id="chart"></canvas>
+	</div>
 </template>
 
 <script setup>
@@ -90,4 +92,10 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style>
+[data-theme="dark"] .chart-container {
+	background-color: var(--primary-light);
+	box-shadow: 3px 3px 0px var(--primary-lighter);
+	border: 1px solid var(--primary-dark);
+}
+</style>

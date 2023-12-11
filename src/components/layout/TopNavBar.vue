@@ -2,14 +2,18 @@
 	<nav class="topnav" id="myTopnav">
 		<div>
 			<img src="../../assets/icons/favicon.svg" alt="Marguerite logo" />
-			<router-link class="button" to="/home">Home</router-link>
-			<router-link class="button" to="/tools">Tools</router-link>
-			<router-link class="button" to="/contact">Contact</router-link>
-			<router-link class="button" to="/about">About</router-link>
+			<router-link class="button" to="/home" tabindex="0">Home</router-link>
+			<router-link class="button" to="/tools" tabindex="0">Tools</router-link>
+			<router-link class="button" to="/contact" tabindex="0"
+				>Contact</router-link
+			>
+			<router-link class="button" to="/about" tabindex="0">About</router-link>
 		</div>
 		<div>
 			<TheDarkModeButton></TheDarkModeButton>
-			<router-link class="button" to="/account">Account</router-link>
+			<router-link class="button" to="/account" tabindex="0"
+				>Account</router-link
+			>
 			<a
 				class="button icon"
 				tabindex="0"
@@ -26,11 +30,11 @@
 		@focusout="closeNav"
 		ref="nav"
 	>
-		<router-link class="button" to="/home">Home</router-link>
-		<router-link class="button" to="/tools">Tools</router-link>
-		<router-link class="button" to="/contact">Contact</router-link>
-		<router-link class="button" to="/about">About</router-link>
-		<router-link class="button" to="/account">Account</router-link>
+		<router-link class="button" to="/home" tabindex="0">Home</router-link>
+		<router-link class="button" to="/tools" tabindex="0">Tools</router-link>
+		<router-link class="button" to="/contact" tabindex="0">Contact</router-link>
+		<router-link class="button" to="/about" tabindex="0">About</router-link>
+		<router-link class="button" to="/account" tabindex="0">Account</router-link>
 	</nav>
 </template>
 

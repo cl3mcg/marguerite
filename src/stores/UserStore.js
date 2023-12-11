@@ -9,8 +9,8 @@ export const useUserStore = defineStore("userStore", {
             shownModal: null,
             // shownModal: {
             //     type: null,
-            //     title: "neutral modal",
-            //     message: "this is a test for a neutral modal message containing information that the user should focus its attention on",
+            //     title: "Neutral modal",
+            //     message: "This is a test for a neutral modal message containing information that the user should focus its attention on",
             //     options: ["OK", "Cancel"],
             // },
             flashMessages: [
@@ -29,6 +29,14 @@ export const useUserStore = defineStore("userStore", {
                 title: title,
                 message: message,
             })
+        },
+        triggerModal: function (type = null, title = `Notification`, message, options = ['OK']) {
+            return this.shownModal = {
+                type: type,
+                title: title,
+                message: message,
+                options: typeof options === "object" ? options : [`${options}`]
+            }
         },
         validateToken: async function (url, token) {
             try {

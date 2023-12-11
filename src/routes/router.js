@@ -9,7 +9,8 @@ const TheContactPage = () => import('../components/parts/TheContactPage.vue')
 const TheToolsPage = () => import('../components/parts/TheToolsPage.vue')
 const TheLoginPage = () => import('../components/parts/TheLoginPage.vue')
 const TheAccountPage = () => import('../components/parts/TheAccountPage.vue')
-const TheHapagRatesPage = () => import('../components/parts/TheHapagRatesPage.vue')
+const TheSonarPage = () => import('../components/parts/TheSonarPage.vue')
+const TheSauronPage = () => import('../components/parts/TheSauronPage.vue')
 const The404Page = () => import('../components/parts/The404Page.vue')
 const TheErrorPage = () => import('../components/parts/TheErrorPage.vue')
 
@@ -137,11 +138,19 @@ const router = createRouter({
             }
         },
         {
-            path: "/tools/hprates",
-            component: TheHapagRatesPage,
-            name: "hprates",
+            path: "/tools/sonar",
+            component: TheSonarPage,
+            name: "sonar",
             meta: {
                 requiresAuth: true,
+            }
+        },
+        {
+            path: "/tools/sauron",
+            component: TheSauronPage,
+            name: "sauron",
+            meta: {
+                requiresAuth: false,
             }
         },
         {

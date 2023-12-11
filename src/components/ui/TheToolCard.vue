@@ -1,16 +1,18 @@
 <template>
 	<router-link
+		tabindex="0"
 		class="button"
 		v-bind:to="toolData.toolRoute"
 		aria-label="Go to the tool"
 	>
 		<div class="toolCard">
+			<img v-bind:src="toolData.imgPath" v-bind:alt="toolData.imgAlt" />
 			<main>
 				<h2>{{ toolData.toolName }}</h2>
 				{{ toolData.toolDescription }}
 			</main>
 			<aside>➤</aside>
-		</div>
+		</div>		
 	</router-link>
 </template>
 
@@ -46,10 +48,16 @@ a div.toolCard {
 	justify-content: space-between;
 }
 
+div.toolCard img {
+	max-width: 4em;
+	margin: 0.5em;
+}
+
 main {
 	margin: 0.3em;
 	padding: 0.5em 1em;
 	font-family: var(--font-standard);
+	flex-grow: 1;
 }
 
 aside {

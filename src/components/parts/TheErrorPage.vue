@@ -79,17 +79,20 @@ a.button {
 	filter: drop-shadow(0px 0px 40px #c72020bb);
 }
 
+[data-theme="dark"] .logo {
+	filter: drop-shadow(0px 0px 30px #ffb0b0);
+}
+
 .description {
 	text-align: center;
 	margin-top: 1em;
-	color: var(--primary-dark);
 }
 
 @media screen and (max-width: 600px) {
 	blockquote {
 		display: block;
 		font-style: italic;
-		max-width: 12empx;
+		max-width: 12em;
 	}
 	.logo {
 		margin-top: 1.5em;

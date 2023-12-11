@@ -6,7 +6,9 @@
 			v-bind:open="isOpened"
 			v-on:keydown.esc="isOpened = false"
 		>
-			<header>{{ userStore.shownModal.title }}</header>
+			<header v-bind:class="userStore.shownModal.type">
+				{{ userStore.shownModal.title }}
+			</header>
 			<main>{{ userStore.shownModal.message }}</main>
 			<footer>
 				<button
@@ -21,14 +23,26 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import { useUserStore } from "../../stores/UserStore.js";
 
 const userStore = useUserStore();
-const modalData = computed(() =>
-	userStore.shownModal ? userStore.shownModal : false
-);
-const isOpened = ref(true);
+
+const isOpened = ref(false);
+
+const modalData = computed(function () {
+	if (userStore.shownModal) {
+		isOpened.value = true;
+		return userStore.shownModal;
+	} else {
+		return false;
+	}
+});
+
+onMounted(function () {
+	userStore.shownModal ? (isOpened.value = true) : (isOpened.value = false);
+});
+
 watch(isOpened, function () {
 	if (!isOpened.value) {
 		userStore.shownModal = null;
@@ -66,11 +80,28 @@ dialog {
 	transition: ease-in-out 0.1s;
 }
 .modal header {
-	padding: 0 0.5em;
+	padding: 0 1em;
 	font-size: 1.25em;
 	font-weight: 600;
 	background-color: var(--primary-dark);
 	color: var(--primary-light);
+}
+
+header.success {
+	background-color: var(--green-700);
+	color: var(--green-100);
+}
+header.warning {
+	background-color: var(--orange-700);
+	color: var(--orange-100);
+}
+header.danger {
+	background-color: var(--red-700);
+	color: var(--red-100);
+}
+header.info {
+	background-color: var(--cyan-700);
+	color: var(--cyan-100);
 }
 .modal main {
 	flex-grow: 1;

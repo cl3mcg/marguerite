@@ -17,19 +17,25 @@ import TheToolCard from "../ui/TheToolCard.vue";
 
 const toolsList = ref([
 	{
-		toolName: "Hapag rates",
-		toolRoute: "tools/hprates",
-		toolDescription: "Eagle eyes view on Hapag's historical rates and data.",
+		toolName: "Sonar",
+		toolRoute: "tools/sonar",
+		toolDescription: "Trends of Hapag-Llyod's historical rates and data.",
+		imgPath: "src/assets/icons/sonarProjectLogo.svg",
+		imgAlt: "A logo used to reprensent the Sonar tool",
 	},
 	{
-		toolName: "Tool_02",
-		toolRoute: "tools/tools02",
-		toolDescription: "The example of the 2nd tool",
+		toolName: "Sauron",
+		toolRoute: "tools/sauron",
+		toolDescription: "Macroscopic key indicators overview.",
+		imgPath: "src/assets/icons/sauronProjectLogo.svg",
+		imgAlt: "A logo used to reprensent the Sauron tool",
 	},
 	{
 		toolName: "Tool_03",
 		toolRoute: "tools/tools03",
 		toolDescription: "The example of the 3rd tool",
+		imgPath: "",
+		imgAlt: "",
 	},
 ]);
 </script>

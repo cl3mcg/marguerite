@@ -15,7 +15,7 @@
 		</div>
 		<div class="form-button">
 			<button type="submit">Login</button>
-			<a class="button">Forgot my password</a>
+			<a class="button" tabindex="0">Forgot my password</a>
 		</div>
 	</form>
 </template>

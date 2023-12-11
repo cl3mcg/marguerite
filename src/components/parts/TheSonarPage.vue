@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<h1>Hapag rates</h1>
+		<h1>Sonar</h1>
 		<div>
 			<h2
 				v-on:click="toggle('selectionMenu')"
@@ -46,15 +46,15 @@
 					placeholder="Select a date range"
 					inputId="selectedDates"
 				/>
-				<button>Apply selection</button>
+				<button v-bind:disabled="!selection.isValid()">Apply selection</button>
 			</form>
 			<h2
 				v-on:click="toggle('dataRecap')"
 				v-on:keydown.enter="toggle('dataRecap')"
-				v-bind:class="
-					(displayedItems.dataRecap ? 'expanded' : '',
-					!selection.isValid() ? 'disabled' : '')
-				"
+				v-bind:class="{
+					expanded: displayedItems.dataRecap,
+					disabled: !selection.isValid(),
+				}"
 				tabindex="0"
 			>
 				Data recap'
@@ -63,12 +63,8 @@
 				<h3>Selection</h3>
 				<table>
 					<tr>
-						<td>Port of loading</td>
-						<td>{{ selection.selectedPOL }}</td>
-					</tr>
-					<tr>
-						<td>Port of discharge</td>
-						<td>{{ selection.selectedPOD }}</td>
+						<td>Route</td>
+						<td>{{ selection.selectedPOL }} → {{ selection.selectedPOD }}</td>
 					</tr>
 					<tr>
 						<td>Date range</td>
@@ -76,7 +72,7 @@
 					</tr>
 				</table>
 				<h3>Average</h3>
-				<TheAverageTable v-bind:data="averageData"></TheAverageTable>
+				<TheAverageTable v-bind:averageData="averageData"></TheAverageTable>
 				<h3>Graph</h3>
 				<LineChart v-bind:data="data"></LineChart>
 			</div>
@@ -239,13 +235,13 @@ const updateLineChartData = function (dataReceived) {
 		}
 	}
 
-	// Assuming your data variable is reactive
 	data = formattedData;
 	averageData.value = dataReceived.data.average;
 	console.log(data);
 };
 
 const retrieveRates = async function () {
+	userStore.isLoading = true;
 	try {
 		const response = await fetch(`http://localhost:3000/rate/getRate`, {
 			method: "POST",
@@ -270,15 +266,19 @@ const retrieveRates = async function () {
 					"No match",
 					"There's no data matching your selection."
 				);
+				userStore.isLoading = false;
 				return false;
 			}
 			updateLineChartData(dataReceived);
+			userStore.isLoading = false;
 			return true;
 		} else {
 			console.log("FAIL rates request");
+			userStore.isLoading = false;
 			return false;
 		}
 	} catch (error) {
+		userStore.isLoading = false;
 		userStore.triggerFlash(
 			"danger",
 			"Server error",
@@ -375,13 +375,23 @@ input {
 	margin: 0;
 }
 
-table {
-	width: 100%;
+@media screen and (max-width: 1300px) {
+	section {
+		margin: 10vh 15vw;
+		margin-top: 0;
+	}
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 1100px) {
 	section {
-		margin: 10vh;
+		margin: 10vh 9vw;
+		margin-top: 0;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	section {
+		margin: 10vh 8vw;
 		margin-top: 0;
 	}
 }
