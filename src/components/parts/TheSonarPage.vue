@@ -74,7 +74,7 @@
 				<h3>Average</h3>
 				<TheAverageTable v-bind:averageData="averageData"></TheAverageTable>
 				<h3>Graph</h3>
-				<LineChart v-bind:data="data"></LineChart>
+				<TheRatesLineChart v-bind:data="data"></TheRatesLineChart>
 			</div>
 		</div>
 	</section>
@@ -91,7 +91,7 @@ const router = useRouter();
 
 import months from "../../assets/json/months.json";
 import Calendar from "primevue/calendar";
-import LineChart from "../ui/TheLineChart.vue";
+import TheRatesLineChart from "../ui/TheRatesLineChart.vue";
 import TheAverageTable from "../ui/TheAverageTable.vue";
 
 const minDate = ref(new Date("2023-01-01"));

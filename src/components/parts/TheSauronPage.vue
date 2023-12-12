@@ -42,7 +42,7 @@
 						v-bind:name="countryCode.toUpperCase()"
 						v-bind:value="countryCode.toUpperCase()"
 						v-bind:id="countryCode.toUpperCase()"
-						v-model="selection.selectedCountry[countryCode.toUpperCase()]"
+						v-model="selection.selectedCountry"
 					/>
 					<label v-bind:for="countryCode.toUpperCase()">
 						<span class="font-monospace">{{
@@ -81,7 +81,7 @@
 							v-bind:name="indicator.name"
 							v-bind:value="indicator.code"
 							v-bind:id="indicator.code"
-							v-model="selection.selectedIndicator[indicator.code]"
+							v-model="selection.selectedIndicator"
 						/>
 						<label v-bind:for="indicator.code">{{ indicator.name }}</label>
 						<button
@@ -104,7 +104,7 @@
 							v-bind:name="indicator.name"
 							v-bind:value="indicator.code"
 							v-bind:id="indicator.code"
-							v-model="selection.selectedIndicator[indicator.code]"
+							v-model="selection.selectedIndicator"
 						/>
 						<label v-bind:for="indicator.code">{{ indicator.name }}</label>
 						<button
@@ -125,15 +125,31 @@
 			<h2
 				v-on:click="toggle('dataRecap')"
 				v-on:keydown.enter="toggle('dataRecap')"
-				v-bind:class="
-					(displayedItems.dataRecap ? 'expanded' : '',
-					!selection.isValid() ? 'disabled' : '')
-				"
+				v-bind:class="[
+					displayedItems.dataRecap ? 'expanded' : '',
+					!selection.isValid() ? 'disabled' : '',
+				]"
 				tabindex="0"
 			>
-				Data recap'
+				Data recap
 			</h2>
-			<div v-if="displayedItems.dataRecap">Data recap here</div>
+			<div v-if="displayedItems.dataRecap">
+				<div
+					v-for="(value, key) in backendData.data"
+					:key="key"
+					class="graph-wrapper"
+				>
+					<h4>
+						{{ indicators.filter((el) => el.code === key)[0].name }}
+					</h4>
+					<i
+						>{{ indicators.filter((el) => el.code === key)[0].description }}
+						<br />Source:
+						{{ indicators.filter((el) => el.code === key)[0].source }}</i
+					>
+					<TheIndicatorLineChart :indicatorData="value" />
+				</div>
+			</div>
 		</div>
 	</section>
 </template>
@@ -146,6 +162,8 @@ const userStore = useUserStore();
 
 import { useRouter } from "vue-router";
 const router = useRouter();
+
+import TheIndicatorLineChart from "../ui/TheIndicatorLineChart.vue";
 
 import countriesJSON from "../../assets/json/countries.json";
 import indicatorsJSON from "../../assets/json/indicators.json";
@@ -190,6 +208,8 @@ const getCountryDetails = function (countryCode) {
 	}
 };
 
+const backendData = reactive({});
+
 const displayedItems = reactive({
 	selectionMenu: true,
 	dataRecap: false,
@@ -198,47 +218,44 @@ const displayedItems = reactive({
 });
 
 const selection = reactive({
-	selectedCountry: {},
-	selectedIndicator: {},
+	selectedCountry: [],
+	selectedIndicator: [],
 	isValid: function () {
-		// Checking if both selectedCountry and selectedIndicator have at least one true value
-		const hasTrueCountry = Object.values(this.selectedCountry).includes(true);
-		const hasTrueIndicator = Object.values(this.selectedIndicator).includes(
-			true
-		);
-		return hasTrueCountry && hasTrueIndicator;
+		return this.selectedCountry.length > 0 && this.selectedIndicator.length > 0;
 	},
 });
 
-const countNumTrueValues = function (object) {
-	let count = 0;
-	for (const key in object) {
-		if (object[key] === true) {
-			count++;
-		}
-	}
-	return count;
+const countNumTrueValues = function (array) {
+	return array.length;
 };
 
 const toggle = function (item) {
+	console.log("Toggle function init");
 	if (!selection.isValid() && item === "dataRecap") {
+		console.log("Toggle function scenario 1");
 		return;
 	}
+
 	if (item === "selectionMenu" || item === "dataRecap") {
+		console.log("Toggle function scenario 2");
 		for (const key in displayedItems) {
 			if (key === item) {
-				return (displayedItems[key] = !displayedItems[key]);
+				displayedItems[key] = !displayedItems[key];
 			} else {
-				return (displayedItems[key] = false);
+				displayedItems[key] = false;
 			}
 		}
+		return;
 	}
+
 	for (const key in displayedItems) {
+		console.log("Toggle function scenario 3");
 		if (key === item) {
-			return (displayedItems[key] = !displayedItems[key]);
+			displayedItems[key] = !displayedItems[key];
+			return;
 		}
 	}
-	return;
+	console.log("Toggle function scenario 4");
 };
 
 const displayIndicatorInformation = function (indicatorCode) {
@@ -270,13 +287,14 @@ const retrieveIndicatorData = async function () {
 				}),
 			}
 		);
-		await response.json();
+		const responseData = await response.json();
 
 		if (response.ok) {
-			console.log("OK Token");
-			return response;
+			console.log("Data retreived");
+			backendData.data = responseData.data;
+			return;
 		} else {
-			console.log("FAIL Token");
+			return console.log("FAIL data retreived");
 		}
 	} catch (error) {
 		return console.error("Error:", error);
@@ -288,12 +306,12 @@ const newSelection = async function () {
 		return;
 	}
 	console.log(`New selection function fired !`);
-	const request = await retrieveIndicatorData();
-	if (request) {
-		displayedItems.selectionMenu = false;
-		displayedItems.dataRecap = true;
-		return;
-	}
+	console.log(`Selected indicators: `, selection.selectedIndicator);
+	await retrieveIndicatorData(); // Wait for indicator data retrieval
+
+	// Hide selection menu and display data recap only if successful
+	displayedItems.selectionMenu = false;
+	displayedItems.dataRecap = !!backendData.data; // Show data recap if data is available
 };
 </script>
 
@@ -420,6 +438,20 @@ form div {
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+}
+
+div.graph-wrapper {
+	& *:not(h4) {
+		margin: 0;
+		padding: 0;
+	}
+	& h4 {
+		margin-bottom: 0;
+	}
+	& i {
+		font-size: 0.75em;
+		line-height: 0em;
+	}
 }
 
 #indicatorSelectorSubMenu {
