@@ -160,9 +160,6 @@ import { ref, reactive, computed } from "vue";
 import { useUserStore } from "../../stores/UserStore.js";
 const userStore = useUserStore();
 
-import { useRouter } from "vue-router";
-const router = useRouter();
-
 import TheIndicatorLineChart from "../ui/TheIndicatorLineChart.vue";
 
 import countriesJSON from "../../assets/json/countries.json";

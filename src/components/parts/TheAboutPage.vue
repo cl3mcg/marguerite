@@ -73,7 +73,7 @@
 				Feel free to check everything you want (as long as you feel comfortable reading spaghettis code).
 			</p>
 			<div>
-				<a class="button" href="">
+				<a class="button" href="https://github.com/cl3mcg/marguerite">
 					<img
 						src="../../assets/icons/github.svg"
 						alt="The icon of the Github platform"

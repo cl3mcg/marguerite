@@ -49,6 +49,15 @@
 						src="../../assets/icons/linkedin.svg"
 						alt="The icon of the LinkedIn social network"
 				/></a>
+				<a
+					class="button"
+					href="https://github.com/cl3mcg"
+					target="_blank"
+					rel="noopener noreferrer"
+					tabindex="0"
+				>
+					<img src="../../assets/icons/github.svg" alt="The icon of GitHub"
+				/></a>
 			</div>
 		</div>
 		<div>
