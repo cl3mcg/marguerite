@@ -55,7 +55,10 @@ const login = async function () {
 	if (checkFormValidity()) {
 		let login = await userStore.loginAccount(url, data);
 		if (login) {
-			router.push("/account");
+			userStore.intendedRoute
+				? router.push(userStore.intendedRoute)
+				: router.push("/account");
+			userStore.intendedRoute = null;
 			return true;
 		} else {
 			return false;

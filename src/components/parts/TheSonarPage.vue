@@ -46,6 +46,29 @@
 					placeholder="Select a date range"
 					inputId="selectedDates"
 				/>
+				<div id="carrierSelectionSection">
+					<span>Carrier selection</span>
+					<input
+						type="checkbox"
+						id="hlcu"
+						value="hlcu"
+						v-model="selection.selectedCarriers"
+					/>
+					<label for="hlcu">HAPAG</label>
+					<input
+						type="checkbox"
+						id="mscu"
+						value="mscu"
+						v-model="selection.selectedCarriers"
+					/>
+					<label for="mscu">MSC</label>
+					<button type="button" v-on:click="displayMSCInformation()">
+						<img
+							src="../../assets/icons/information.svg"
+							alt="An information icon"
+						/>
+					</button>
+				</div>
 				<button v-bind:disabled="!selection.isValid()">Apply selection</button>
 			</form>
 			<h2
@@ -53,7 +76,7 @@
 				v-on:keydown.enter="toggle('dataRecap')"
 				v-bind:class="{
 					expanded: displayedItems.dataRecap,
-					disabled: !selection.isValid(),
+					disabled: !selection.isValid() || averageData.length === 0,
 				}"
 				tabindex="0"
 			>
@@ -86,9 +109,6 @@ import { ref, reactive, onBeforeMount } from "vue";
 import { useUserStore } from "../../stores/UserStore.js";
 const userStore = useUserStore();
 
-import { useRouter } from "vue-router";
-const router = useRouter();
-
 import months from "../../assets/json/months.json";
 import Calendar from "primevue/calendar";
 import TheRatesLineChart from "../ui/TheRatesLineChart.vue";
@@ -100,6 +120,8 @@ const maxDate = ref(new Date());
 const portsAvailable = ref([]);
 
 onBeforeMount(async function () {
+	userStore.isLoading.message = "Fetching the available port pairs.";
+	userStore.isLoading.status = true;
 	try {
 		const response = await fetch(`http://localhost:3000/rate/getPort`, {
 			method: "GET",
@@ -111,13 +133,19 @@ onBeforeMount(async function () {
 
 		if (response.ok) {
 			portsAvailable.value = dataReceived.data;
+			userStore.isLoading.status = false;
+			userStore.isLoading.message = null;
 			return true;
 		} else {
 			console.log("FAIL port request");
 			console.log(response);
+			userStore.isLoading.status = false;
+			userStore.isLoading.message = null;
 			return false;
 		}
 	} catch (error) {
+		userStore.isLoading.status = false;
+		userStore.isLoading.message = null;
 		return console.error("Error:", error);
 	}
 });
@@ -131,11 +159,13 @@ const selection = reactive({
 	selectedPOL: "",
 	selectedPOD: "",
 	selectedDates: null,
+	selectedCarriers: ["hlcu"],
 	isValid: function () {
 		if (
 			this.selectedPOL.length === 5 &&
 			this.selectedPOD.length === 5 &&
-			this.selectedDates
+			this.selectedDates &&
+			this.selectedCarriers.length > 0
 		) {
 			return true;
 		}
@@ -157,7 +187,10 @@ const displayDate = function (index) {
 };
 
 const toggle = function (item) {
-	if (!selection.isValid() && item === "dataRecap") {
+	if (
+		(!selection.isValid() || averageData.value.length === 0) &&
+		item === "dataRecap"
+	) {
 		return;
 	}
 	for (const key in displayedItems) {
@@ -169,35 +202,7 @@ const toggle = function (item) {
 	}
 };
 
-let data = reactive({
-	"20GP": [
-		{ month: 2010, rate: 10 },
-		{ month: 2011, rate: 20 },
-		{ month: 2012, rate: 15 },
-		{ month: 2013, rate: 25 },
-		{ month: 2014, rate: 22 },
-		{ month: 2015, rate: 30 },
-		{ month: 2016, rate: 28 },
-	],
-	"40GP": [
-		{ month: 2010, rate: 40 },
-		{ month: 2011, rate: 45 },
-		{ month: 2012, rate: 34 },
-		{ month: 2013, rate: 70 },
-		{ month: 2014, rate: 56 },
-		{ month: 2015, rate: 26 },
-		{ month: 2016, rate: 35 },
-	],
-	"40HC": [
-		{ month: 2010, rate: 78 },
-		{ month: 2011, rate: 65 },
-		{ month: 2012, rate: 54 },
-		{ month: 2013, rate: 43 },
-		{ month: 2014, rate: 79 },
-		{ month: 2015, rate: 85 },
-		{ month: 2016, rate: 98 },
-	],
-});
+let data = reactive({});
 
 const averageData = ref([]);
 
@@ -241,7 +246,7 @@ const updateLineChartData = function (dataReceived) {
 };
 
 const retrieveRates = async function () {
-	userStore.isLoading = true;
+	userStore.isLoading.status = true;
 	try {
 		const response = await fetch(`http://localhost:3000/rate/getRate`, {
 			method: "POST",
@@ -253,6 +258,7 @@ const retrieveRates = async function () {
 				portOfDestination: selection.selectedPOD,
 				startTimeFrame: selection.selectedDates[0],
 				endTimeFrame: selection.selectedDates[1],
+				carriers: selection.selectedCarriers,
 			}),
 		});
 		const dataReceived = await response.json();
@@ -266,19 +272,19 @@ const retrieveRates = async function () {
 					"No match",
 					"There's no data matching your selection."
 				);
-				userStore.isLoading = false;
+				userStore.isLoading.status = false;
 				return false;
 			}
 			updateLineChartData(dataReceived);
-			userStore.isLoading = false;
+			userStore.isLoading.status = false;
 			return true;
 		} else {
 			console.log("FAIL rates request");
-			userStore.isLoading = false;
+			userStore.isLoading.status = false;
 			return false;
 		}
 	} catch (error) {
-		userStore.isLoading = false;
+		userStore.isLoading.status = false;
 		userStore.triggerFlash(
 			"danger",
 			"Server error",
@@ -303,11 +309,20 @@ const newSelection = async function () {
 		return;
 	}
 };
+
+const displayMSCInformation = function () {
+	userStore.triggerModal(
+		null,
+		"MSCU data",
+		"MSC's rates collection is not as complete as HAPAG's. To evaluate trends on a long period of time, it's better to solely rely on HAPAG's data (until June 2024).",
+		["OK"]
+	);
+};
 </script>
 
 <style scoped>
 section {
-	margin: 0 30vw 2em 30vw;
+	margin: 0 25vw 2em 25vw;
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
@@ -373,6 +388,42 @@ label:not(:first-of-type) {
 
 input {
 	margin: 0;
+}
+
+div#carrierSelectionSection {
+	margin-top: 1em;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+div#carrierSelectionSection > span {
+	display: block;
+	flex-grow: 1;
+	min-width: 100%;
+	margin-bottom: 0.25em;
+}
+
+div#carrierSelectionSection label {
+	margin-top: 0;
+	margin-left: 0.5em;
+}
+
+div#carrierSelectionSection input:not(:first-of-type) {
+	margin-left: 2em;
+}
+
+div#carrierSelectionSection button {
+	justify-self: end;
+	align-self: center;
+	height: 1.25em;
+	width: 1.25em;
+	margin: 0 1em;
+	padding: 0;
+}
+
+div#carrierSelectionSection button img {
+	height: 2em;
+	width: 2em;
 }
 
 @media screen and (max-width: 1300px) {

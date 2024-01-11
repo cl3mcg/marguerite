@@ -274,6 +274,7 @@ const displayIndicatorInformation = function (indicatorCode) {
 
 const retrieveIndicatorData = async function () {
 	try {
+		userStore.isLoading.status = true;
 		const response = await fetch(
 			`http://localhost:3000/indicator/getIndicator`,
 			{
@@ -290,13 +291,16 @@ const retrieveIndicatorData = async function () {
 		const responseData = await response.json();
 
 		if (response.ok) {
+			userStore.isLoading.status = false;
 			console.log("Data retreived");
 			backendData.data = responseData.data;
 			return;
 		} else {
+			userStore.isLoading.status = false;
 			return console.log("FAIL data retreived");
 		}
 	} catch (error) {
+		userStore.isLoading.status = false;
 		return console.error("Error:", error);
 	}
 };
@@ -307,6 +311,7 @@ const newSelection = async function () {
 	}
 	console.log(`New selection function fired !`);
 	console.log(`Selected indicators: `, selection.selectedIndicator);
+
 	await retrieveIndicatorData(); // Wait for indicator data retrieval
 
 	// Hide selection menu and display data recap only if successful
@@ -317,7 +322,7 @@ const newSelection = async function () {
 
 <style scoped>
 section {
-	margin: 0 30vw 2em 30vw;
+	margin: 0 25vw 2em 25vw;
 	display: flex;
 	flex-direction: column;
 	gap: 1em;

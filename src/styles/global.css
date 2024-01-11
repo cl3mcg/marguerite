@@ -221,10 +221,10 @@ a.button, li.button, div.button, button {
 	transition: ease-in-out 0.1s;
 }
 
-[data-theme="dark"] section :not(menu) a.button,
-[data-theme="dark"] section :not(menu) li.button,
-[data-theme="dark"] section :not(menu) div.button,
-[data-theme="dark"] section :not(menu) button {
+[data-theme="dark"] section :not(menu) a.button:not([disabled]),
+[data-theme="dark"] section :not(menu) li.button:not([disabled]),
+[data-theme="dark"] section :not(menu) div.button:not([disabled]),
+[data-theme="dark"] section :not(menu) button:not([disabled]) {
   background-color: var(--primary-light);
 	box-shadow: 5px 5px 0px var(--primary-lighter);
 }
@@ -419,13 +419,12 @@ select {
 
 select option {
   font-family: var(--font-monospace);
-  background-color: var(--primary-light);
   color: var(--primary-darker);
   border-radius: 0%;
 }
 
-[data-theme="dark"] select option {
-	background-color: var(--grey-100);
+select option:disabled {
+	color: var(--grey-500);
 }
 
 select option:checked {

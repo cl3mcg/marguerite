@@ -5,7 +5,8 @@ export const useUserStore = defineStore("userStore", {
         return {
             accountToken: null,
             darkMode: false,
-            isLoading: false,
+            intendedRoute: null,
+            isLoading: { status: false, message: null },
             shownModal: null,
             // shownModal: {
             //     type: null,
@@ -37,6 +38,10 @@ export const useUserStore = defineStore("userStore", {
                 message: message,
                 options: typeof options === "object" ? options : [`${options}`]
             }
+        },
+        removeAccountToken: function () {
+            this.accountToken = null;
+            localStorage.removeItem("accountToken");
         },
         validateToken: async function (url, token) {
             try {
@@ -83,7 +88,7 @@ export const useUserStore = defineStore("userStore", {
             }
         },
         registerAccount: async function (url, data) {
-            this.isLoading = true;
+            this.isLoading.status = true;
             try {
                 const response = await fetch(url, {
                     method: 'POST',
@@ -96,20 +101,20 @@ export const useUserStore = defineStore("userStore", {
 
                 if (response.ok) {
                     console.log('OK Registration');
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     return true;
                 } else {
                     console.log('FAIL Registration');
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     return false;
                 }
             } catch (error) {
-                this.isLoading = false;
+                this.isLoading.status = false;
                 return console.error('Error:', error);
             }
         },
         loginAccount: async function (url, data) {
-            this.isLoading = true;
+            this.isLoading.status = true;
             try {
                 const response = await fetch(url, {
                     method: 'POST',
@@ -121,23 +126,26 @@ export const useUserStore = defineStore("userStore", {
                 const responseData = await response.json();
 
                 if (response.ok) {
+                    if (data.rememberMe) {
+                        localStorage.setItem("rememberMe", true)
+                    };
                     this.accountToken = responseData.token;
                     localStorage.removeItem("accountToken");
                     localStorage.setItem("accountToken", this.accountToken);
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     this.triggerFlash(
                         "success",
                         "Welcome back",
-                        "You are now logged in"
+                        "You are now logged in."
                     );
                     return true;
                 } else if (response.status === 403) {
                     console.log('FAIL Login');
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     this.triggerFlash(
                         "warning",
                         "Invalid credentials",
-                        "Make sure to check your email address and password."
+                        "Double check the email address and password provided."
                     );
                     return false;
                 } else {
@@ -149,18 +157,24 @@ export const useUserStore = defineStore("userStore", {
                     return false;
                 }
             } catch (error) {
-                this.isLoading = false;
+                this.isLoading.status = false;
+                this.triggerFlash(
+                    "danger",
+                    "Login error",
+                    "There was an error during the login process. Please try again later."
+                );
                 return console.error('Error:', error);
             }
         },
         logoutAccount: function () {
+            localStorage.removeItem("rememberMe");
             this.accountToken = null;
             localStorage.removeItem("accountToken");
         },
         changeEmail: async function (url, data) {
-            this.isLoading = true;
+            this.isLoading.status = true;
             if (!url || !data.newEmail || !data.token) {
-                this.isLoading = false;
+                this.isLoading.status = false;
                 return false;
             }
             try {
@@ -173,21 +187,21 @@ export const useUserStore = defineStore("userStore", {
                 });
                 if (response.ok) {
                     this.logoutAccount();
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     return true;
                 } else {
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     return false;
                 }
             } catch (error) {
-                this.isLoading = false;
+                this.isLoading.status = false;
                 return console.error('Error:', error);
             }
         },
         changePassword: async function (url, data) {
-            this.isLoading = true;
+            this.isLoading.status = true;
             if (!url || !data.newPassword || !data.currentPassword || !data.token) {
-                this.isLoading = false;
+                this.isLoading.status = false;
                 console.log("Payload issue")
                 console.log(data)
                 return false;
@@ -204,15 +218,15 @@ export const useUserStore = defineStore("userStore", {
                 if (response.ok) {
                     console.log("Response OK")
                     this.logoutAccount();
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     return true;
                 } else {
                     console.log("Response FAIL")
-                    this.isLoading = false;
+                    this.isLoading.status = false;
                     return false;
                 }
             } catch (error) {
-                this.isLoading = false;
+                this.isLoading.status = false;
                 return console.error('Error:', error);
             }
 

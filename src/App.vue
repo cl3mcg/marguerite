@@ -16,11 +16,11 @@ import { ref, watch, onBeforeMount } from "vue";
 import { useUserStore } from "./stores/UserStore.js";
 const userStore = useUserStore();
 
-const displayLoadingModal = ref(userStore.isLoading);
+const displayLoadingModal = ref(userStore.isLoading.status);
 const displayFlash = ref(false);
 
 watch(
-	() => userStore.isLoading,
+	() => userStore.isLoading.status,
 	function (newValue) {
 		displayLoadingModal.value = newValue;
 	}
@@ -34,6 +34,14 @@ onBeforeMount(function () {
 	if (localStorage.accountToken) {
 		userStore.accountToken = localStorage.accountToken;
 	}
+	window.addEventListener("beforeunload", (event) => {
+		if (
+			!localStorage.rememberMe &&
+			performance.getEntriesByType("navigation")[0].type === "navigate"
+		) {
+			userStore.logoutAccount();
+		}
+	});
 });
 </script>
 

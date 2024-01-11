@@ -310,7 +310,7 @@ onBeforeMount(getAccountDetails);
 
 <style scoped>
 section {
-	margin: 0 30vw 2em 30vw;
+	margin: 0 25vw 2em 25vw;
 	display: flex;
 	flex-direction: column;
 	gap: 1em;

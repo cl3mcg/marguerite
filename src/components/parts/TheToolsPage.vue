@@ -19,30 +19,23 @@ const toolsList = ref([
 	{
 		toolName: "Sonar",
 		toolRoute: "tools/sonar",
-		toolDescription: "Trends of Hapag-Llyod's historical rates and data.",
+		toolDescription: "Trends of FAK ocean freight rates and data.",
 		imgPath: "src/assets/icons/sonarProjectLogo.svg",
 		imgAlt: "A logo used to reprensent the Sonar tool",
 	},
 	{
 		toolName: "Sauron",
 		toolRoute: "tools/sauron",
-		toolDescription: "Macroscopic key indicators overview.",
+		toolDescription: "Countries' macroeconomy & logistics indicators overview.",
 		imgPath: "src/assets/icons/sauronProjectLogo.svg",
 		imgAlt: "A logo used to reprensent the Sauron tool",
-	},
-	{
-		toolName: "Tool_03",
-		toolRoute: "tools/tools03",
-		toolDescription: "The example of the 3rd tool",
-		imgPath: "",
-		imgAlt: "",
 	},
 ]);
 </script>
 
 <style scoped>
 section {
-	margin: 0 30vw 2em 30vw;
+	margin: 0 25vw 2em 25vw;
 }
 div.tools-list {
 	display: flex;

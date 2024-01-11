@@ -3,11 +3,17 @@
 		<h1>Contact</h1>
 		<div>
 			<h2>Who's doing this?</h2>
-			<p>
-				Hey, I'm Clément. You can follow me on Mastodon.<br />
-				If you are old, you can follow me on Twitter or LinkedIn, but I rarely
-				post anything there.
-			</p>
+			<div id="introduction">
+				<img
+					src="../../assets/icons/wavinghand.svg"
+					alt="The emoji of a welcoming waving hand"
+				/>
+				<p>
+					Hi, I'm Clément. You can follow me on Mastodon.<br />
+					If you are old, you can follow me on Twitter or LinkedIn, but I rarely
+					post anything there.
+				</p>
+			</div>
 			<div>
 				<a
 					class="button"
@@ -72,17 +78,33 @@
 
 <style scoped>
 section {
-	margin: 0 30vw 2em 30vw;
+	margin: 0 25vw 2em 25vw;
 }
 p {
 	text-align: justify;
 	text-justify: inter-word;
+}
+div#introduction {
+	display: flex;
+	gap: 1em;
+}
+div#introduction img {
+	margin: auto;
+	width: 2em;
+	height: 2em;
+	min-width: 5em;
+	min-height: 5em;
+}
+div#introduction p {
+	flex-grow: 1;
 }
 div p:not(:first-of-type) {
 	margin-top: 0.75em;
 }
 div > div:last-of-type {
 	margin-top: 1em;
+	margin-left: 7em;
+	margin-right: 7em;
 	display: flex;
 	justify-content: space-evenly;
 }
@@ -104,15 +126,36 @@ div > div:last-of-type a:hover > * {
 	filter: grayscale(0%);
 }
 
+@media screen and (max-width: 1300px) {
+	div > div:last-of-type {
+		margin-left: 4em;
+		margin-right: 4em;
+	}
+}
+
 @media screen and (max-width: 930px) {
 	section {
 		margin: 0 10vw;
+	}
+	div > div:last-of-type {
+		margin-left: 3em;
+		margin-right: 3em;
 	}
 }
 
 @media screen and (max-width: 600px) {
 	section {
 		margin: 0 8vw;
+	}
+	div > div:last-of-type {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+@media screen and (max-height: 600px) {
+	section {
+		margin-bottom: 3em;
 	}
 }
 </style>

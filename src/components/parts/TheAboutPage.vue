@@ -4,14 +4,12 @@
 		<div>
 			<h2>Why doing this?</h2>
 			<p>
-				Because I am tired of having to rely on the shitty solutions made by
-				people who are not using the crap they deliver, and are clearly not the
-				sharpest knifes in the kitchen drawer.
+				I needed a quick tool to help me visualize and get a grasp on ocean freight rates fluctuations on an handful of trade lanes.
+				Additionally I was tired of having to rely on pricy third-party tools, so I made my own: <a href="/tools/sonar">Sonar</a>.
 			</p>
 			<p>
-				Freight forwarding is an industry that enjoys the same level of
-				technology as Nebuchadrezzar the II<sup>nd</sup>, and I'm done with
-				this.
+				Once done with <a href="/tools/sonar">Sonar</a>, I decided to build upon this tool an experiment used to retrieve data from the World Bank to create a dashboard with several indicators and made <a href="/tools/sauron">Sauron</a><br>
+				At a later stage, I am planning to develop a tool used to build freight forwarding rate cards used in the management of tenders. Not that I am specifically fond of this, but I beleive that it can be interesting to experiment with Excel manipulation programatically.
 			</p>
 		</div>
 		<div>
@@ -25,7 +23,7 @@
 			<p>
 				If you're working for a company and using this app in your professional
 				environment, you can always use this tool for free, but you may not use
-				it for commercial purposes. You can always contribute to the code and
+				it for commercial purposes (seriously... just don't... it's not a professional tool). You can always contribute to the code and
 				also support me.
 			</p>
 			<p>
@@ -71,22 +69,14 @@
 		<div>
 			<h2>Can I check the code?</h2>
 			<p>
-				Yeah of course you can check the code, long-life to open source, use
-				Firefox, use LibreOffice, use NextCloud, use Linux Mint on your computer
-				and Debian on your server, self-host your stuff and ditch all the
-				proprietary crap!<br />
-				Feel free to check the code and contribute to it.
+				Yes of course you can, long-life to open source.
+				Feel free to check everything you want (as long as you feel comfortable reading spaghettis code).
 			</p>
 			<div>
 				<a class="button" href="">
 					<img
 						src="../../assets/icons/github.svg"
 						alt="The icon of the Github platform"
-				/></a>
-				<a class="button" href=""
-					><img
-						src="../../assets/icons/gitlab.svg"
-						alt="The icon of the Gitlab platform"
 				/></a>
 			</div>
 		</div>
@@ -99,9 +89,10 @@
 					<li>Email address</li>
 				</ul>
 				If you wish your personal data mentionned above to be deleted, you can always delete your account in the account settings page.
-				Upon deletion of your account, all information related to it, as well as any other information (if any) will be deleted.
-				The app doesn't retain data nor sell it to third-party companies.
-				The data provided to this app is stored in France (EU), in <a href="https://www.clever-cloud.com/about-us/">Clever Cloud</a>'s datacenters.
+				Upon deletion of your account, all information related to it, as well as any other information (if any) will be deleted. You can also modify the email address provided on your account page.
+				The app doesn't retain personal data nor sell it to third-party companies.
+				The data is stored in France (EU), in <a href="https://www.clever-cloud.com/about-us/">Clever Cloud</a>'s datacenters, on a MongoDB instance.
+				The application is running in Germany (EU), on a VPS hosted by <a href="https://contabo.com/en/">Contabo</a>, running an Ubuntu Server.
 			</p>
 		</div>
 	</section>
@@ -111,7 +102,10 @@
 
 <style scoped>
 section {
-	margin: 0 30vw 2em 30vw;
+	margin: 0 25vw 2em 25vw;
+}
+section div:first-of-type p a {
+	font-style: italic;
 }
 p {
 	text-align: justify;

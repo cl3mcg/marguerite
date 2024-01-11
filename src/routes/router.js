@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { validateToken } from "../hooks/validateToken.js";
 
+// Import the Pinia store
+import { useUserStore } from "../stores/UserStore.js";
+// const userStore = useUserStore();
 
-// const TheCoachList = () => import('../src/components/TheCoachList.vue')
 const TheHomePage = () => import('../components/parts/TheHomePage.vue')
 const TheAboutPage = () => import('../components/parts/TheAboutPage.vue')
 const TheContactPage = () => import('../components/parts/TheContactPage.vue')
@@ -16,58 +18,6 @@ const TheErrorPage = () => import('../components/parts/TheErrorPage.vue')
 
 const router = createRouter({
     history: createWebHistory(),
-    // routes: [
-    //     {
-    //         path: "/",
-    //         redirect: "/coach"
-    //     },
-    //     {
-    //         path: "/coach",
-    //         component: TheCoachList,
-    //         name: "home",
-    //         meta: {
-    //             pageTitle: "The coach list"
-    //         }
-    //     },
-    //     {
-    //         path: "/coach/:id",
-    //         component: TheCoachDetails,
-    //         name: "coach",
-    //         props: true,
-    //         meta: {
-    //             pageTitle: "Coach details"
-    //         }
-    //     },
-    //     {
-    //         path: "/createCoach",
-    //         component: TheCoachForm,
-    //         name: "createCoach",
-    //         meta: {
-    //             pageTitle: "Adding a coach",
-    //             requiresAuth: true,
-    //         }
-    //     },
-    //     {
-    //         path: "/login",
-    //         component: TheLoginForm,
-    //         name: "loginPage",
-    //         meta: {
-    //             pageTitle: "Login"
-    //         }
-    //     },
-    //     {
-    //         path: "/register",
-    //         component: TheRegisterForm,
-    //         name: "registerPage",
-    //         meta: {
-    //             pageTitle: "Create your account"
-    //         }
-    //     },
-    //     {
-    //         path: "/:notFound(.*)",
-    //         redirect: "/coach"
-    //     }
-    // ],
     routes: [
         {
             path: "/",
@@ -150,7 +100,7 @@ const router = createRouter({
             component: TheSauronPage,
             name: "sauron",
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
             }
         },
         {
@@ -162,11 +112,15 @@ const router = createRouter({
 
 router.beforeEach(async function (to, from, next) {
     if (to.meta.requiresAuth && !localStorage.getItem("accountToken")) {
+        useUserStore().intendedRoute = to.fullPath
         router.push("/login")
     }
     if (to.meta.requiresAuth && localStorage.getItem("accountToken")) {
         let validation = await validateToken(`http://localhost:3000/user/validateToken`, localStorage.accountToken)
-        if (!validation) { router.push("/login") }
+        if (!validation) {
+            useUserStore().intendedRoute = to.fullPath
+            router.push("/login")
+        }
     }
     return next()
 });

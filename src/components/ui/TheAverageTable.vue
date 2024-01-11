@@ -10,7 +10,7 @@
 					<td>{{ formatTransitTime }}</td>
 				</tr>
 				<tr>
-					<td>Average amount of transhipments</td>
+					<td>Average amount of transhipment(s)</td>
 					<td>{{ formatTranshipment }}</td>
 				</tr>
 				<tr>
@@ -73,65 +73,72 @@ const props = defineProps({
 	},
 });
 
+const formatCurrency = function (value) {
+	return `${value.toLocaleString("en-US", {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	})} USD`;
+};
+
 const formatTransitTime = computed(() => {
 	const transitTime = Math.ceil(props.averageData.transitTime);
 	return `${transitTime} days`;
 });
 
 const formatTranshipment = computed(() => {
-	const transhipment = Math.ceil(props.averageData.transshipment);
+	const transhipment = Math.round(props.averageData.transshipment);
 	return `${transhipment} (estimated)`;
 });
 
 const formatOceanFreight20GP = computed(() => {
 	const value = Math.ceil(props.averageData.oceanFreight20GP);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatSurcharge20GP = computed(() => {
 	const value = Math.ceil(props.averageData.surcharge20GP);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatTotal20GP = computed(() => {
 	const value = Math.ceil(
 		props.averageData.oceanFreight20GP + props.averageData.surcharge20GP
 	);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatOceanFreight40GP = computed(() => {
 	const value = Math.ceil(props.averageData.oceanFreight40GP);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatSurcharge40GP = computed(() => {
 	const value = Math.ceil(props.averageData.surcharge40GP);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatTotal40GP = computed(() => {
 	const value = Math.ceil(
 		props.averageData.oceanFreight40GP + props.averageData.surcharge40GP
 	);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatOceanFreight40HC = computed(() => {
 	const value = Math.ceil(props.averageData.oceanFreight40HC);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatSurcharge40HC = computed(() => {
 	const value = Math.ceil(props.averageData.surcharge40HC);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 
 const formatTotal40HC = computed(() => {
 	const value = Math.ceil(
 		props.averageData.oceanFreight40HC + props.averageData.surcharge40HC
 	);
-	return `${value} USD`;
+	return formatCurrency(value);
 });
 </script>
 

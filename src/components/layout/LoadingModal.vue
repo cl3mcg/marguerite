@@ -2,13 +2,19 @@
 	<div class="overlay">
 		<div class="modal">
 			<p class="loader"></p>
-			<span>Loading...</span>
+			<header>Loading...</header>
+			<span v-if="message">{{ message }}</span>
 		</div>
 	</div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 
+import { useUserStore } from "../../stores/UserStore.js";
+const userStore = useUserStore();
+
+const message = ref(userStore.isLoading.message);
 </script>
 
 <style scoped>
@@ -41,7 +47,7 @@
 	transition: ease-in-out 0.1s;
 }
 
-.modal span {
+.modal header {
 	margin: 0;
 	padding: 0;
 	font-size: 1.75em;
