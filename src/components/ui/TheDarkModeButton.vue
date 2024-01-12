@@ -45,16 +45,16 @@ const switchDarkMode = () => {
 
 const darkModeIconSrc = ref(
 	userStore.darkMode
-		? "../../assets/icons/sunwithface.svg"
-		: "../../assets/icons/moonwithface.svg"
+		? "/src/assets/icons/sunwithface.svg"
+		: "/src/assets/icons/moonwithface.svg"
 );
 
 watch(
 	() => userStore.darkMode,
 	(newVal) => {
 		darkModeIconSrc.value = newVal
-			? "../../assets/icons/sunwithface.svg"
-			: "../../assets/icons/moonwithface.svg";
+			? "/src/assets/icons/sunwithface.svg"
+			: "/src/assets/icons/moonwithface.svg";
 	}
 );
 </script>

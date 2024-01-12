@@ -20,14 +20,14 @@ const toolsList = ref([
 		toolName: "Sonar",
 		toolRoute: "tools/sonar",
 		toolDescription: "Trends of FAK ocean freight rates and data.",
-		imgPath: "src/assets/icons/sonarProjectLogo.svg",
+		imgPath: "/src/assets/icons/sonarProjectLogo.svg",
 		imgAlt: "A logo used to reprensent the Sonar tool",
 	},
 	{
 		toolName: "Sauron",
 		toolRoute: "tools/sauron",
 		toolDescription: "Countries' macroeconomy & logistics indicators overview.",
-		imgPath: "src/assets/icons/sauronProjectLogo.svg",
+		imgPath: "/src/assets/icons/sauronProjectLogo.svg",
 		imgAlt: "A logo used to reprensent the Sauron tool",
 	},
 ]);

@@ -84,7 +84,25 @@ menu li:hover {
 	}
 }
 
+@media screen and (max-width: 365px) {
+	menu {
+		width: 90%;
+	}
+}
+
 @media screen and (max-height: 600px) {
+	.login-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		align-items: center;
+		height: 75vh;
+		gap: 1em;
+		margin-top: 1em;
+	}
+}
+
+@media screen and (max-height: 400px) {
 	.login-form {
 		margin-top: 1em;
 		display: flex;

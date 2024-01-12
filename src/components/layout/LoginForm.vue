@@ -85,6 +85,7 @@ legend {
 
 button,
 a.button {
+	height: 2.5em;
 	width: 75%;
 }
 
@@ -134,6 +135,28 @@ a.button {
 }
 
 @media screen and (max-height: 600px) {
+	form {
+		width: 20em;
+		height: 35em;
+		justify-content: start;
+		padding: 0 1em;
+	}
+	.form-button {
+		margin-top: 1em;
+		flex-direction: row;
+		font-size: small;
+		gap: 0.5em;
+	}
+	.form-button *:last-child {
+		margin-top: 0;
+	}
+	legend {
+		font-size: 0.8em;
+		margin-top: 0;
+	}
+}
+
+@media screen and (max-height: 400px) {
 	form {
 		width: 100%;
 		height: 100%;
