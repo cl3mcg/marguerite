@@ -190,7 +190,7 @@ const checkFormValidity = function (object) {
 
 const getAccountDetails = async function () {
 	const accountDetails = await userStore.getAccountDetails(
-		`http://localhost:3000/user/userDetails`,
+		`/backend/user/userDetails`,
 		localStorage.getItem("accountToken")
 	);
 	userAccount.id = accountDetails.id;
@@ -210,7 +210,7 @@ const newPassword = async function () {
 		console.log(newPaswordData);
 		try {
 			const attempt = await userStore.changePassword(
-				`http://localhost:3000/user/changePassword`,
+				`/backend/user/changePassword`,
 				newPaswordData
 			);
 			if (attempt) {
@@ -249,7 +249,7 @@ const newEmail = async function () {
 		};
 		try {
 			const attempt = await userStore.changeEmail(
-				`http://localhost:3000/user/changeEmail`,
+				`/backend/user/changeEmail`,
 				newEmailData
 			);
 			if (attempt) {

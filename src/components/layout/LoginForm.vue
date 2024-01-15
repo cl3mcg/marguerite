@@ -46,7 +46,7 @@ const checkFormValidity = function () {
 };
 
 const login = async function () {
-	let url = `http://localhost:3000/user/login`;
+	let url = `/backend/user/login`;
 	let data = {
 		email: email.value,
 		password: password.value,

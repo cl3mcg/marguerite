@@ -1,6 +1,13 @@
 <template>
 	<button @click="switchDarkMode" v-bind:class="backgroundColor">
-		<img :src="darkModeIconSrc" class="darkModeIcon" />
+		<img
+			v-if="darkModeIcon === 'sun'"
+			src="/src/assets/icons/sunwithface.svg"
+		/>
+		<img
+			v-if="darkModeIcon === 'moon'"
+			src="/src/assets/icons/moonwithface.svg"
+		/>
 	</button>
 </template>
 
@@ -43,18 +50,12 @@ const switchDarkMode = () => {
 		: (backgroundColor.value = "dark");
 };
 
-const darkModeIconSrc = ref(
-	userStore.darkMode
-		? "/src/assets/icons/sunwithface.svg"
-		: "/src/assets/icons/moonwithface.svg"
-);
+const darkModeIcon = ref(userStore.darkMode ? "sun" : "moon");
 
 watch(
 	() => userStore.darkMode,
 	(newVal) => {
-		darkModeIconSrc.value = newVal
-			? "/src/assets/icons/sunwithface.svg"
-			: "/src/assets/icons/moonwithface.svg";
+		darkModeIcon.value = newVal ? "sun" : "moon";
 	}
 );
 </script>

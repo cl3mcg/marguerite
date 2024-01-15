@@ -20,11 +20,11 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: "/",
-            redirect: "/home"
+            path: "/home",
+            redirect: "/"
         },
         {
-            path: "/home",
+            path: "/",
             component: TheHomePage,
             name: "home",
             meta: {
@@ -116,7 +116,7 @@ router.beforeEach(async function (to, from, next) {
         router.push("/login")
     }
     if (to.meta.requiresAuth && localStorage.getItem("accountToken")) {
-        let validation = await validateToken(`http://localhost:3000/user/validateToken`, localStorage.accountToken)
+        let validation = await validateToken(`/backend/user/validateToken`, localStorage.accountToken)
         if (!validation) {
             useUserStore().intendedRoute = to.fullPath
             router.push("/login")

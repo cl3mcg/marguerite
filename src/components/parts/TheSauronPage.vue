@@ -272,19 +272,16 @@ const displayIndicatorInformation = function (indicatorCode) {
 const retrieveIndicatorData = async function () {
 	try {
 		userStore.isLoading.status = true;
-		const response = await fetch(
-			`http://localhost:3000/indicator/getIndicator`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					countryCodes: selection.selectedCountry,
-					indicatorCodes: selection.selectedIndicator,
-				}),
-			}
-		);
+		const response = await fetch(`/backend/indicator/getIndicator`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				countryCodes: selection.selectedCountry,
+				indicatorCodes: selection.selectedIndicator,
+			}),
+		});
 		const responseData = await response.json();
 
 		if (response.ok) {

@@ -62,7 +62,7 @@ const checkFormValidity = function () {
 };
 
 const register = async function () {
-	let url = `http://localhost:3000/user/register`;
+	let url = `/backend/user/register`;
 	let data = {
 		email: emailCreate1.value,
 		password: passwordCreate.value,

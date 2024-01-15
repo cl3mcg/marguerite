@@ -123,7 +123,7 @@ onBeforeMount(async function () {
 	userStore.isLoading.message = "Fetching the available port pairs.";
 	userStore.isLoading.status = true;
 	try {
-		const response = await fetch(`http://localhost:3000/rate/getPort`, {
+		const response = await fetch(`/backend/rate/getPort`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -248,7 +248,7 @@ const updateLineChartData = function (dataReceived) {
 const retrieveRates = async function () {
 	userStore.isLoading.status = true;
 	try {
-		const response = await fetch(`http://localhost:3000/rate/getRate`, {
+		const response = await fetch(`/backend/rate/getRate`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

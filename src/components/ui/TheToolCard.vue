@@ -12,7 +12,7 @@
 				{{ toolData.toolDescription }}
 			</main>
 			<aside>➤</aside>
-		</div>		
+		</div>
 	</router-link>
 </template>
 
