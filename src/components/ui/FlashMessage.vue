@@ -2,23 +2,48 @@
 	<div>
 		<header v-bind:class="props.type">
 			<span><slot name="default">Message</slot></span>
-			<button v-on:click="closeFlash"><span>✖</span></button>
+			<button v-on:click="closeFlash"><span>x</span></button>
 		</header>
 		<main>
 			<slot name="message"></slot>
 		</main>
+		<div class="progress">
+			<progress
+				id="progressBar"
+				max="100"
+				v-bind:value="progressValue"
+			></progress>
+		</div>
 	</div>
 </template>
 
 <script setup>
-import { defineEmits, defineProps } from "vue";
+import { ref, onMounted } from "vue";
 
 const props = defineProps(["id", "type"]);
-
 const emit = defineEmits(["close-flash"]);
 const closeFlash = function () {
 	emit("close-flash", props.id);
 };
+
+// Local state for progress
+const progressValue = ref(100); // Start at  100
+
+// Update progress every second
+const updateProgress = () => {
+	setInterval(() => {
+		if (progressValue.value > 0) {
+			progressValue.value -= 0.4; // Decrease by  1 every time
+		} else {
+			closeFlash();
+		}
+	}, 20); //  1000ms divided by  7 seconds equals ~142.86ms per decrement
+};
+
+// Call autoClose and updateProgress when the component mounts
+onMounted(() => {
+	updateProgress();
+});
 </script>
 
 <style scoped>
@@ -123,7 +148,8 @@ div:has(header.info) header.info::before {
 }
 
 header button {
-	border: 2px solid (--primary-dark);
+	border: 2px solid var(--primary-dark);
+	color: var(--primary-darker);
 	padding: 0;
 	height: 1.7rem;
 	width: 1.7rem;
@@ -146,5 +172,49 @@ main {
 	width: 100%;
 	margin: 0.5em;
 	font-size: 0.85em;
+}
+
+.progress {
+	position: relative;
+	width: 100%;
+	max-width: 480px;
+	background: none;
+	border: 0;
+	height: auto;
+	margin-bottom: -1em;
+	/* margin-left: -1em; */
+	padding-right: 0em;
+	padding-left: 0em;
+	pointer-events: none;
+
+	progress {
+		position: relative;
+		display: block;
+		height: 0.7em;
+		width: 100%;
+		border: 0;
+		background-color: transparent;
+		-webkit-appearance: none;
+	}
+
+	::-moz-progress-bar {
+		background-image: linear-gradient(
+			60deg,
+			var(--neutral-900),
+			var(--neutral-900)
+		);
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+	}
+
+	::-webkit-progress-bar {
+		background-color: transparent;
+	}
+
+	::-webkit-progress-value {
+		background-image: linear-gradient(132deg, #f4d03f 0%, #16a085 100%);
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+	}
 }
 </style>

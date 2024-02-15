@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import Chart from "chart.js/auto";
 Chart.defaults.font.family =
 	"'Fira Mono', Menlo, Consolas, 'Courier New', monospace";

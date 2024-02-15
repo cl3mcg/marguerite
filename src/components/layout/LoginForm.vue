@@ -15,7 +15,9 @@
 		</div>
 		<div class="form-button">
 			<button type="submit">Login</button>
-			<a class="button" tabindex="0">Forgot my password</a>
+			<a class="button" v-on:click="emitEvent" tabindex="0"
+				>Forgot my password</a
+			>
 		</div>
 	</form>
 </template>
@@ -28,6 +30,8 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 import { ref } from "vue";
+
+const emit = defineEmits(["switch-tab"]);
 
 const email = ref("");
 const password = ref("");
@@ -59,15 +63,25 @@ const login = async function () {
 				? router.push(userStore.intendedRoute)
 				: router.push("/account");
 			userStore.intendedRoute = null;
+			email.value = "";
+			password.value = "";
+			rememberMe.value = false;
 			return true;
 		} else {
 			return false;
 		}
 	}
 };
+
+const emitEvent = function () {
+	emit("switch-tab");
+};
 </script>
 
 <style scoped>
+li.button {
+	padding: 0 !important;
+}
 form {
 	width: 25em;
 	height: 40em;
@@ -103,6 +117,9 @@ a.button {
 	gap: 1em;
 	margin-bottom: 1.5rem;
 }
+li.button {
+	padding: 0 !important;
+}
 .form-button {
 	width: 100%;
 	display: flex;
@@ -111,9 +128,14 @@ a.button {
 	justify-content: center;
 	margin-top: 2em;
 }
-
+li.button {
+	padding: 0 !important;
+}
 .form-button *:last-child {
 	margin-top: 1em;
+}
+li.button {
+	padding: 0 !important;
 }
 
 @media screen and (max-width: 930px) {
@@ -154,6 +176,9 @@ a.button {
 		font-size: 0.8em;
 		margin-top: 0;
 	}
+	li.button {
+		padding: 0 !important;
+	}
 }
 
 @media screen and (max-height: 400px) {
@@ -161,21 +186,28 @@ a.button {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		flex-direction: column;
+		flex-wrap: wrap;
+		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		padding: 1em;
+		gap: 0 1em;
 	}
 	legend {
-		align-self: center;
+		flex: 100%;
 		margin: 0;
+	}
+	.form-group:nth-of-type(1),
+	.form-group:nth-of-type(2) {
+		flex: 45%;
+	}
+	li.button {
+		padding: 0 !important;
 	}
 	.form-group:not(last) {
 		margin: 0;
 	}
 	.form-group:nth-of-type(3) {
-		margin-top: 0.75em;
-		margin-bottom: 1.25em;
+		margin: 0.5em 0;
 	}
 	.form-button {
 		display: flex;
@@ -183,12 +215,21 @@ a.button {
 		gap: 1em;
 		margin-top: 0;
 	}
+
+	.form-button *:last-child,
 	.form-button button:last-of-type {
 		margin-top: 0;
 	}
-
-	.form-button *:last-child {
-		margin-top: 0;
+	input {
+		height: 1.75em;
+		font-size: 0.85em;
 	}
+
+	li.button {
+		padding: 0 !important;
+	}
+}
+li.button {
+	padding: 0 !important;
 }
 </style>

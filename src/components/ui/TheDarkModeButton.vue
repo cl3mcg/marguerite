@@ -1,12 +1,18 @@
 <template>
-	<button @click="switchDarkMode" v-bind:class="backgroundColor">
+	<button
+		@click="switchDarkMode"
+		v-bind:class="backgroundColor"
+		aria-label="Dark mode button"
+	>
 		<img
 			v-if="darkModeIcon === 'sun'"
 			src="/src/assets/icons/sunwithface.svg"
+			alt="The image of a sun with a smilling face"
 		/>
 		<img
 			v-if="darkModeIcon === 'moon'"
 			src="/src/assets/icons/moonwithface.svg"
+			alt="The image of a moon with a smilling face"
 		/>
 	</button>
 </template>

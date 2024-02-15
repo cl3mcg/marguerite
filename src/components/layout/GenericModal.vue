@@ -24,8 +24,8 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from "vue";
-import { useUserStore } from "../../stores/UserStore.js";
 
+import { useUserStore } from "../../stores/UserStore.js";
 const userStore = useUserStore();
 
 const isOpened = ref(false);

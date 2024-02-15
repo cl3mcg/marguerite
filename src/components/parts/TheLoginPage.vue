@@ -6,17 +6,24 @@
 				Create an account
 			</li>
 		</menu>
-		<LoginForm v-show="formType === 'login'"></LoginForm>
+		<LoginForm
+			v-show="formType === 'login'"
+			v-on:switch-tab="formType = 'recover'"
+		></LoginForm>
 		<CreateAccountForm
 			v-show="formType === 'create'"
 			v-on:switch-tab="formType = 'login'"
 		></CreateAccountForm>
+		<SendRecoverEmailForm
+			v-show="formType === 'recover'"
+		></SendRecoverEmailForm>
 	</section>
 </template>
 
 <script setup>
 import LoginForm from "../layout/LoginForm.vue";
 import CreateAccountForm from "../layout/CreateAccountForm.vue";
+import SendRecoverEmailForm from "../layout/SendRecoverEmailForm.vue";
 
 import { ref } from "vue";
 
@@ -75,6 +82,7 @@ menu li:hover {
 
 @media screen and (max-width: 600px) {
 	menu {
+		width: 80%;
 		font-size: small;
 		justify-content: center;
 	}
@@ -104,27 +112,26 @@ menu li:hover {
 
 @media screen and (max-height: 400px) {
 	.login-form {
-		margin-top: 1em;
 		display: flex;
-		flex-direction: row;
+		margin-top: 0;
 		justify-content: center;
-		align-items: start;
-		height: 100%;
-		gap: 1em;
+		align-items: center;
+		height: 75vh;
+		margin: 1em auto 0 auto;
+		max-width: 75vw;
 	}
 	menu {
-		padding: 2em;
-		margin: 1em;
+		padding: 0em;
+		margin: 0em;
 		list-style: none;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		width: 25vw;
-		height: 30vh;
+		justify-content: space-evenly;
+		width: 60vw;
 	}
 	menu li {
-		width: 110%;
+		height: 0.7em;
+		width: 25vw;
 	}
 }
 </style>

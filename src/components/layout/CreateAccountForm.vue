@@ -136,7 +136,7 @@ button:last-of-type {
 	}
 }
 
-@media screen and (max-height: 600px) {
+/* @media screen and (max-height: 600px) {
 	form {
 		width: 100%;
 		height: 100%;
@@ -155,6 +155,53 @@ button:last-of-type {
 	}
 	button {
 		margin-top: 0;
+	}
+} */
+@media screen and (max-height: 600px) {
+	form {
+		width: 100%;
+		height: 100%;
+		margin: auto 0 !important;
+		padding: auto 0;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 0 1em;
+	}
+	legend {
+		flex: 100%;
+		margin: 0;
+	}
+	.form-group:nth-of-type(1),
+	.form-group:nth-of-type(2) {
+		flex: 45%;
+	}
+	.form-group:not(last) {
+		margin: 0;
+	}
+	.form-group:nth-of-type(3) {
+		margin: 0.5em 0;
+	}
+	.form-button {
+		display: flex;
+		flex-direction: row;
+		gap: 1em;
+		margin-top: 0;
+	}
+
+	button:last-of-type {
+		margin-top: 0.25em;
+		width: 75%;
+		height: 2em;
+	}
+	menu {
+		margin: 0;
+	}
+	input {
+		height: 1.75em;
+		font-size: 0.85em;
 	}
 }
 </style>

@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { validateToken } from "../hooks/validateToken.js";
+import { validateToken } from "../composables/validateToken.js";
 
 // Import the Pinia store
 import { useUserStore } from "../stores/UserStore.js";
 // const userStore = useUserStore();
+
+// Import required composables
+import { validateRecoveryKey } from "../composables/validateRecoveryKey.js"
 
 const TheHomePage = () => import('../components/parts/TheHomePage.vue')
 const TheAboutPage = () => import('../components/parts/TheAboutPage.vue')
@@ -11,6 +14,7 @@ const TheContactPage = () => import('../components/parts/TheContactPage.vue')
 const TheToolsPage = () => import('../components/parts/TheToolsPage.vue')
 const TheLoginPage = () => import('../components/parts/TheLoginPage.vue')
 const TheAccountPage = () => import('../components/parts/TheAccountPage.vue')
+const TheAccountRecoveryPage = () => import('../components/parts/TheAccountRecoveryPage.vue')
 const TheSonarPage = () => import('../components/parts/TheSonarPage.vue')
 const TheSauronPage = () => import('../components/parts/TheSauronPage.vue')
 const The404Page = () => import('../components/parts/The404Page.vue')
@@ -72,6 +76,38 @@ const router = createRouter({
             }
         },
         {
+            path: "/accountRecovery/:recoveryKey",
+            component: TheAccountRecoveryPage,
+            name: "accountRecovery",
+            meta: {
+                requiresAuth: false,
+            },
+            beforeEnter: async (to, from, next) => {
+                try {
+                    const validatedRecoveryKey = await validateRecoveryKey(to.params.recoveryKey);
+                    console.log(`RecoveryKey is ${to.params.recoveryKey}`);
+                    console.log(`validatedRecoveryKey is ${validatedRecoveryKey}`);
+                    if (!validatedRecoveryKey) {
+                        useUserStore().triggerFlash(
+                            "danger",
+                            "Recovery error",
+                            "Please restart the password recovery process and request a new email with a new reset password link."
+                        );
+                        return next('/')
+                    }
+                    console.log('Valid recovery key, proceeding to account recovery...');
+                    return next()
+                } catch (error) {
+                    useUserStore().triggerFlash(
+                        "warning",
+                        "There's an issue",
+                        "Please restart the password recovery process later."
+                    );
+                    return next('/')
+                }
+            },
+        },
+        {
             path: "/error",
             component: TheErrorPage,
             name: "error",
@@ -113,13 +149,13 @@ const router = createRouter({
 router.beforeEach(async function (to, from, next) {
     if (to.meta.requiresAuth && !localStorage.getItem("accountToken")) {
         useUserStore().intendedRoute = to.fullPath
-        router.push("/login")
+        next("/login")
     }
     if (to.meta.requiresAuth && localStorage.getItem("accountToken")) {
         let validation = await validateToken(`/backend/user/validateToken`, localStorage.accountToken)
         if (!validation) {
             useUserStore().intendedRoute = to.fullPath
-            router.push("/login")
+            next("/login")
         }
     }
     return next()

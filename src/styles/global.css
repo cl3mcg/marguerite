@@ -1,7 +1,11 @@
 :root {
-    --font-standard:'Fira GO', Helvetica, Arial, 'Liberation Sans', 'TwemojiMozilla', sans-serif;
-    --font-monospace:'Fira Mono', Menlo, Consolas, 'Courier New', monospace;
-    --font-special:"ChicagoFLF", Impact, sans-serif;
+    --font-standard:'Fira GO', 'Helvetica Neue', 'Liberation Sans', 'Arial Nova', 'Nimbus Sans', 'Arial', 'TwemojiMozilla', sans-serif;
+    --font-monospace:'Fira Mono', Menlo, Consolas, 'Courier New', 'Liberation Mono', 'TwemojiMozilla', monospace;
+    --font-special:"ChicagoFLF", Impact, 'TwemojiMozilla', sans-serif;
+
+    /* --font-standard: 'Inter', 'Roboto', 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', 'Arial', 'TwemojiMozilla', 'sans-serif';
+    --font-monospace: 'ui-monospace', 'Cascadia Code', 'Cascadia Mono' 'Source Code Pro', 'Menlo', 'Consolas', 'TwemojiMozilla', 'monospace'; */
+    /* --font-special: 'ui-rounded', 'Hiragino Maru Gothic ProN', 'Quicksand', 'Comfortaa', 'Manjari', 'Arial Rounded MT', 'Arial Rounded MT Bold', 'Aptos', 'Calibri', 'source-sans-pro', 'sans-serif'; */
 
     --neutral-950: #0a0a0a;
     --neutral-900: #171717;
@@ -137,7 +141,7 @@
   font-family: var(--font-standard);
   line-height: 1.5;
   font-weight: 400;
-  font-size: 1.05rem;
+  /* font-size: 1.05rem; */
   color-scheme: light dark;
   font-variant-ligatures: no-common-ligatures;
   font-synthesis: none;
@@ -169,7 +173,7 @@
 *.font-monospace,
 *.monospace {
   font-family: var(--font-monospace);
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
 }
 
 hr {
@@ -187,7 +191,7 @@ hr {
 
 code {
   font-family: var(--font-monospace);
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
 }
 
 menu {
@@ -204,9 +208,14 @@ menu * {
   font-family: var(--font-special);
 }
 
+menu li.button {
+  font-family: var(--font-special);
+  padding: 0 !important;
+}
+
 a.button, li.button, div.button, button {
   font-family: var(--font-special);
-  font-size: 0.85em;
+  /* font-size: 0.85em; */
   color: var(--primary-dark);
   background-color: var(--primary-lighter);
 	cursor: pointer;
@@ -343,7 +352,7 @@ input[type="password"],
 input[type="text"],
 input[type="number"] {
   font-family: var(--font-monospace);
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
 	border: 1px solid var(--primary-dark);
 	background-color: var(--primary-lighter);
 	border-radius: 0%;
@@ -384,8 +393,9 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked:before {
 	content: "×";
-  padding-bottom: 2px;
-	font-size: 2.5rem;
+  font-size: 2em;
+  /* padding-bottom: 2px; */
+	/* font-size: 2.5rem; */
 }
 
 fieldset {
@@ -404,7 +414,7 @@ legend > * {
 select {
 	box-sizing: border-box;
   font-family: var(--font-monospace);
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
 	border: 1px solid var(--primary-dark);
 	background-color: var(--primary-lighter);
 	border-radius: 0%;
@@ -467,3 +477,4 @@ table {
     color: var(--primary-dark);
   }
 }
+
