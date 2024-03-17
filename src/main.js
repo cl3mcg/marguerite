@@ -1,5 +1,6 @@
-import './styles/reset.css';
+// import './styles/reset.css';
 import './styles/fonts.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/global.css';
 
 import { createApp } from 'vue'

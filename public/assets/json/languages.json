@@ -1,0 +1,22 @@
+[
+  {
+    "code": "en-GB",
+    "name": "English",
+    "flag": "🇬🇧"
+  },
+  {
+    "code": "fr-FR",
+    "name": "Français",
+    "flag": "🇫🇷"
+  },
+  {
+    "code": "zh-CN",
+    "name": "简单中文",
+    "flag": "🇨🇳"
+  },
+  {
+    "code": "zh-TW",
+    "name": "繁體中文",
+    "flag": "🇹🇼"
+  }
+]

@@ -1,68 +1,41 @@
 <template>
-	<router-link
-		tabindex="0"
-		class="button"
-		v-bind:to="toolData.toolRoute"
-		aria-label="Go to the tool"
-	>
-		<div class="toolCard">
-			<img v-bind:src="toolData.imgPath" v-bind:alt="toolData.imgAlt" />
-			<main>
-				<h2>{{ toolData.toolName }}</h2>
-				{{ toolData.toolDescription }}
-			</main>
-			<aside>➤</aside>
-		</div>
-	</router-link>
+  <router-link
+    v-bind:disabled="!userIsLoggedIn"
+    v-bind:to="userIsLoggedIn ? toolData.toolRoute : ''"
+    class="relative block w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 md:py-12"
+    v-bind:class="
+      userIsLoggedIn
+        ? 'hover:bg-gray-100 dark:hover:bg-gray-700'
+        : 'cursor-not-allowed'
+    "
+  >
+    <h5
+      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+    >
+      {{ toolData.toolName }}
+    </h5>
+    <p class="font-normal text-gray-700 dark:text-gray-400">
+      {{ toolData.toolDescription }}
+    </p>
+    <div
+      v-if="!userIsLoggedIn"
+      class="absolute right-2 top-2 inline-flex items-center rounded-lg bg-red-600 px-1.5 py-1 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800"
+    >
+      <i class="bi bi-lock-fill"></i>
+    </div>
+    <div class="absolute -bottom-5 -right-5 max-h-28 max-w-28">
+      <img v-bind:src="toolData.imgPath" v-bind:alt="toolData.imgAlt" />
+    </div>
+  </router-link>
 </template>
 
 <script setup>
-// import { defineProps } from "vue";
-
 const props = defineProps({
-	toolData: {
-		type: Object,
-	},
+  toolData: {
+    type: Object,
+  },
+  userIsLoggedIn: {
+    type: Boolean,
+  },
 });
 </script>
-
-<style scoped>
-a {
-	width: auto;
-	height: 10em;
-	margin: 0.5em 0;
-	padding: 0 0.5em;
-	display: flex;
-	align-items: center;
-	gap: 1em;
-	text-align: start;
-}
-
-div.toolCard h2 {
-	margin: 0;
-}
-
-a div.toolCard {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-
-div.toolCard img {
-	max-width: 4em;
-	margin: 0.5em;
-}
-
-main {
-	margin: 0.3em;
-	padding: 0.5em 1em;
-	font-family: var(--font-standard);
-	flex-grow: 1;
-}
-
-aside {
-	display: flex;
-	align-items: center;
-	margin-right: 2em;
-}
-</style>
