@@ -159,13 +159,13 @@
 <script setup>
 import { ref, reactive, computed } from "vue";
 
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
-import TheIndicatorLineChart from "../ui/TheIndicatorLineChart.vue";
+import TheIndicatorLineChart from "@components/ui/TheIndicatorLineChart.vue";
 
-import countriesJSON from "/assets/json/countries.json";
-import indicatorsJSON from "/assets/json/indicators.json";
+import countriesJSON from "@assets/json/countries.json";
+import indicatorsJSON from "@assets/json/indicators.json";
 
 const countries = ref([
   "CA",

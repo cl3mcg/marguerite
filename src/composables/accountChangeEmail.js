@@ -1,4 +1,4 @@
-import { accountLogout } from "./accountLogout.js"
+import { accountLogout } from "@composables/accountLogout.js"
 
 const accountChangeEmail = async function (userStore, router, formData) {
     userStore.isLoading.status = true;

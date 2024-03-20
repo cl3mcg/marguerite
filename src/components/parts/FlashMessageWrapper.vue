@@ -16,11 +16,11 @@
 </template>
 
 <script setup>
-import FlashMessage from "../ui/FlashMessage.vue";
+import FlashMessage from "@components/ui/FlashMessage.vue";
 
 import { computed } from "vue";
 
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 const flashMessages = computed(() => userStore.flashMessages);
 

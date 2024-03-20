@@ -107,9 +107,9 @@
 </template>
 
 <script setup>
-import { accountRecoveryRequest } from "../../composables/accountRecoveryRequest.js";
+import { accountRecoveryRequest } from "@composables/accountRecoveryRequest.js";
 
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { vOnClickOutside } from "@vueuse/components";

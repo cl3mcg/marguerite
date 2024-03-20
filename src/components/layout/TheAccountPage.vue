@@ -219,20 +219,20 @@
 import { ref, reactive, onBeforeMount, onMounted } from "vue";
 
 import { initFlowbite } from "flowbite";
-import TheAccountChangeEmailModal from "../parts/TheAccountChangeEmailModal.vue";
-import TheAccountChangePasswordModal from "../parts/TheAccountChangePasswordModal.vue";
-import TheAccountChangeLanguageModal from "../parts/TheAccountChangeLanguageModal.vue";
+import TheAccountChangeEmailModal from "@components/parts/TheAccountChangeEmailModal.vue";
+import TheAccountChangePasswordModal from "@components/parts/TheAccountChangePasswordModal.vue";
+import TheAccountChangeLanguageModal from "@components/parts/TheAccountChangeLanguageModal.vue";
 
-import { accountGetDetails } from "../../composables/accountGetDetails.js";
-import { accountLogout } from "../../composables/accountLogout.js";
+import { accountGetDetails } from "@composables/accountGetDetails.js";
+import { accountLogout } from "@composables/accountLogout.js";
 
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-import languageList from "../../../public/assets/json/languages.json";
+import languageList from "@assets/json/languages.json";
 
 const userAccount = reactive({
   id: null,

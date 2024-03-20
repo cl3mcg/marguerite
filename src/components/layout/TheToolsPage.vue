@@ -17,12 +17,12 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
 
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
-import { isLoggedIn } from "../../composables/isLoggedIn.js";
+import { isLoggedIn } from "@composables/isLoggedIn.js";
 
-import TheToolCard from "../ui/TheToolCard.vue";
+import TheToolCard from "@components/ui/TheToolCard.vue";
 
 const userIsLoggedIn = ref(false);
 

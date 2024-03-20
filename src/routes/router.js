@@ -1,24 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Import the Pinia store
-import { useUserStore } from "../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 
 // Import required composables
-import { validateToken } from "../composables/validateToken.js";
-import { validateRecoveryKey } from "../composables/validateRecoveryKey.js"
-import { modalClose } from '../composables/modalClose.js';
+import { validateToken } from "@composables/validateToken.js";
+import { validateRecoveryKey } from "@composables/validateRecoveryKey.js"
+import { modalClose } from '@composables/modalClose.js';
 
-const TheHomePage = () => import('../components/layout/TheHomePage.vue')
-const TheAboutPage = () => import('../components/layout/TheAboutPage.vue')
-const TheContactPage = () => import('../components/layout/TheContactPage.vue')
-const TheToolsPage = () => import('../components/layout/TheToolsPage.vue')
-// const TheLoginPage = () => import('../components/layout/TheLoginPage.vue')
-const TheAccountPage = () => import('../components/layout/TheAccountPage.vue')
-// const TheAccountRecoveryPage = () => import('../components/layout/TheAccountRecoveryPage.vue')
-const TheSonarPage = () => import('../components/layout/TheSonarPage.vue')
-const TheSauronPage = () => import('../components/layout/TheSauronPage.vue')
-const The404Page = () => import('../components/layout/The404Page.vue')
-const TheErrorPage = () => import('../components/layout/TheErrorPage.vue')
+const TheHomePage = () => import('@components/layout/TheHomePage.vue')
+const TheAboutPage = () => import('@components/layout/TheAboutPage.vue')
+const TheContactPage = () => import('@components/layout/TheContactPage.vue')
+const TheToolsPage = () => import('@components/layout/TheToolsPage.vue')
+// const TheLoginPage = () => import('@components/layout/TheLoginPage.vue')
+const TheAccountPage = () => import('@components/layout/TheAccountPage.vue')
+// const TheAccountRecoveryPage = () => import('@components/layout/TheAccountRecoveryPage.vue')
+const TheSonarPage = () => import('@components/layout/TheSonarPage.vue')
+const TheSauronPage = () => import('@components/layout/TheSauronPage.vue')
+const The404Page = () => import('@components/layout/The404Page.vue')
+const TheErrorPage = () => import('@components/layout/TheErrorPage.vue')
 
 
 const router = createRouter({

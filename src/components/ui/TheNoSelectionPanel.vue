@@ -1,5 +1,7 @@
 <template>
-  <div class="flex size-full flex-col items-center justify-center">
+  <div
+    class="flex size-full h-96 flex-col items-center justify-center rounded-md border"
+  >
     <div
       class="bg-primary-100 dark:bg-primary-900 mb-4 flex h-10 w-10 items-center justify-center rounded-full lg:h-12 lg:w-12"
     >
@@ -11,5 +13,3 @@
     </p>
   </div>
 </template>
-
-<script setup></script>

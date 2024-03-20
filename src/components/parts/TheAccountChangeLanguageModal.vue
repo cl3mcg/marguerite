@@ -108,15 +108,12 @@
 import { useUserStore } from "../../stores/UserStore.js";
 const userStore = useUserStore();
 
-import { useRouter } from "vue-router";
-const router = useRouter();
-
 import { vOnClickOutside } from "@vueuse/components";
 
-import { modalClose } from "../../composables/modalClose.js";
-import { accountChangeLanguage } from "../../composables/accountChangeLanguage.js";
+import { modalClose } from "@composables/modalClose.js";
+import { accountChangeLanguage } from "@composables/accountChangeLanguage.js";
 
-import languageList from "../../../public/assets/json/languages.json";
+import languageList from "@assets/json/languages.json";
 
 import { ref, onMounted } from "vue";
 

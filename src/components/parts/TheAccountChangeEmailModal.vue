@@ -147,15 +147,13 @@
 </template>
 
 <script setup>
-import { Modal } from "flowbite";
-
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { useRouter } from "vue-router";
 const router = useRouter();
 import { vOnClickOutside } from "@vueuse/components";
-import { accountChangeEmail } from "../../composables/accountChangeEmail.js";
+import { accountChangeEmail } from "@composables/accountChangeEmail.js";
 
 import { ref, watch } from "vue";
 

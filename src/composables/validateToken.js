@@ -17,7 +17,8 @@ const validateToken = async function () {
             return false;
         }
     } catch (error) {
-        return console.error('Error:', error);
+        console.error('Error:', error);
+        return;
     }
 };
 

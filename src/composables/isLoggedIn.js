@@ -1,4 +1,4 @@
-import { validateToken } from "./validateToken.js";
+import { validateToken } from "@composables/validateToken.js";
 
 const isLoggedIn = async function () {
     // if (!localStorage.getItem("accountToken")) {

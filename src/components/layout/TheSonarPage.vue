@@ -20,26 +20,54 @@
     </header>
 
     <!-- drawer component -->
-    <TheSonarDrawer></TheSonarDrawer>
-    <main
-      class="flex h-auto min-h-96 items-center justify-center rounded-lg border"
-    >
-      <TheNoSelectionPanel>
+    <TheSonarDrawer v-on:update-data="updateDataReceived"></TheSonarDrawer>
+    <main class="flex h-auto min-h-96 items-center justify-center">
+      <TheNoSelectionPanel
+        v-if="
+          Object.keys(displayedData).length === 0 &&
+          displayedData.constructor === Object
+        "
+      >
         Use the <i>Menu</i> button to make a selection and retrieve data.
       </TheNoSelectionPanel>
+      <div
+        v-else-if="displayedData.data.length > 0"
+        class="grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-2 md:gap-x-4 md:gap-y-4"
+      >
+        <!-- <div
+          class="rounded-md border"
+          v-for="object in displayedData.data"
+          v-bind:key="`${object.portOfLoading}${object.portOfDestination}`"
+        >
+          {{ object.portOfLoading }} → {{ object.portOfDestination }} |
+          {{ object.months.join(", ") }}
+        </div> -->
+        <TheSonarChart
+          class="rounded-md border"
+          v-for="object in displayedData.data"
+          v-bind:data="object"
+        >
+        </TheSonarChart>
+      </div>
     </main>
   </section>
 </template>
 
 <script setup>
-import TheNoSelectionPanel from "../ui/TheNoSelectionPanel.vue";
-import TheSonarDrawer from "../parts/sonar/TheSonarDrawer.vue";
+import TheNoSelectionPanel from "@components/ui/TheNoSelectionPanel.vue";
+import TheSonarDrawer from "@components/parts/sonar/TheSonarDrawer.vue";
+import TheSonarChart from "@components/parts/sonar/TheSonarChart.vue";
 
-import { ref, reactive, onBeforeMount, onMounted } from "vue";
+import { onMounted, reactive } from "vue";
 import { initFlowbite } from "flowbite";
+
+const displayedData = reactive({});
+
+const updateDataReceived = function (updatedData) {
+  Object.assign(displayedData, updatedData);
+};
 
 onMounted(() => {
   initFlowbite();
 });
 </script>
-../parts/sonar/TheSonarDrawer.vue

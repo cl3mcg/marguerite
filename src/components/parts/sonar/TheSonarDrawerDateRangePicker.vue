@@ -7,7 +7,7 @@
     v-bind:maxDate="maxDate"
     hideOnRangeSelection
     showButtonBar
-    placeholder="Select a date range"
+    placeholder="Dates selection"
     inputId="selectedDates"
     :pt="calendar"
   >
@@ -18,6 +18,7 @@
 import Calendar from "primevue/calendar";
 
 import { ref, watch } from "vue";
+const emit = defineEmits(["update-date"]);
 
 const props = defineProps({
   predefinedDateRange: {
@@ -38,6 +39,10 @@ const minDate = ref(new Date("2023-01-01"));
 const maxDate = ref(new Date());
 
 const selectedDates = ref("");
+
+watch(selectedDates, () => {
+  emit("update-date", selectedDates);
+});
 
 const calendar = {
   root: ({ props }) => ({

@@ -1,16 +1,21 @@
 <template>
-  <TopNavBar></TopNavBar>
+  <TheTopNavBar></TheTopNavBar>
   <FlashMessageWrapper v-if="displayFlash"></FlashMessageWrapper>
   <RouterView></RouterView>
 </template>
 
 <script setup>
-import TopNavBar from "./components/parts/TopNavBar.vue";
-import FlashMessageWrapper from "./components/parts/FlashMessageWrapper.vue";
+import TheTopNavBar from "@components/parts/TheTopNavBar.vue";
+import FlashMessageWrapper from "@components/parts/FlashMessageWrapper.vue";
 
 import { ref, watch, onBeforeMount, onMounted } from "vue";
-import { useUserStore } from "./stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
+
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+import { accountLogout } from "@composables/accountLogout.js";
 
 const displayLoadingModal = ref(userStore.isLoading.status);
 const displayFlash = ref(false);
@@ -35,7 +40,7 @@ onBeforeMount(function () {
       !localStorage.rememberMe &&
       performance.getEntriesByType("navigation")[0].type === "navigate"
     ) {
-      userStore.logoutAccount();
+      accountLogout(userStore, router);
     }
   });
   if (localStorage.language) {

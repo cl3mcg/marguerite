@@ -151,11 +151,11 @@
 </template>
 
 <script setup>
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { vOnClickOutside } from "@vueuse/components";
-import { accountRegister } from "../../composables/accountRegister";
+import { accountRegister } from "@composables/accountRegister";
 
 import { ref } from "vue";
 

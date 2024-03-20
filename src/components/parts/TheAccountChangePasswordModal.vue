@@ -145,13 +145,13 @@
 </template>
 
 <script setup>
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-import { accountChangePassword } from "../../composables/accountChangePassword.js";
+import { accountChangePassword } from "@composables/accountChangePassword.js";
 import { vOnClickOutside } from "@vueuse/components";
 
 import { ref } from "vue";

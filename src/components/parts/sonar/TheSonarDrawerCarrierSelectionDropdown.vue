@@ -6,7 +6,27 @@
     class="inline-flex w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
     type="button"
   >
-    Select a POD
+    <span
+      v-if="!selectedCarrier || selectedCarrier.length <= 0"
+      class="truncate"
+      >Carrier selection</span
+    >
+    <span
+      v-else-if="selectedCarrier.length === carrierList.length"
+      class="truncate"
+      >{{
+        `All (${selectedCarrier.map((code) => code.toUpperCase()).join(", ")})`
+      }}</span
+    >
+    <span v-else-if="selectedCarrier.length <= 3" class="truncate">{{
+      selectedCarrier.map((code) => code.toUpperCase()).join(", ")
+    }}</span>
+    <span v-else class="truncate">{{
+      `${selectedCarrier
+        .slice(0, 3)
+        .map((code) => code.toUpperCase())
+        .join(", ")} & ${selectedCarrier.length - 3} other...`
+    }}</span>
   </button>
   <!-- Dropdown menu -->
   <div
@@ -36,6 +56,8 @@
           </svg>
         </div>
         <input
+          v-model="searchQuery"
+          maxlength="5"
           type="text"
           id="dropdown-carrier-search"
           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
@@ -47,7 +69,7 @@
       class="h-48 overflow-y-auto px-3 pb-3 text-sm text-gray-700 dark:text-gray-200"
       aria-labelledby="dropdownSearchButton"
     >
-      <li v-for="carrier in carrierList" v-bind:key="carrier.code">
+      <li v-for="carrier in filteredCarrier" v-bind:key="carrier.code">
         <div
           class="flex items-center rounded ps-2 hover:bg-gray-100 dark:hover:bg-gray-600"
         >
@@ -56,38 +78,60 @@
             v-bind:id="carrier.code"
             v-bind:name="carrier.name"
             v-bind:value="carrier.code"
-            v-model="carrierSelection"
+            v-model="selectedCarrier"
             class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-700"
           />
           <label
             v-bind:for="carrier.code"
             class="ms-2 w-full rounded py-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            ><span class="text-sm">{{ carrier.code }}</span></label
+            ><span class="text-sm">{{
+              carrier.code.toUpperCase()
+            }}</span></label
           >
         </div>
       </li>
     </ul>
-    <a
-      href="#"
-      class="flex items-center rounded-b-lg border-t border-gray-200 bg-gray-50 p-3 text-sm font-medium text-red-600 hover:bg-gray-100 hover:underline dark:border-gray-600 dark:bg-gray-700 dark:text-red-500 dark:hover:bg-gray-600"
+    <button
+      v-on:click="resetSelection"
+      class="flex w-full items-center rounded-b-lg border-t border-gray-200 bg-gray-50 p-3 text-sm font-medium text-red-600 hover:bg-gray-100 hover:underline dark:border-gray-600 dark:bg-gray-700 dark:text-red-500 dark:hover:bg-gray-600"
     >
       <i class="bi bi-x-circle mr-3 text-base"></i>
       Clear
-    </a>
+    </button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch, computed } from "vue";
+const emit = defineEmits(["update-carrier"]);
 const carrierList = ref([
   {
     name: "HAPAG",
-    code: "HLCU",
+    code: "hlcu",
   },
   {
     name: "MSC",
-    code: "MSCU",
+    code: "mscu",
   },
 ]);
-const carrierSelection = ref([]);
+
+const resetSelection = function () {
+  selectedCarrier.value = [];
+};
+const selectedCarrier = ref([]);
+
+watch(selectedCarrier, () => {
+  emit("update-carrier", selectedCarrier);
+});
+
+const searchQuery = ref("");
+const filteredCarrier = computed(() => {
+  if (!searchQuery.value) {
+    return carrierList.value;
+  }
+  const query = searchQuery.value.toLowerCase();
+  return carrierList.value.filter((carrier) =>
+    carrier.code.toLowerCase().includes(query),
+  );
+});
 </script>

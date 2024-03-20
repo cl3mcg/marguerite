@@ -160,14 +160,14 @@
 </template>
 
 <script setup>
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-import { accountLogin } from "../../composables/accountLogin";
-import { modalClose } from "../../composables/modalClose.js";
+import { accountLogin } from "@composables/accountLogin";
+import { modalClose } from "@composables/modalClose.js";
 
 import { vOnClickOutside } from "@vueuse/components";
 

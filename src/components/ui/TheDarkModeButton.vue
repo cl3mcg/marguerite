@@ -10,7 +10,7 @@
 
 <script setup>
 import { onMounted } from "vue";
-import { useUserStore } from "../../stores/UserStore.js";
+import { useUserStore } from "@stores/UserStore.js";
 
 const userStore = useUserStore();
 
