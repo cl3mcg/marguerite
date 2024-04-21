@@ -1,6 +1,6 @@
 <template>
   <aside
-    id="drawer-right-example"
+    id="drawer-right-sonar"
     class="fixed right-0 top-0 z-40 flex h-screen w-full translate-x-full flex-col overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800 sm:w-[70vw] md:w-[50vw] lg:w-[33vw]"
     tabindex="-1"
     aria-labelledby="drawer-right-label"
@@ -13,8 +13,9 @@
     </h2>
     <button
       type="button"
-      data-drawer-hide="drawer-right-example"
-      aria-controls="drawer-right-example"
+      id="drawer-right-sonar-close-button"
+      data-drawer-hide="drawer-right-sonar"
+      aria-controls="drawer-right-sonar"
       class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
     >
       <svg
@@ -35,11 +36,11 @@
       <span class="sr-only">Close menu</span>
     </button>
     <h3
-      class="mb-2 items-center text-base font-semibold text-gray-500 dark:text-gray-400"
+      class="mb-2 mt-4 items-center text-base font-semibold text-gray-500 dark:text-gray-400"
     >
       Port selection
     </h3>
-    <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">
+    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">
       Select the port of loading and port of destination.
     </p>
     <div class="mb-4 grid grid-cols-2 gap-4">
@@ -53,32 +54,32 @@
       ></TheSonarDrawerPodSelectionDropdown>
     </div>
     <h3
-      class="mb-2 items-center text-base font-semibold text-gray-500 dark:text-gray-400"
+      class="mb-2 mt-4 items-center text-base font-semibold text-gray-500 dark:text-gray-400"
     >
       Date selection
     </h3>
-    <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">
+    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">
       Select a date range.
     </p>
     <div class="mb-4">
       <div class="mb-3 grid grid-cols-3 gap-4">
         <button
           type="button"
-          class="w-full rounded-lg bg-blue-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="w-full rounded-lg bg-purple-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
           v-on:click="setPredefinedDateRange(3)"
         >
           Last 3 months
         </button>
         <button
           type="button"
-          class="w-full rounded-lg bg-blue-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="w-full rounded-lg bg-purple-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
           v-on:click="setPredefinedDateRange(4)"
         >
           Last 4 months
         </button>
         <button
           type="button"
-          class="w-full rounded-lg bg-blue-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="w-full rounded-lg bg-purple-700 px-3 py-2 text-center text-xs font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
           v-on:click="setPredefinedDateRange(5)"
         >
           Last 5 months
@@ -91,11 +92,11 @@
       ></TheSonarDrawerDateRangePicker>
     </div>
     <h3
-      class="mb-2 items-center text-base font-semibold text-gray-500 dark:text-gray-400"
+      class="mb-2 mt-4 items-center text-base font-semibold text-gray-500 dark:text-gray-400"
     >
       Carrier selection
     </h3>
-    <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">
+    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">
       Select the carriers.
     </p>
     <div class="mb-5">
@@ -103,6 +104,54 @@
         v-on:update-carrier="updateCarrierSelection"
       ></TheSonarDrawerCarrierSelectionDropdown>
     </div>
+    <h3
+      class="mb-2 mt-4 items-center text-base font-semibold text-gray-500 dark:text-gray-400"
+    >
+      Modality
+    </h3>
+    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">
+      Select the modality of what the results should include.
+    </p>
+    <ul
+      class="w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white sm:flex"
+    >
+      <li
+        class="w-full border-b border-gray-200 dark:border-gray-600 sm:border-b-0 sm:border-r"
+      >
+        <div class="flex items-center ps-3">
+          <input
+            v-model="selection.selectedModality"
+            id="horizontal-list-radio-license"
+            type="radio"
+            value="freight"
+            name="list-radio"
+            class="h-4 w-4 border-gray-300 bg-gray-100 text-purple-600 focus:ring-2 focus:ring-purple-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-700"
+          />
+          <label
+            for="horizontal-list-radio-license"
+            class="ms-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Only Freight
+          </label>
+        </div>
+      </li>
+      <li class="w-full dark:border-gray-600">
+        <div class="flex items-center ps-3">
+          <input
+            v-model="selection.selectedModality"
+            id="horizontal-list-radio-passport"
+            type="radio"
+            value="freight+surcharges"
+            name="list-radio"
+            class="h-4 w-4 border-gray-300 bg-gray-100 text-purple-600 focus:ring-2 focus:ring-purple-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-purple-600 dark:focus:ring-offset-gray-700"
+          />
+          <label
+            for="horizontal-list-radio-passport"
+            class="ms-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Freight & Surcharges</label
+          >
+        </div>
+      </li>
+    </ul>
     <div class="mb-5 mt-auto">
       <hr class="mb-5" />
       <button
@@ -141,7 +190,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, reactive } from "vue";
+import { onMounted, ref, reactive, watch } from "vue";
 const emit = defineEmits(["update-data"]);
 
 import TheSonarDrawerPolSelectionDropdown from "./TheSonarDrawerPolSelectionDropdown.vue";
@@ -150,6 +199,7 @@ import TheSonarDrawerDateRangePicker from "./TheSonarDrawerDateRangePicker.vue";
 import TheSonarDrawerCarrierSelectionDropdown from "./TheSonarDrawerCarrierSelectionDropdown.vue";
 
 import { retrieveRates } from "@composables/sonarRetrieveRates.js";
+import { modalClose } from "@composables/modalClose.js";
 
 import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
@@ -187,7 +237,9 @@ const setPredefinedDateRange = function (number) {
     return false;
   }
   const today = new Date();
-  const latestDay = today;
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const latestDay = yesterday;
   const earliestDay = new Date(today);
   earliestDay.setMonth(today.getMonth() - number);
 
@@ -198,11 +250,18 @@ const setPredefinedDateRange = function (number) {
   }
 };
 
+watch(predefinedDateRange, (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    selection.selectedDates = predefinedDateRange.value;
+  }
+});
+
 const selection = reactive({
   selectedPOL: [],
   selectedPOD: [],
   selectedDates: [],
   selectedCarriers: [],
+  selectedModality: "freight",
   isValid: function () {
     if (
       this.selectedPOL.length > 0 &&
@@ -243,10 +302,14 @@ const newSelection = async function () {
   console.log(
     `Current selected carrier: ${selection.selectedCarriers.join(", ")}`,
   );
+  console.log(`Current selected modality: ${selection.selectedModality}`);
+  const includeSurcharge =
+    selection.selectedModality === "freight+surcharges" ? true : false;
   const request = await retrieveRates(userStore, selection);
   if (request) {
     const dataReceieved = request;
-    emit("update-data", dataReceieved);
+    emit("update-data", dataReceieved, includeSurcharge);
+    modalClose("#drawer-right-sonar-close-button");
     isLoading.value = false;
     return;
   }

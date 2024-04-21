@@ -129,7 +129,7 @@ const router = createRouter({
             component: TheSonarPage,
             name: "sonar",
             meta: {
-                requiresAuth: true,
+                requiresAuth: false,
             }
         },
         {

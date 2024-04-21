@@ -11,6 +11,7 @@ const retrieveRates = async function (userStore, selection) {
                 startTimeFrame: selection.selectedDates[0],
                 endTimeFrame: selection.selectedDates[1],
                 carriers: selection.selectedCarriers,
+                modality: selection.selectedModality,
             }),
         });
         const dataReceived = await response.json();

@@ -35,8 +35,15 @@ watch(
   },
 );
 
+function getYesterday() {
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  return yesterday;
+}
+
 const minDate = ref(new Date("2023-01-01"));
-const maxDate = ref(new Date());
+const maxDate = ref(getYesterday());
 
 const selectedDates = ref("");
 
@@ -277,19 +284,19 @@ const calendar = {
       "border-transparent border",
       // Colors
       {
-        "outline outline-offset-0 outline-2 outline-blue-500 dark:outline-blue-400 outline-dotted dark:text-blue-400":
+        "outline outline-offset-0 outline-2 outline-purple-500 dark:outline-purple-400 outline-dotted dark:text-purple-400":
           context.date.today,
         "text-gray-700 dark:text-gray-200 bg-transparent":
           !context.selected && !context.disabled && !context.date.today,
-        "text-blue-700 bg-blue-100 dark:text-gray-0 dark:bg-blue-300/40":
+        "text-purple-700 bg-purple-100 dark:text-gray-0 dark:bg-purple-300/40":
           context.selected && !context.disabled,
       },
       // States
-      "focus:outline-none focus:outline-offset-0 focus:ring focus:ring-blue-400/50 dark:focus:ring-blue-300/50",
+      "focus:outline-none focus:outline-offset-0 focus:ring focus:ring-purple-400/50 dark:focus:ring-purple-300/50",
       {
         "hover:bg-gray-100 dark:hover:bg-gray-600/80":
           !context.selected && !context.disabled,
-        "hover:bg-blue-200 dark:hover:bg-blue-200/40 dark:text-blue-200":
+        "hover:bg-purple-200 dark:hover:bg-purple-200/40 dark:text-purple-200":
           context.selected && !context.disabled,
       },
       {
@@ -455,8 +462,8 @@ const calendar = {
         "px-3 py-2 leading-none",
         "rounded-lg",
         "text-xs font-medium text-center text-gray-100",
-        "bg-blue-700 dark:bg-blue-600",
-        "hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+        "bg-purple-700 dark:bg-purple-600",
+        "hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:hover:bg-purple-700 dark:focus:ring-purple-800",
         "cursor-pointer",
       ],
     },
@@ -468,8 +475,8 @@ const calendar = {
         "px-3 py-2 leading-none",
         "rounded-lg",
         "text-xs font-medium text-center text-gray-100",
-        "bg-blue-700 dark:bg-blue-600",
-        "hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+        "bg-purple-700 dark:bg-purple-600",
+        "hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:hover:bg-purple-700 dark:focus:ring-purple-800",
         "cursor-pointer",
       ],
     },

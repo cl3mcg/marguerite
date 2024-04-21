@@ -1,0 +1,27 @@
+I actually have multiple distinct font files:
+
+NotoColorEmoji-Regular.ttf: Font for Emojis. TO be used to overwrite systems default emoji and have cross-platform consistency.
+NotoSans-Variable.ttf: Font to use by default for Sans Serif, valid for the Latin, Cyrillic and Greek scripts.
+NotoSans-Italic-Variable.ttf: Font to use by default for Sans Serif, valid for the Latin, Cyrillic and Greek scripts. Italic variant.
+NotoSerif-Variable.ttf: Font to use by default for Serif, valid for the Latin, Cyrillic and Greek scripts.
+NotoSerif-Italic-Variable.ttf: Font to use by default for Serif, valid for the Latin, Cyrillic and Greek scripts. Italic variant.
+NotoSansMono-Variable.ttf: Fixed-width font to use for monospace. It supports the Latin, Cyrillic and Greek scripts, and various symbols.
+NotoSansTC-Variable.ttf: Font to use for languages in Taiwan and Macau that use the Traditional Chinese variant of the Han ideograms. It also supports Hiragana, Katakana, Latin, Cyrillic, Greek and Hangul.
+NotoSansSC-Variable.ttf: Font to use for the Simplified Chinese variant of the Han ideograms. It also supports Hiragana, Katakana, Latin, Cyrillic, Greek and Hangul.
+NotoSansKR-Variable.ttf: Font to use for the Korean language using Hangul and the Korean Hanja scripts. It also supports Hiragana, Katakana, Latin, Cyrillic and Greek.
+NotoSansJP-Variable.ttf: Font to use for the Japanese language and other languages used in Japan. It covers Hiragana, Katakana and Kanji. It also supports Latin, Cyrillic, Greek and Hangul.
+
+
+All fonts are in ttf format. All fonts are variable fonts.
+All fonts files are located in the following folder path:
+'/assets/fonts/noto/NAME_OF_THE_FONT.ttf'
+
+I would like you to also add a src for a woff and woff2 files that I will add later in the folder.
+So down the line your src should looke like this:
+  src:url("/assets/fonts/noto/NAME_OF_THE_FONT.woff2") format("woff2-variations"),
+      url("/assets/fonts/noto/NAME_OF_THE_FONT.woff2") format("woff-variations"),
+      url("/assets/fonts/noto/NAME_OF_THE_FONT.ttf") format("ttf-variations"),
+      url("/assets/fonts/noto/NAME_OF_THE_FONT.ttf") format("ttf");
+
+Help me to adapt the code provided previously.
+Make sure to adapt the unicode range also.

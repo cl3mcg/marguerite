@@ -328,11 +328,17 @@ export default {
     //   ],
     // },
     fontFamily: {
-      sans: ['Fira GO', 'Helvetica Neue', 'Liberation Sans', 'Arial Nova', 'Nimbus Sans', 'Arial', 'TwemojiMozilla', 'sans-serif'],
-      mono: ['Fira Mono', 'Menlo', 'Consolas', 'Courier New', 'Liberation Mono', 'TwemojiMozilla', 'monospace'],
-      special: ["ChicagoFLF", 'Impact', 'TwemojiMozilla', 'sans-serif'],
-      serif: ['Merriweather', 'TwemojiMozilla', 'serif'],
+      sans: ['Fira GO', 'Noto Sans SC', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans KR', 'Liberation Sans', 'Twemoji Mozilla', 'sans-serif'],
+      mono: ['Fira Mono', 'Noto Sans SC', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans KR', 'Menlo', 'Cascadia Code', 'Consolas', 'Courier New', 'Liberation Mono', 'Twemoji Mozilla', 'monospace'],
+      special: ["ChicagoFLF", 'Impact', 'Twemoji Mozilla', 'sans-serif'],
+      serif: ['Merriweather', 'Liberation Serif', 'TwemojiMozilla', 'serif'],
     },
+    // fontFamily: {
+    //   sans: ['Noto Sans', 'Noto Sans SC', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans KR', 'Helvetica Neue', 'Liberation Sans', 'Arial Nova', 'Nimbus Sans', 'Arial', 'Noto Color Emoji', 'sans-serif'],
+    //   mono: ['Noto Sans Mono', 'Menlo', 'Consolas', 'Courier New', 'Liberation Mono', 'Noto Color Emoji', 'monospace'],
+    //   special: ["ChicagoFLF", 'Impact', 'Noto Color Emoji', 'sans-serif'],
+    //   serif: ['Noto Serif', 'Noto Color Emoji', 'serif'],
+    // },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
       sm: ['0.875rem', { lineHeight: '1.25rem' }],

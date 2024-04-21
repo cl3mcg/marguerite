@@ -60,7 +60,7 @@
                 />
                 <label
                   v-bind:for="language.code"
-                  class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-gray-900 hover:bg-gray-100 peer-checked:border-blue-600 peer-checked:bg-blue-200 peer-checked:text-blue-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-500 dark:peer-checked:bg-blue-800 dark:peer-checked:text-blue-200"
+                  class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-gray-900 hover:bg-gray-100 peer-checked:border-yellow-600 peer-checked:bg-yellow-200 peer-checked:text-yellow-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-500 dark:peer-checked:bg-yellow-800 dark:peer-checked:text-yellow-200"
                 >
                   <div class="flex w-full items-center">
                     <span class="mr-4 text-2xl">{{ language.flag }}</span>
@@ -74,7 +74,7 @@
               v-bind:class="
                 isLoading
                   ? buttonClassLoading
-                  : 'w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                  : 'w-full rounded-lg bg-yellow-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800'
               "
             >
               <svg
@@ -120,7 +120,7 @@ import { ref, onMounted } from "vue";
 const emit = defineEmits(["switchLanguage"]);
 
 const buttonClassLoading = ref(
-  "text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center",
+  "text-white bg-yellow-400 dark:bg-yellow-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center",
 );
 
 const isLoading = ref(false);

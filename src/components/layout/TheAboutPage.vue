@@ -5,10 +5,10 @@
 			<h2 class="text-3xl font-bold mb-3">Why doing this?</h2>
 			<p>
 				I needed a quick tool to help me visualize and get a grasp on ocean freight rates fluctuations on an handful of trade lanes.
-				Additionally I was tired of having to rely on pricy third-party tools, so I made my own: <router-link to="/tools/sonar" class="underline hover:text-blue-700">Sonar</router-link>.
+				Additionally I was tired of having to rely on pricy third-party tools, so I made my own: <router-link to="/tools/sonar" class="underline hover:text-purple-700">Sonar</router-link>.
 			</p>
 			<p>
-				Once done with <router-link to="/tools/sonar" class="underline hover:text-blue-700">Sonar</router-link>, I decided to build upon this tool an experiment used to retrieve data from the World Bank to create a dashboard with several indicators and made <a href="/tools/sauron">Sauron</a><br>
+				Once done with <router-link to="/tools/sonar" class="underline hover:text-purple-700">Sonar</router-link>, I decided to build upon this tool an experiment used to retrieve data from the World Bank to create a dashboard with several indicators and made <router-link to="/tools/sauron" class="underline hover:text-purple-700">Sauron</router-link><br>
 				At a later stage, I am planning to develop a tool used to build freight forwarding rate cards used in the management of tenders. Not that I am specifically fond of this, but I beleive that it can be interesting to experiment with Excel manipulation programatically.
 			</p>
 		</div>
@@ -73,8 +73,8 @@
 				If you wish your personal data mentionned above to be deleted, you can always delete your account in the account settings page.
 				Upon deletion of your account, all information related to it, as well as any other information (if any) will be deleted. You can also modify the email address provided on your account page.
 				The app doesn't retain personal data nor sell it to third-party companies.
-				The data is stored in France (EU), in <a href="https://www.clever-cloud.com/about-us/" class="underline hover:text-blue-700">Clever Cloud</a>'s datacenters, on a MongoDB instance.
-				The application is running in Germany (EU), on a VPS hosted by <a href="https://contabo.com/en/" class="underline hover:text-blue-700">Contabo</a>, running an Ubuntu Server.
+				The data is stored in France (EU), in <a href="https://www.clever-cloud.com/about-us/" class="underline hover:text-purple-700">Clever Cloud</a>'s datacenters, on a MongoDB instance.
+				The application is running in Germany (EU), on a VPS hosted by <a href="https://contabo.com/en/" class="underline hover:text-purple-700">Contabo</a>, running an Ubuntu Server.
 			</p>
 		</div>
 	</section>

@@ -1,4 +1,4 @@
-<template>
+<template class="text-medium">
   <TheTopNavBar></TheTopNavBar>
   <FlashMessageWrapper v-if="displayFlash"></FlashMessageWrapper>
   <RouterView></RouterView>
@@ -24,9 +24,7 @@ watch(
   () => userStore.isLoading.status,
   function (newValue) {
     displayLoadingModal.value = newValue;
-  },
-);
-
+  },);
 watch(userStore.flashMessages, function () {
   displayFlash.value = true;
 });
