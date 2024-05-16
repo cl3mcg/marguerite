@@ -150,6 +150,8 @@
                 <button
                   type="button"
                   class="whitespace-nowrap rounded-lg border border-red-700 px-3 py-2 text-center text-xs font-medium text-red-700 hover:bg-red-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-500 dark:hover:text-white dark:focus:ring-red-800"
+                  data-modal-target="account-deletion-modal"
+                  data-modal-toggle="account-deletion-modal"
                 >
                   <i class="bi bi-trash3-fill me-2"></i>Delete
                 </button>
@@ -212,6 +214,7 @@
     <TheAccountChangeLanguageModal
       v-on:switchLanguage="defineLanguagePrefered"
     ></TheAccountChangeLanguageModal>
+    <TheAccountDeletionModal></TheAccountDeletionModal>
   </section>
 </template>
 
@@ -222,6 +225,7 @@ import { initFlowbite } from "flowbite";
 import TheAccountChangeEmailModal from "@components/parts/TheAccountChangeEmailModal.vue";
 import TheAccountChangePasswordModal from "@components/parts/TheAccountChangePasswordModal.vue";
 import TheAccountChangeLanguageModal from "@components/parts/TheAccountChangeLanguageModal.vue";
+import TheAccountDeletionModal from "@components/parts/TheAccountDeletionModal.vue";
 
 import { accountGetDetails } from "@composables/accountGetDetails.js";
 import { accountLogout } from "@composables/accountLogout.js";
