@@ -102,7 +102,7 @@
             </div>
             <button
               type="submit"
-              class="w-full rounded-lg bg-yellow-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
+              class="w-full rounded-lg bg-purple-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
               v-bind:class="isLoading ? buttonClassLoading : ''"
             >
               <svg
@@ -132,19 +132,13 @@
                 data-modal-hide="account-create-modal"
                 data-modal-target="account-login-modal"
                 data-modal-toggle="account-login-modal"
-                class="text-yellow-700 hover:underline dark:text-yellow-500"
+                class="text-purple-700 hover:underline dark:text-purple-500"
               >
                 Login your account
               </button>
             </div>
           </form>
         </div>
-        <!-- Modal footer / Alert -->
-        <!-- <div v-if=showAlert.show class="flex p-4 text-sm text-red-800 rounded-b-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                <i class="bi bi-exclamation-circle-fill me-3 motion-safe:animate-pulse"></i>
-                <span class="sr-only">Error</span>
-                <span class="font-medium">{{ showAlert.message }}</span>
-            </div> -->
       </div>
     </div>
   </div>
@@ -155,6 +149,7 @@ import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { vOnClickOutside } from "@vueuse/components";
+import { modalClose } from "@composables/modalClose.js";
 import { accountRegister } from "@composables/accountRegister";
 
 import { ref } from "vue";
@@ -164,7 +159,7 @@ const email2 = ref("");
 const password1 = ref("");
 
 const fieldClassDefault = ref(
-  "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
+  "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
 );
 const fieldClassValid = ref(
   "bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500",
@@ -173,7 +168,7 @@ const fieldClassInvalid = ref(
   "bg-red-50 border-2 border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500",
 );
 const buttonClassLoading = ref(
-  "text-white bg-yellow-400 dark:bg-yellow-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center",
+  "text-white bg-purple-400 dark:bg-purple-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center",
 );
 const showFieldsErrorLabel = ref(false);
 const isLoading = ref(false);
@@ -203,7 +198,7 @@ const resetErrorLabels = function () {
 const resetAll = function () {
   email1.value = "";
   email2.value = "";
-  password1.value = false;
+  password1.value = "";
   isLoading.value = false;
   resetErrorLabels();
 };
@@ -218,6 +213,7 @@ const register = async function () {
     const registration = await accountRegister(userStore, data);
     if (registration) {
       isLoading.value = false;
+      modalClose();
       return true;
     } else {
       isLoading.value = false;
@@ -228,4 +224,3 @@ const register = async function () {
   return false;
 };
 </script>
-../../composables/accountRegister.js

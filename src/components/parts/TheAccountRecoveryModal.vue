@@ -70,8 +70,11 @@
             </div>
             <button
               type="submit"
-              class="w-full rounded-lg bg-yellow-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
-              v-bind:class="isLoading ? buttonClassLoading : ''"
+              v-bind:class="
+                isLoading
+                  ? buttonClassLoading
+                  : 'w-full rounded-lg bg-purple-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800'
+              "
             >
               <svg
                 v-if="isLoading"
@@ -112,21 +115,22 @@ import { accountRecoveryRequest } from "@composables/accountRecoveryRequest.js";
 import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
+import { modalClose } from "@composables/modalClose.js";
 import { vOnClickOutside } from "@vueuse/components";
 
 import { ref } from "vue";
 
 const fieldClassDefault = ref(
-  "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
+  "w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
 );
 const fieldClassValid = ref(
-  "bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500",
+  "w-full bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500",
 );
 const fieldClassInvalid = ref(
-  "bg-red-50 border-2 border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500",
+  "w-full bg-red-50 border-2 border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500",
 );
 const buttonClassLoading = ref(
-  "text-white bg-yellow-400 dark:bg-yellow-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center",
+  "w-full text-white bg-purple-400 dark:bg-purple-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center",
 );
 const emailRecover = ref("");
 const showFieldsErrorLabel = ref(false);
@@ -158,11 +162,14 @@ const resetAll = function () {
 
 const sendRecoveryEmail = async function () {
   if (checkFormValidity()) {
+    isLoading.value = true;
     let recoveryRequest = await accountRecoveryRequest(
       userStore,
       emailRecover.value,
     );
+    isLoading.value = false;
     if (recoveryRequest) {
+      modalClose();
       return true;
     } else {
       return false;
