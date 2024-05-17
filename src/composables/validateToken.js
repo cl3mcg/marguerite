@@ -1,10 +1,10 @@
-export async function validateToken(url, token) {
+const validateToken = async function () {
     try {
-        const response = await fetch(url, {
+        const response = await fetch('/backend/user/validateToken', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'token': token
+                // 'token': token
             },
         });
         await response.json();
@@ -17,6 +17,9 @@ export async function validateToken(url, token) {
             return false;
         }
     } catch (error) {
-        return console.error('Error:', error);
+        console.error('Error:', error);
+        return;
     }
-}
+};
+
+export { validateToken };

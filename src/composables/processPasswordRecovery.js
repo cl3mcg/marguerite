@@ -1,7 +1,4 @@
-import { useUserStore } from "../stores/UserStore.js";
-const userStore = useUserStore();
-
-export async function processPasswordRecovery(recoveryKey, newPassword, router) {
+const processPasswordRecovery = async function (userStore, recoveryKey, newPassword, router) {
 	try {
 
 		const response = await fetch(`/backend/user/processAccountRecovery`, {
@@ -38,4 +35,6 @@ export async function processPasswordRecovery(recoveryKey, newPassword, router) 
 		return console.error("Error:", error);
 
 	}
-}
+};
+
+export { processPasswordRecovery }

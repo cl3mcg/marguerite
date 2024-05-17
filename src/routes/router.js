@@ -1,24 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { validateToken } from "../composables/validateToken.js";
 
 // Import the Pinia store
-import { useUserStore } from "../stores/UserStore.js";
-// const userStore = useUserStore();
+import { useUserStore } from "@stores/UserStore.js";
 
 // Import required composables
-import { validateRecoveryKey } from "../composables/validateRecoveryKey.js"
+import { validateToken } from "@composables/validateToken.js";
+import { validateRecoveryKey } from "@composables/validateRecoveryKey.js"
+import { modalClose } from '@composables/modalClose.js';
 
-const TheHomePage = () => import('../components/parts/TheHomePage.vue')
-const TheAboutPage = () => import('../components/parts/TheAboutPage.vue')
-const TheContactPage = () => import('../components/parts/TheContactPage.vue')
-const TheToolsPage = () => import('../components/parts/TheToolsPage.vue')
-const TheLoginPage = () => import('../components/parts/TheLoginPage.vue')
-const TheAccountPage = () => import('../components/parts/TheAccountPage.vue')
-const TheAccountRecoveryPage = () => import('../components/parts/TheAccountRecoveryPage.vue')
-const TheSonarPage = () => import('../components/parts/TheSonarPage.vue')
-const TheSauronPage = () => import('../components/parts/TheSauronPage.vue')
-const The404Page = () => import('../components/parts/The404Page.vue')
-const TheErrorPage = () => import('../components/parts/TheErrorPage.vue')
+const TheHomePage = () => import('@components/layout/TheHomePage.vue')
+const TheAboutPage = () => import('@components/layout/TheAboutPage.vue')
+const TheContactPage = () => import('@components/layout/TheContactPage.vue')
+const TheToolsPage = () => import('@components/layout/TheToolsPage.vue')
+// const TheLoginPage = () => import('@components/layout/TheLoginPage.vue')
+const TheAccountPage = () => import('@components/layout/TheAccountPage.vue')
+// const TheAccountRecoveryPage = () => import('@components/layout/TheAccountRecoveryPage.vue')
+const TheSonarPage = () => import('@components/layout/TheSonarPage.vue')
+const TheSauronPage = () => import('@components/layout/TheSauronPage.vue')
+const The404Page = () => import('@components/layout/The404Page.vue')
+const TheErrorPage = () => import('@components/layout/TheErrorPage.vue')
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -59,14 +60,14 @@ const router = createRouter({
                 requiresAuth: false,
             }
         },
-        {
-            path: "/login",
-            component: TheLoginPage,
-            name: "login",
-            meta: {
-                requiresAuth: false,
-            }
-        },
+        // {
+        //     path: "/login",
+        //     component: TheLoginPage,
+        //     name: "login",
+        //     meta: {
+        //         requiresAuth: false,
+        //     }
+        // },
         {
             path: "/account",
             component: TheAccountPage,
@@ -75,38 +76,38 @@ const router = createRouter({
                 requiresAuth: true,
             }
         },
-        {
-            path: "/accountRecovery/:recoveryKey",
-            component: TheAccountRecoveryPage,
-            name: "accountRecovery",
-            meta: {
-                requiresAuth: false,
-            },
-            beforeEnter: async (to, from, next) => {
-                try {
-                    const validatedRecoveryKey = await validateRecoveryKey(to.params.recoveryKey);
-                    console.log(`RecoveryKey is ${to.params.recoveryKey}`);
-                    console.log(`validatedRecoveryKey is ${validatedRecoveryKey}`);
-                    if (!validatedRecoveryKey) {
-                        useUserStore().triggerFlash(
-                            "danger",
-                            "Recovery error",
-                            "Please restart the password recovery process and request a new email with a new reset password link."
-                        );
-                        return next('/')
-                    }
-                    console.log('Valid recovery key, proceeding to account recovery...');
-                    return next()
-                } catch (error) {
-                    useUserStore().triggerFlash(
-                        "warning",
-                        "There's an issue",
-                        "Please restart the password recovery process later."
-                    );
-                    return next('/')
-                }
-            },
-        },
+        // {
+        //     path: "/accountRecovery/:recoveryKey",
+        //     component: TheAccountRecoveryPage,
+        //     name: "accountRecovery",
+        //     meta: {
+        //         requiresAuth: false,
+        //     },
+        //     beforeEnter: async (to, from, next) => {
+        //         try {
+        //             const validatedRecoveryKey = await validateRecoveryKey(to.params.recoveryKey);
+        //             console.log(`RecoveryKey is ${to.params.recoveryKey}`);
+        //             console.log(`validatedRecoveryKey is ${validatedRecoveryKey}`);
+        //             if (!validatedRecoveryKey) {
+        //                 useUserStore().triggerFlash(
+        //                     "danger",
+        //                     "Recovery error",
+        //                     "Please restart the password recovery process and request a new email with a new reset password link."
+        //                 );
+        //                 return next('/')
+        //             }
+        //             console.log('Valid recovery key, proceeding to account recovery...');
+        //             return next()
+        //         } catch (error) {
+        //             useUserStore().triggerFlash(
+        //                 "warning",
+        //                 "There's an issue",
+        //                 "Please restart the password recovery process later."
+        //             );
+        //             return next('/')
+        //         }
+        //     },
+        // },
         {
             path: "/error",
             component: TheErrorPage,
@@ -128,7 +129,7 @@ const router = createRouter({
             component: TheSonarPage,
             name: "sonar",
             meta: {
-                requiresAuth: true,
+                requiresAuth: false,
             }
         },
         {
@@ -152,7 +153,7 @@ router.beforeEach(async function (to, from, next) {
         next("/login")
     }
     if (to.meta.requiresAuth && localStorage.getItem("accountToken")) {
-        let validation = await validateToken(`/backend/user/validateToken`, localStorage.accountToken)
+        let validation = await validateToken(localStorage.accountToken)
         if (!validation) {
             useUserStore().intendedRoute = to.fullPath
             next("/login")
@@ -160,5 +161,14 @@ router.beforeEach(async function (to, from, next) {
     }
     return next()
 });
+
+router.beforeEach(function (to, from, next) {
+    try {
+        modalClose()
+    } catch (error) {
+        console.log(error)
+    }
+    return next()
+})
 
 export default router

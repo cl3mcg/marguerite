@@ -2,182 +2,308 @@
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 100;
-  src: url("../assets/fonts/firago/FiraGO-ExtraLight.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-ExtraLight.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-ExtraLight.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-ExtraLight.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 100;
-  src: url("../assets/fonts/firago/FiraGO-ExtraLightItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-ExtraLightItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-ExtraLightItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-ExtraLightItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 200;
-  src: url("../assets/fonts/firago/FiraGO-Light.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-Light.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-Light.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-Light.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 200;
-  src: url("../assets/fonts/firago/FiraGO-LightItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-LightItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-LightItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-LightItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 300;
-  src: url("../assets/fonts/firago/FiraGO-Book.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-Book.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-Book.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-Book.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 300;
-  src: url("../assets/fonts/firago/FiraGO-BookItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-BookItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-BookItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-BookItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 400;
-  src: url("../assets/fonts/firago/FiraGO-Regular.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-Regular.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-Regular.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-Regular.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 400;
-  src: url("../assets/fonts/firago/FiraGO-RegularItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-RegularItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-RegularItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-RegularItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 500;
-  src: url("../assets/fonts/firago/FiraGO-Medium.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-Medium.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-Medium.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-Medium.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 500;
-  src: url("../assets/fonts/firago/FiraGO-MediumItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-MediumItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-MediumItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-MediumItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 600;
-  src: url("../assets/fonts/firago/FiraGO-SemiBold.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-SemiBold.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-SemiBold.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-SemiBold.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 600;
-  src: url("../assets/fonts/firago/FiraGO-SemiBoldItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-SemiBoldItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-SemiBoldItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-SemiBoldItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 700;
-  src: url("../assets/fonts/firago/FiraGO-Bold.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-Bold.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-Bold.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-Bold.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 700;
-  src: url("../assets/fonts/firago/FiraGO-BoldItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-BoldItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-BoldItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-BoldItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 800;
-  src: url("../assets/fonts/firago/FiraGO-ExtraBold.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-ExtraBold.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-ExtraBold.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-ExtraBold.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 800;
-  src: url("../assets/fonts/firago/FiraGO-ExtraBoldItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-ExtraBoldItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-ExtraBoldItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-ExtraBoldItalic.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: normal;
   font-weight: 900;
-  src: url("../assets/fonts/firago/FiraGO-Heavy.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-Heavy.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-Heavy.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-Heavy.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Fira GO';
   font-style: italic;
   font-weight: 900;
-  src: url("../assets/fonts/firago/FiraGO-HeavyItalic.woff2") format("woff2"),
-       url("../assets/fonts/firago/FiraGO-HeavyItalic.woff") format("woff");
+  src: url("/assets/fonts/firago/FiraGO-HeavyItalic.woff2") format("woff2"),
+       url("/assets/fonts/firago/FiraGO-HeavyItalic.woff") format("woff");
 }
 
 @font-face{
   font-family: 'Fira Mono';
   font-style: normal;
   font-weight: 400;
-  src:url("../assets/fonts/firamono/firamono-regular.woff2") format("woff2"),
-      url("../assets/fonts/firamono/firamono-regular.woff") format("woff");
+  src:url("/assets/fonts/firamono/firamono-regular.woff2") format("woff2"),
+      url("/assets/fonts/firamono/firamono-regular.woff") format("woff");
 }
 
 @font-face{
   font-family: 'Fira Mono';
   font-style: normal;
   font-weight: 500;
-  src:url("../assets/fonts/firamono/firamono-medium.woff2") format("woff2"),
-      url("../assets/fonts/firamono/firamono-medium.woff") format("woff");
+  src:url("/assets/fonts/firamono/firamono-medium.woff2") format("woff2"),
+      url("/assets/fonts/firamono/firamono-medium.woff") format("woff");
 }
 
 @font-face{
   font-family: 'Fira Mono';
   font-style: normal;
   font-weight: 700;
-  src:url("../assets/fonts/firamono/firamono-bold.woff2") format("woff2"),
-      url("../assets/fonts/firamono/firamono-bold.woff") format("woff");
+  src:url("/assets/fonts/firamono/firamono-bold.woff2") format("woff2"),
+      url("/assets/fonts/firamono/firamono-bold.woff") format("woff");
 }
 
 @font-face{
   font-family: 'ChicagoFLF';
   font-style: normal;
   font-weight: 400;
-  src:url("../assets/fonts/chicagoflf/chicagoflf-regular.woff2") format("woff2"),
-      url("../assets/fonts/chicagoflf/chicagoflf-regular.woff") format("woff");
+  src:url("/assets/fonts/chicagoflf/chicagoflf-regular.woff2") format("woff2"),
+      url("/assets/fonts/chicagoflf/chicagoflf-regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'TwemojiMozilla';
+  font-family: 'Twemoji Mozilla';
   font-style: normal;
   font-weight: 400;
-  src:url("../assets/fonts/emoji/TwemojiMozilla.woff2") format("woff2"),
-  url("../assets/fonts/emoji/TwemojiMozilla.woff") format("woff");
+  src:url("/assets/fonts/emoji/TwemojiMozilla.ttf") format("truetype");
+  unicode-range: U+1F1E6-1F1FF;
 }
+
+
+@font-face {
+  /* Noto Color Emoji for Emojis */
+  font-family: 'Noto Color Emoji';
+  font-style: normal;
+  font-weight: 100 200 300 400 500 600 700 800 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/noto/NotoColorEmoji-Regular.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoColorEmoji-Regular.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoColorEmoji-Regular.ttf") format("truetype");
+  unicode-range: U+1F1E6-1F1FF;
+ }
+
+
+@font-face {
+   /* Noto Sans for Latin, Cyrillic, and Greek */
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100 200 300 400 500 600 700 800 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/noto/NotoSans-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSans-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSans-Variable.ttf") format("truetype");
+  unicode-range: U+0000-00FF, U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF, U+AB30-AB6F, U+FB00-FB17;
+ }
+
+
+@font-face {
+   /* Noto Sans Italic for Latin, Cyrillic, and Greek */
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 100 200 300 400 500 600 700 800 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/noto/NotoSans-Italic-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSans-Italic-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSans-Italic-Variable.ttf") format("truetype");
+  unicode-range: U+0000-00FF, U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF, U+AB30-AB6F, U+FB00-FB17;
+ }
+
+
+ @font-face {
+   /* Noto Serif for Latin, Cyrillic, and Greek */
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 100 200 300 400 500 600 700 800 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/noto/NotoSerif-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSerif-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSerif-Variable.ttf") format("truetype");
+  unicode-range: U+0000-00FF, U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF, U+AB30-AB6F, U+FB00-FB17;
+ }
+ 
+
+ @font-face {
+   /* Noto Serif Italic for Latin, Cyrillic, and Greek */
+  font-family: 'Noto Serif';
+  font-style: italic;
+  font-weight: 100 200 300 400 500 600 700 800 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/noto/NotoSerif-Italic-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSerif-Italic-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSerif-Italic-Variable.ttf") format("truetype");
+  unicode-range: U+0000-00FF, U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF, U+AB30-AB6F, U+FB00-FB17;
+ }
+
+
+ @font-face {
+   /* Noto Sans Mono for Monospace */
+  font-family: 'Noto Sans Mono';
+  font-style: normal;
+  font-weight: 100 200 300 400 500 600 700 800 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/noto/NotoSansMono-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSansMono-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSansMono-Variable.ttf") format("truetype");
+  unicode-range: U+0000-00FF, U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF, U+AB30-AB6F, U+FB00-FB17;
+ }
+
+
+@font-face {
+  /* Noto Sans for Traditional Chinese */
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/noto/NotoSansTC-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSansTC-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSansTC-Variable.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF;
+}
+
+
+@font-face {
+  /* Noto Sans for Simplified Chinese */
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/noto/NotoSansSC-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSansSC-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSansSC-Variable.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+20000-2A6DF, U+2F800-2FA1F;
+}
+ 
+
+ @font-face {
+   /* Noto Sans for Korean */
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/noto/NotoSansKR-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSansKR-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSansKR-Variable.ttf") format("truetype");
+  unicode-range: U+0000-00FF, U+1100-11FF, U+3130-318F, U+AC00-D7AF, U+A960-A97F, U+D7B0-D7FF, U+FF00-FFEF;
+ }
+ 
+
+ @font-face {
+   /* Noto Sans for Japanese */
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/noto/NotoSansJP-Variable.woff2") format("woff2-variations"),
+        url("/assets/fonts/noto/NotoSansJP-Variable.ttf") format("ttf-variations"),
+        url("/assets/fonts/noto/NotoSansJP-Variable.ttf") format("truetype");
+  unicode-range: U+0000-00FF, U+3040-309F, U+30A0-30FF, U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+FF00-FFEF;
+ } 
