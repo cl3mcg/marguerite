@@ -9,6 +9,7 @@
         v-bind:toolData="tool"
         key="tool.toolName"
         v-bind:userIsLoggedIn="userIsLoggedIn"
+        v-bind:isAvailable="tool.isAvailable"
       ></TheToolCard>
     </div>
   </section>
@@ -49,6 +50,7 @@ watch(
 const toolsList = ref([
   {
     toolName: "Sonar",
+    isAvailable: true,
     toolRoute: "tools/sonar",
     toolDescription: "Trends of FAK ocean freight rates and data.",
     imgPath: "/assets/icons/sonarProjectLogo.svg",
@@ -56,6 +58,7 @@ const toolsList = ref([
   },
   {
     toolName: "Sauron",
+    isAvailable: false,
     toolRoute: "tools/sauron",
     toolDescription: "Countries' macroeconomy & logistics indicators overview.",
     imgPath: "/assets/icons/sauronProjectLogo.svg",
@@ -64,6 +67,7 @@ const toolsList = ref([
   {
     toolName: "Superviseur",
     toolRoute: "tools/superviseur",
+    isAvailable: false,
     toolDescription:
       "Tracking Sonar's performance, issues and data collection.",
     imgPath: "/assets/icons/superviseurProjectLogo.svg",

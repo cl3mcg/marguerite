@@ -8,7 +8,7 @@
 				Additionally I was tired of having to rely on pricy third-party tools, so I made my own: <router-link to="/tools/sonar" class="underline hover:text-purple-700">Sonar</router-link>.
 			</p>
 			<p>
-				Once done with <router-link to="/tools/sonar" class="underline hover:text-purple-700">Sonar</router-link>, I decided to build upon this tool an experiment used to retrieve data from the World Bank to create a dashboard with several indicators and made <router-link to="/tools/sauron" class="underline hover:text-purple-700">Sauron</router-link><br>
+				Once done with <router-link to="/tools/sonar" class="underline hover:text-purple-700">Sonar</router-link>, I decided to build upon this tool an experiment used to retrieve data from the World Bank to create a dashboard with several indicators and made <router-link to="/tools/sauron" class="underline hover:text-purple-700">Sauron</router-link>.<br>
 				At a later stage, I am planning to develop a tool used to build freight forwarding rate cards used in the management of tenders. Not that I am specifically fond of this, but I beleive that it can be interesting to experiment with Excel manipulation programatically.
 			</p>
 		</div>
