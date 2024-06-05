@@ -16,7 +16,7 @@
   <loc>https://www.marguerite.xyz/home</loc>
   <changefreq>monthly</changefreq>
   <lastmod>2024-01-15T14:13:48+00:00</lastmod>
-  <priority>1.0</priority>
+  <priority>0.5</priority>
 </url>
 
 <url>
@@ -30,7 +30,7 @@
   <loc>https://www.marguerite.xyz/about</loc>
   <changefreq>monthly</changefreq>
   <lastmod>2024-01-15T14:13:48+00:00</lastmod>
-  <priority>0.5</priority>
+  <priority>1.0</priority>
 </url>
 
 </urlset>
