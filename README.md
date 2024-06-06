@@ -1,4 +1,4 @@
-# _Marguerite_ project 🌼
+# 🌼 _Marguerite_ project
 
 A simple workbench for freight forwarding related ideas and projects.
 
@@ -45,6 +45,8 @@ For the time being, the documentation of this project would be listed below, but
 ## Tools
 
 ### Sonar
+
+![A gif showcasing a demonstration of the Sonar tool](/public/assets/demos/sonar_demo.gif)
 
 The _Sonar_ tool is helping me to follow up with the trends of the ocean freight rates.
 
