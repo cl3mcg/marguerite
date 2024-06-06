@@ -46,6 +46,8 @@ For the time being, the documentation of this project would be listed below, but
 
 ### Sonar
 
+![A gif showcasing a demonstration of the Sonar tool](/public/assets/demos/sonar_demo.gif)
+
 The _Sonar_ tool is helping me to follow up with the trends of the ocean freight rates.
 
 This tool can be used to retrieve the ocean freight rates and their surcharges on a given period of time for specific port pairs or multiple port pair points. It then displays the results on a graph, allowing the user to have a quick understanding of the ocean freight rates fluctuations and evolution over a given period of time.
