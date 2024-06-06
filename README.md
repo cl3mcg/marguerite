@@ -1,4 +1,4 @@
-# _Marguerite_ project 🌼
+# 🌼 _Marguerite_ project
 
 A simple workbench for freight forwarding related ideas and projects.
 
