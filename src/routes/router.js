@@ -129,7 +129,7 @@ const router = createRouter({
             component: TheSonarPage,
             name: "sonar",
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
             }
         },
         {
@@ -150,13 +150,13 @@ const router = createRouter({
 router.beforeEach(async function (to, from, next) {
     if (to.meta.requiresAuth && !localStorage.getItem("accountToken")) {
         useUserStore().intendedRoute = to.fullPath
-        next("/login")
+        next("/")
     }
     if (to.meta.requiresAuth && localStorage.getItem("accountToken")) {
         let validation = await validateToken(localStorage.accountToken)
         if (!validation) {
             useUserStore().intendedRoute = to.fullPath
-            next("/login")
+            next("/")
         }
     }
     return next()
