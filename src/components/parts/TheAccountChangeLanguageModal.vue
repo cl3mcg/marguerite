@@ -113,7 +113,7 @@ import { vOnClickOutside } from "@vueuse/components";
 import { modalClose } from "@composables/modalClose.js";
 import { accountChangeLanguage } from "@composables/accountChangeLanguage.js";
 
-import languageList from "@assets/json/languages.json";
+import languageList from "@assets/data/languages.json";
 
 import { ref, onMounted } from "vue";
 

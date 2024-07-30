@@ -31,6 +31,7 @@
           Object.keys(displayedData).length === 0 &&
           displayedData.constructor === Object
         "
+        v-bind:toolName="'sonar'"
       >
         Use the <i>Menu</i> button to make a selection and retrieve data.
       </TheNoSelectionPanel>
@@ -84,7 +85,6 @@ const displayedData = reactive({});
 const updateDataReceived = function (updatedData, includeSurcharge) {
   Object.assign(displayedData, updatedData);
   displayedData.includeSurcharge = includeSurcharge;
-  console.log(displayedData);
 };
 
 onMounted(() => {

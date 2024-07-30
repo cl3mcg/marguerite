@@ -33,6 +33,7 @@
           d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"
         />
       </svg>
+      <span class="ml-2">Requires login</span>
     </div>
     <div
       v-else-if="userIsLoggedIn && !isAvailable"
@@ -73,11 +74,15 @@
       </svg>
       <span class="ml-2">Available</span>
     </div>
-    <div class="absolute -bottom-5 -right-5 max-h-28 max-w-28">
-      <iconSonar v-if="toolData.toolName === 'Sonar'"></iconSonar>
-      <iconSauron v-if="toolData.toolName === 'Sauron'"></iconSauron>
+    <div
+      class="absolute -bottom-4 -right-4 hidden max-h-20 max-w-20 sm:block md:-bottom-5 md:-right-5 md:max-h-28 md:max-w-28"
+    >
+      <iconSonar v-if="toolData.toolName.toLowerCase() === 'sonar'"></iconSonar>
+      <iconSauron
+        v-if="toolData.toolName.toLowerCase() === 'sauron'"
+      ></iconSauron>
       <iconSuperviseur
-        v-if="toolData.toolName === 'Superviseur'"
+        v-if="toolData.toolName.toLowerCase() === 'superviseur'"
       ></iconSuperviseur>
     </div>
   </router-link>

@@ -236,7 +236,7 @@ const userStore = useUserStore();
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-import languageList from "@assets/json/languages.json";
+import languageList from "@assets/data/languages.json";
 
 const userAccount = reactive({
   id: null,
