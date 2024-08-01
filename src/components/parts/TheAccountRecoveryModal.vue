@@ -96,6 +96,17 @@
               </svg>
               {{ isLoading ? "Loading..." : "Send me an email" }}
             </button>
+            <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+              <button
+                type="button"
+                data-modal-hide="account-recovery-modal"
+                data-modal-target="account-login-modal"
+                data-modal-toggle="account-login-modal"
+                class="text-purple-700 hover:underline dark:text-purple-500"
+              >
+                Back to the login form
+              </button>
+            </div>
           </form>
         </div>
         <!-- Modal footer / Alert -->

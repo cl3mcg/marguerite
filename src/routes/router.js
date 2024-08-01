@@ -148,27 +148,48 @@ const router = createRouter({
 })
 
 router.beforeEach(async function (to, from, next) {
+    useUserStore().intendedRoute = null;
     if (to.meta.requiresAuth && !localStorage.getItem("accountToken")) {
-        useUserStore().intendedRoute = to.fullPath
-        next("/")
+        useUserStore().intendedRoute = to.fullPath;
+        useUserStore().triggerFlash(
+            "warning",
+            "Login required",
+            "You need to login to get access to this resource."
+        );
+        next(from.fullPath); // Cancel navigation
+        return;
     }
     if (to.meta.requiresAuth && localStorage.getItem("accountToken")) {
-        let validation = await validateToken(localStorage.accountToken)
+        let validation = await validateToken(localStorage.accountToken);
         if (!validation) {
-            useUserStore().intendedRoute = to.fullPath
-            next("/")
+            useUserStore().intendedRoute = to.fullPath;
+            useUserStore().triggerFlash(
+                "warning",
+                "Login required",
+                "You need to login to get access to this resource."
+            );
+            next(from.fullPath); // Cancel navigation
+            return;
         }
     }
-    return next()
+    try {
+        modalClose();
+    } catch (error) {
+        console.log(error);
+    } finally {
+        next(); // Allow navigation
+    }
 });
 
-router.beforeEach(function (to, from, next) {
-    try {
-        modalClose()
-    } catch (error) {
-        console.log(error)
-    }
-    return next()
-})
+
+
+// router.beforeEach(function (to, from, next) {
+//     try {
+//         modalClose()
+//     } catch (error) {
+//         console.log(error)
+//     }
+//     return next()
+// })
 
 export default router

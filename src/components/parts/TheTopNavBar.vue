@@ -85,6 +85,7 @@
                 <TheDarkModeButton></TheDarkModeButton>
               </button>
               <button
+                id="navbar-login-button"
                 data-modal-target="account-login-modal"
                 data-modal-toggle="account-login-modal"
                 class="block items-center justify-center rounded-lg px-3 py-2 text-start text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -97,6 +98,7 @@
                 v-bind:class="!userIsLoggedIn ? 'hidden' : ''"
               >
                 <button
+                  id="navbar-account-button"
                   class="block items-center justify-center rounded-lg px-3 py-2 text-center text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 >
                   Account
@@ -124,7 +126,6 @@ import { initFlowbite } from "flowbite";
 
 import iconMarguerite from "@components/icons/iconMarguerite.vue";
 import TheDarkModeButton from "@components/ui/TheDarkModeButton.vue";
-// import TheLanguageButton from "../ui/TheLanguageButton.vue";
 import TheAccountLoginModal from "@components/parts/TheAccountLoginModal.vue";
 import TheAccountCreateModal from "@components/parts/TheAccountCreateModal.vue";
 import TheAccountRecoveryModal from "@components/parts/TheAccountRecoveryModal.vue";
