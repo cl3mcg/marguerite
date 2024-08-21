@@ -51,26 +51,29 @@ const toolsList = ref([
   {
     toolName: "Sonar",
     isAvailable: true,
+    isAdminOnly: false,
     toolRoute: "tools/sonar",
     toolDescription: "Trends of FAK ocean freight rates and data.",
-    imgPath: "/assets/icons/sonarProjectLogo.svg",
+    imgPath: "/src/assets/icons/sonarProjectLogo.svg",
     imgAlt: "A logo used for the Sonar tool",
   },
   {
     toolName: "Sauron",
-    isAvailable: false,
+    isAvailable: true,
+    isAdminOnly: false,
     toolRoute: "tools/sauron",
     toolDescription: "Countries' macroeconomy & logistics indicators overview.",
-    imgPath: "/assets/icons/sauronProjectLogo.svg",
+    imgPath: "/src/assets/icons/sauronProjectLogo.svg",
     imgAlt: "A logo used for the Sauron tool",
   },
   {
     toolName: "Superviseur",
     toolRoute: "tools/superviseur",
     isAvailable: false,
+    isAdminOnly: true,
     toolDescription:
       "Tracking Sonar's performance, issues and data collection.",
-    imgPath: "/assets/icons/superviseurProjectLogo.svg",
+    imgPath: "/src/assets/icons/superviseurProjectLogo.svg",
     imgAlt: "A logo used for the Superviseur tool",
   },
 ]);

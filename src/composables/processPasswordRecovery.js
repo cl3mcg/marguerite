@@ -1,4 +1,4 @@
-const processPasswordRecovery = async function (userStore, recoveryKey, newPassword, router) {
+const processPasswordRecovery = async function (userStore, router, recoveryKey, newPassword, email) {
 	try {
 
 		const response = await fetch(`/backend/user/processAccountRecovery`, {
@@ -9,6 +9,7 @@ const processPasswordRecovery = async function (userStore, recoveryKey, newPassw
 			body: JSON.stringify({
 				recoveryKey: recoveryKey,
 				newPassword: newPassword,
+				email: email,
 			}),
 		});
 
@@ -20,7 +21,7 @@ const processPasswordRecovery = async function (userStore, recoveryKey, newPassw
 				"Password reset",
 				"Your password has been reset. Please login with your new credentials"
 			);
-			return router.push("/login");
+			return router.push("/");
 		} else {
 			userStore.triggerFlash(
 				"warning",

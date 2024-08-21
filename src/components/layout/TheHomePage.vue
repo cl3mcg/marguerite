@@ -9,11 +9,11 @@
       >
         Marguerite project
       </h1>
-      <p
-        class="mt-6 text-center text-xl font-semibold text-slate-900 dark:text-slate-100 md:text-2xl"
+      <div
+        class="mt-6 text-center text-xl font-semibold text-slate-700 dark:text-slate-300 md:text-2xl"
       >
-        Home of simple things
-      </p>
+        <span>Home of simple things</span>
+      </div>
     </section>
   </div>
 </template>

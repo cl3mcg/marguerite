@@ -2,14 +2,14 @@
   <section
     class="container max-w-screen-md px-5 py-5 text-gray-900 dark:text-white md:mx-auto"
   >
-    <h1 class="mb-4 text-4xl font-bold">Contact</h1>
+    <h1 class="mb-4 text-4xl font-bold">Hi, I'm Clément.</h1>
     <div class="mb-4">
-      <h2 class="mb-3 text-3xl font-bold">Hi, I'm Clément.</h2>
+      <h2 class="mb-3 text-3xl font-bold">Contact</h2>
       <div class="flex">
         <img
           id="waving-hand"
           class="w-2/12 md:w-3/12"
-          src="/assets/icons/wavinghand.svg"
+          src="/src/assets/icons/wavinghand.svg"
           alt="The emoji of a welcoming waving hand"
         />
         <p class="w-10/12 md:w-9/12">

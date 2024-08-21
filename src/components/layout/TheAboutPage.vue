@@ -65,16 +65,16 @@
 		<div class="mb-3">
 			<h2 class="text-3xl font-bold mb-3">Privacy and personal data collection</h2>
 			<p>
-				This app doesn't use nasty cookies nor collect any non essential personal data.
+				This app doesn't use nasty cookies nor collect any non-essential personal data.
 				The following information provided by the user would be collected and stored:
 				<ul>
 					<li>Email address</li>
 				</ul>
-				If you wish your personal data mentionned above to be deleted, you can always delete your account in the account settings page.
-				Upon deletion of your account, all information related to it, as well as any other information (if any) will be deleted. You can also modify the email address provided on your account page.
-				The app doesn't retain personal data nor sell it to third-party companies.
-				The data is stored in France (EU), in <a href="https://www.clever-cloud.com/about-us/" class="underline hover:text-purple-700">Clever Cloud</a>'s datacenters, on a MongoDB instance.
-				The application is running in Germany (EU), on a VPS hosted by <a href="https://contabo.com/en/" class="underline hover:text-purple-700">Contabo</a>, running an Ubuntu Server.
+				If you wish to have your previously mentioned personal data deleted, you can do so by deleting your account through the account settings page.
+				Upon deletion of your account, all information related to it, as well as any other associated information, will be removed.
+				You also have the option to modify the email address provided on your account page.
+				The app does not retain personal data nor does it sell it to third-party companies.
+				The application and databases are hosted in Germany (EU) on a server provided by <a href="https://contabo.com/en/" class="underline hover:text-purple-700">Contabo</a>.
 			</p>
 		</div>
 	</section>

@@ -1,10 +1,20 @@
 <template>
-  <router-link
+  <!-- <router-link
     v-bind:disabled="!userIsLoggedIn || !isAvailable"
     v-bind:to="userIsLoggedIn && isAvailable ? toolData.toolRoute : ''"
     class="relative block w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 md:py-12"
     v-bind:class="
       userIsLoggedIn && isAvailable
+        ? 'hover:bg-gray-100 dark:hover:bg-gray-700'
+        : 'cursor-not-allowed'
+    "
+  > -->
+  <router-link
+    v-bind:disabled="!userIsLoggedIn || !props.isAvailable"
+    v-bind:to="props.isAvailable ? props.toolData.toolRoute : ''"
+    class="relative block w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 md:py-12"
+    v-bind:class="
+      props.isAvailable
         ? 'hover:bg-gray-100 dark:hover:bg-gray-700'
         : 'cursor-not-allowed'
     "
@@ -18,24 +28,7 @@
       {{ toolData.toolDescription }}
     </p>
     <div
-      v-if="!userIsLoggedIn"
-      class="absolute right-2 top-2 inline-flex items-center rounded-lg bg-red-600 px-1.5 py-1.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-lock-fill"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"
-        />
-      </svg>
-    </div>
-    <div
-      v-else-if="userIsLoggedIn && !isAvailable"
+      v-if="!isAvailable"
       class="absolute right-2 top-2 inline-flex items-center rounded-lg bg-gray-600 px-1.5 py-1.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-800"
     >
       <svg
@@ -56,6 +49,24 @@
       <span class="ml-2">Under construction...</span>
     </div>
     <div
+      v-else-if="!userIsLoggedIn"
+      class="absolute right-2 top-2 inline-flex items-center rounded-lg bg-red-600 px-1.5 py-1.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-lock-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"
+        />
+      </svg>
+      <span class="ml-2">Requires login</span>
+    </div>
+    <div
       v-else
       class="absolute right-2 top-2 inline-flex items-center rounded-lg bg-green-600 px-1.5 py-1.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800"
     >
@@ -73,11 +84,15 @@
       </svg>
       <span class="ml-2">Available</span>
     </div>
-    <div class="absolute -bottom-5 -right-5 max-h-28 max-w-28">
-      <iconSonar v-if="toolData.toolName === 'Sonar'"></iconSonar>
-      <iconSauron v-if="toolData.toolName === 'Sauron'"></iconSauron>
+    <div
+      class="absolute -bottom-4 -right-4 hidden max-h-20 max-w-20 sm:block md:-bottom-5 md:-right-5 md:max-h-28 md:max-w-28"
+    >
+      <iconSonar v-if="toolData.toolName.toLowerCase() === 'sonar'"></iconSonar>
+      <iconSauron
+        v-if="toolData.toolName.toLowerCase() === 'sauron'"
+      ></iconSauron>
       <iconSuperviseur
-        v-if="toolData.toolName === 'Superviseur'"
+        v-if="toolData.toolName.toLowerCase() === 'superviseur'"
       ></iconSuperviseur>
     </div>
   </router-link>

@@ -1,6 +1,6 @@
-const validateToken = async function () {
+const validateAdminToken = async function () {
     try {
-        const response = await fetch('/backend/user/validateToken', {
+        const response = await fetch('/backend/user/validateAdminToken', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,4 +21,4 @@ const validateToken = async function () {
     }
 };
 
-export { validateToken };
+export { validateAdminToken };
