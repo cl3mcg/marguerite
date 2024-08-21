@@ -5,6 +5,7 @@ import { useUserStore } from "@stores/UserStore.js";
 
 // Import required composables
 import { validateToken } from "@composables/validateToken.js";
+import { validateAdminToken } from "@composables/validateAdminToken.js";
 import { validateRecoveryKey } from "@composables/validateRecoveryKey.js"
 import { modalClose } from '@composables/modalClose.js';
 
@@ -14,9 +15,10 @@ const TheContactPage = () => import('@components/layout/TheContactPage.vue')
 const TheToolsPage = () => import('@components/layout/TheToolsPage.vue')
 // const TheLoginPage = () => import('@components/layout/TheLoginPage.vue')
 const TheAccountPage = () => import('@components/layout/TheAccountPage.vue')
-// const TheAccountRecoveryPage = () => import('@components/layout/TheAccountRecoveryPage.vue')
+const TheAccountRecoveryPage = () => import('@components/layout/TheAccountRecoveryPage.vue')
 const TheSonarPage = () => import('@components/layout/TheSonarPage.vue')
 const TheSauronPage = () => import('@components/layout/TheSauronPage.vue')
+const TheSuperviseurPage = () => import('@components/layout/TheSuperviseurPage.vue')
 const The404Page = () => import('@components/layout/The404Page.vue')
 const TheErrorPage = () => import('@components/layout/TheErrorPage.vue')
 
@@ -76,38 +78,38 @@ const router = createRouter({
                 requiresAuth: true,
             }
         },
-        // {
-        //     path: "/accountRecovery/:recoveryKey",
-        //     component: TheAccountRecoveryPage,
-        //     name: "accountRecovery",
-        //     meta: {
-        //         requiresAuth: false,
-        //     },
-        //     beforeEnter: async (to, from, next) => {
-        //         try {
-        //             const validatedRecoveryKey = await validateRecoveryKey(to.params.recoveryKey);
-        //             console.log(`RecoveryKey is ${to.params.recoveryKey}`);
-        //             console.log(`validatedRecoveryKey is ${validatedRecoveryKey}`);
-        //             if (!validatedRecoveryKey) {
-        //                 useUserStore().triggerFlash(
-        //                     "danger",
-        //                     "Recovery error",
-        //                     "Please restart the password recovery process and request a new email with a new reset password link."
-        //                 );
-        //                 return next('/')
-        //             }
-        //             console.log('Valid recovery key, proceeding to account recovery...');
-        //             return next()
-        //         } catch (error) {
-        //             useUserStore().triggerFlash(
-        //                 "warning",
-        //                 "There's an issue",
-        //                 "Please restart the password recovery process later."
-        //             );
-        //             return next('/')
-        //         }
-        //     },
-        // },
+        {
+            path: "/accountrecovery/:recoveryKey",
+            component: TheAccountRecoveryPage,
+            name: "accountrecovery",
+            meta: {
+                requiresAuth: false,
+            },
+            beforeEnter: async (to, from, next) => {
+                try {
+                    const validatedRecoveryKey = await validateRecoveryKey(to.params.recoveryKey);
+                    // console.log(`RecoveryKey is ${to.params.recoveryKey}`);
+                    // console.log(`validatedRecoveryKey is ${validatedRecoveryKey}`);
+                    if (!validatedRecoveryKey) {
+                        useUserStore().triggerFlash(
+                            "warning",
+                            "Invalid recovery key",
+                            "Please restart the password recovery process and request a new email with a new reset password link."
+                        );
+                        return next('/')
+                    }
+                    // console.log('Valid recovery key, proceeding to account recovery...');
+                    return next()
+                } catch (error) {
+                    useUserStore().triggerFlash(
+                        "danger",
+                        "There's an issue",
+                        "Please restart the password recovery process later."
+                    );
+                    return next('/')
+                }
+            },
+        },
         {
             path: "/error",
             component: TheErrorPage,
@@ -141,6 +143,14 @@ const router = createRouter({
             }
         },
         {
+            path: "/tools/superviseur",
+            component: TheSuperviseurPage,
+            name: "superviseur",
+            meta: {
+                requiresAdmin: true,
+            }
+        },
+        {
             path: "/:notFound(.*)",
             redirect: "/notfound"
         }
@@ -149,12 +159,12 @@ const router = createRouter({
 
 router.beforeEach(async function (to, from, next) {
     useUserStore().intendedRoute = null;
-    if (to.meta.requiresAuth && !localStorage.getItem("accountToken")) {
+    if ((to.meta.requiresAuth || to.meta.requiresAdmin) && !localStorage.getItem("accountToken")) {
         useUserStore().intendedRoute = to.fullPath;
         useUserStore().triggerFlash(
             "warning",
             "Login required",
-            "You need to login to get access to this resource."
+            "You need to login to access this resource."
         );
         next(from.fullPath); // Cancel navigation
         return;
@@ -166,7 +176,20 @@ router.beforeEach(async function (to, from, next) {
             useUserStore().triggerFlash(
                 "warning",
                 "Login required",
-                "You need to login to get access to this resource."
+                "You need to login to access this resource."
+            );
+            next(from.fullPath); // Cancel navigation
+            return;
+        }
+    }
+    if (to.meta.requiresAdmin && localStorage.getItem("accountToken")) {
+        let validation = await validateAdminToken(localStorage.accountToken);
+        if (!validation) {
+            useUserStore().intendedRoute = to.fullPath;
+            useUserStore().triggerFlash(
+                "warning",
+                "Admin rights required",
+                "You need to have administrative priviledges to access this resource."
             );
             next(from.fullPath); // Cancel navigation
             return;

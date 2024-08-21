@@ -51,6 +51,7 @@ const toolsList = ref([
   {
     toolName: "Sonar",
     isAvailable: true,
+    isAdminOnly: false,
     toolRoute: "tools/sonar",
     toolDescription: "Trends of FAK ocean freight rates and data.",
     imgPath: "/src/assets/icons/sonarProjectLogo.svg",
@@ -59,6 +60,7 @@ const toolsList = ref([
   {
     toolName: "Sauron",
     isAvailable: true,
+    isAdminOnly: false,
     toolRoute: "tools/sauron",
     toolDescription: "Countries' macroeconomy & logistics indicators overview.",
     imgPath: "/src/assets/icons/sauronProjectLogo.svg",
@@ -68,6 +70,7 @@ const toolsList = ref([
     toolName: "Superviseur",
     toolRoute: "tools/superviseur",
     isAvailable: false,
+    isAdminOnly: true,
     toolDescription:
       "Tracking Sonar's performance, issues and data collection.",
     imgPath: "/src/assets/icons/superviseurProjectLogo.svg",
