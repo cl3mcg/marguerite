@@ -141,6 +141,5 @@ const filteredResults = computed(() => {
 
 watch(selectedLogisticIndicator, () => {
   emit("update-logistics", selectedLogisticIndicator);
-  console.log(selectedLogisticIndicator);
 });
 </script>

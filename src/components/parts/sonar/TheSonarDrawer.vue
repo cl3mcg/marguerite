@@ -223,7 +223,6 @@ onMounted(async function () {
       portsAvailable.value = dataReceived.data;
       return true;
     } else {
-      console.log("Application failed to retrieve the port pairs");
       return false;
     }
   } catch (error) {
@@ -291,18 +290,9 @@ const updateCarrierSelection = function (newCarrierSelection) {
 const newSelection = async function () {
   isLoading.value = true;
   if (!selection.isValid()) {
-    console.log(`Selection is invalid`);
     isLoading.value = false;
     return;
   }
-  // console.log(`New selection function fired !`);
-  // console.log(`Current selected POL: ${selection.selectedPOL.join(", ")}`);
-  // console.log(`Current selected POD: ${selection.selectedPOD.join(", ")}`);
-  // console.log(`Current selected dates: ${selection.selectedDates.join(", ")}`);
-  // console.log(
-  //   `Current selected carrier: ${selection.selectedCarriers.join(", ")}`,
-  // );
-  // console.log(`Current selected modality: ${selection.selectedModality}`);
   const includeSurcharge =
     selection.selectedModality === "freight+surcharges" ? true : false;
   const request = await retrieveRates(userStore, selection);

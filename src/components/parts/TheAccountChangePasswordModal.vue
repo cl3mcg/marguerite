@@ -209,23 +209,27 @@ const resetAll = function () {
 };
 
 const accountChangePasswordSubmit = async function () {
-  console.log("accountChangePasswordSubmit is fired");
   if (checkFormValidity()) {
     isLoading.value = true;
-    const data = {
-      currentPassword: currentPassword.value,
-      newPassword: passwordChange1.value,
-    };
-    const result = await accountChangePassword(userStore, router, data);
-    if (result) {
+    try {
+      const data = {
+        currentPassword: currentPassword.value,
+        newPassword: passwordChange1.value,
+      };
+      const result = await accountChangePassword(userStore, router, data);
+      if (result) {
+        return true;
+      }
+    } catch (error) {
+      userStore.triggerFlash(
+        "danger",
+        "An error occurred",
+        "An error occurred while updating your password.",
+      );
+    } finally {
       isLoading.value = false;
-      return true;
-    } else {
-      isLoading.value = false;
-      return false;
     }
   }
-  isLoading.value = false;
   return false;
 };
 </script>
