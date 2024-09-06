@@ -10,9 +10,14 @@
         Marguerite project
       </h1>
       <div
-        class="mt-6 text-center text-xl font-semibold text-slate-700 dark:text-slate-300 md:text-2xl"
+        class="mt-12 text-center text-xl font-semibold text-slate-700 dark:text-slate-300 md:text-2xl"
       >
-        <span>Home of simple things</span>
+        <span class="mx-4 block sm:mx-3 md:mx-0 md:inline-block">
+          A launchpad for freight forwarding <br class="inline sm:hidden" />
+          and logistics
+          <br />
+          tools and projects
+        </span>
       </div>
     </section>
   </div>
