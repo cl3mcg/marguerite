@@ -9,14 +9,12 @@ const accountGetDetails = async function () {
         const responseData = await response.json();
 
         if (response.ok) {
-            console.log('OK Account Details');
             return responseData;
         } else {
-            console.log('FAIL Account Details');
             return false;
         }
     } catch (error) {
-        return console.error('Error:', error);
+        return false;
     }
 };
 
