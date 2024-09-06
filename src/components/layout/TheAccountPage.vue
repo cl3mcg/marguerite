@@ -95,6 +95,7 @@
                       verify your email address.
                     </p>
                     <button
+                      v-on:click="sendVerificationEmail"
                       type="button"
                       class="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                     >
@@ -253,6 +254,14 @@ const logout = function () {
 
 const defineLanguagePrefered = function (languageCode) {
   languagePrefered.value = languageList.find((el) => el.code === languageCode);
+};
+
+const sendVerificationEmail = function () {
+  userStore.triggerFlash(
+    "info",
+    "Work in Progress",
+    "The email address verification feature is currently under development. You can continue to use the app in its entirety even if your email is not verified.",
+  );
 };
 
 onBeforeMount(async function () {
