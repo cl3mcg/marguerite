@@ -190,22 +190,26 @@ const resetAll = function () {
 };
 
 const accountDeletionSubmit = async function () {
-  console.log("accountDeletionSubmit is fired");
   if (checkFormValidity()) {
     isLoading.value = true;
-    const data = {
-      currentPassword: currentPassword.value,
-    };
-    const result = await accountDeletion(userStore, router, data);
-    if (result) {
+    try {
+      const data = {
+        currentPassword: currentPassword.value,
+      };
+      const result = await accountDeletion(userStore, router, data);
+      if (result) {
+        return true;
+      }
+    } catch (error) {
+      userStore.triggerFlash(
+        "danger",
+        "An error occurred",
+        "An error occurred while deleting the account.",
+      );
+    } finally {
       isLoading.value = false;
-      return true;
-    } else {
-      isLoading.value = false;
-      return false;
     }
   }
-  isLoading.value = false;
   return false;
 };
 </script>

@@ -174,17 +174,25 @@ const resetAll = function () {
 const sendRecoveryEmail = async function () {
   if (checkFormValidity()) {
     isLoading.value = true;
-    let recoveryRequest = await accountRecoveryRequest(
-      userStore,
-      emailRecover.value,
-    );
-    isLoading.value = false;
-    if (recoveryRequest) {
-      modalClose();
-      return true;
-    } else {
-      return false;
+    try {
+      let recoveryRequest = await accountRecoveryRequest(
+        userStore,
+        emailRecover.value,
+      );
+      if (recoveryRequest) {
+        modalClose();
+        return true;
+      }
+    } catch (error) {
+      userStore.triggerFlash(
+        "danger",
+        "An error occurred",
+        "An error occurred durring the account recovery process.",
+      );
+    } finally {
+      isLoading.value = false;
     }
+    return false;
   }
 };
 </script>
