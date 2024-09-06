@@ -31,6 +31,6 @@ import iconMarguerite from "@components/icons/iconMarguerite.vue";
 
 <style scoped>
 .in-front-of-all {
-  z-index: 999;
+  z-index: 9;
 }
 </style>

@@ -25,7 +25,7 @@
   <RouterView></RouterView>
 
   <!-- Render TheGrassEffect.vue only when on the home page -->
-  <div v-if="isHomePage" class="fixed bottom-0 left-0 w-full overflow-hidden">
+  <div v-if="isHomePage" class="fixed bottom-0 left-0 w-full">
     <TheGrassEffect></TheGrassEffect>
   </div>
 </template>
@@ -85,7 +85,7 @@ onBeforeMount(function () {
 #background-wrap {
   bottom: 0;
   left: 0;
-  padding-top: 125px;
+  padding-top: 175px;
   position: fixed;
   right: 0;
   top: 0;
