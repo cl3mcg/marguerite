@@ -140,7 +140,6 @@ const accountChangeLanguageSubmit = async function () {
     userStore,
     languageSelection.value,
   );
-  console.log(result);
   if (result) {
     emit("switchLanguage", languageSelection.value);
     modalClose();

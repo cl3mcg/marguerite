@@ -88,8 +88,6 @@ const router = createRouter({
             beforeEnter: async (to, from, next) => {
                 try {
                     const validatedRecoveryKey = await validateRecoveryKey(to.params.recoveryKey);
-                    // console.log(`RecoveryKey is ${to.params.recoveryKey}`);
-                    // console.log(`validatedRecoveryKey is ${validatedRecoveryKey}`);
                     if (!validatedRecoveryKey) {
                         useUserStore().triggerFlash(
                             "warning",
@@ -98,7 +96,6 @@ const router = createRouter({
                         );
                         return next('/')
                     }
-                    // console.log('Valid recovery key, proceeding to account recovery...');
                     return next()
                 } catch (error) {
                     useUserStore().triggerFlash(
@@ -203,8 +200,6 @@ router.beforeEach(async function (to, from, next) {
         next(); // Allow navigation
     }
 });
-
-
 
 // router.beforeEach(function (to, from, next) {
 //     try {

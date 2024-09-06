@@ -238,17 +238,19 @@ const login = async function () {
         email.value = "";
         password.value = "";
         rememberMe.value = false;
-        isLoading.value = false;
         modalClose(".close-modal-button");
         return true;
-      } else {
-        isLoading.value = false;
-        return false;
       }
     } catch (error) {
+      userStore.triggerFlash(
+        "danger",
+        "An error occurred",
+        "An error occurred durring the login process.",
+      );
+    } finally {
       isLoading.value = false;
-      return false;
     }
+    return false;
   }
 };
 </script>

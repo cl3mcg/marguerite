@@ -165,15 +165,23 @@ const retrieveIndicatorData = async function () {
     const responseData = await response.json();
 
     if (response.ok) {
-      console.log("Data retreived");
       backendData.data = responseData.data;
       emit("update-data", backendData.data);
       return;
     } else {
-      return console.log("FAIL data retreived");
+      userStore.triggerFlash(
+        "danger",
+        "Error",
+        "An error occurred while retrieving the data.",
+      );
+      return;
     }
   } catch (error) {
-    return console.error("Error:", error);
+    userStore.triggerFlash(
+      "danger",
+      "Error",
+      "An error occurred while retrieving the data.",
+    );
   } finally {
     userStore.isLoading.status = false;
     isLoading.value = false;
@@ -182,14 +190,13 @@ const retrieveIndicatorData = async function () {
 
 const newSelection = async function () {
   if (!selection.isValid()) {
-    console.log(`Selection is invalid`);
-    console.log(selection);
+    userStore.triggerFlash(
+      "warning",
+      "Invalid data provided",
+      "The selection is not valid.",
+    );
     return;
   }
-  console.log(`New selection function fired !`);
-  console.log(`Selected countries: `, selection.selectedCountry);
-  console.log(`Selected indicators: `, selection.selectedIndicator());
-
   await retrieveIndicatorData(); // Wait for indicator data retrieval
 
   // Hide selection menu and display data recap only if successful

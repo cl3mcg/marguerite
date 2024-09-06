@@ -30,7 +30,11 @@ const retrieveRates = async function (userStore, selection) {
             }
             return dataReceived;
         } else {
-            console.log("FAIL rates request");
+            userStore.triggerFlash(
+                "warning",
+                "Error",
+                "There's been an error with your request. Try again later."
+            );
             return false;
         }
     } catch (error) {
@@ -39,7 +43,6 @@ const retrieveRates = async function (userStore, selection) {
             "Server error",
             "The rates cannot be retrived for the time being."
         );
-        console.error("Error:", error);
         return false
     }
 };

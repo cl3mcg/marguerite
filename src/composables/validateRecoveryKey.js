@@ -14,6 +14,6 @@ export async function validateRecoveryKey(recoveryKey) {
             return false;
         }
     } catch (error) {
-        return console.error('Error:', error);
+        return false;
     }
 }

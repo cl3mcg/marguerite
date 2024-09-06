@@ -130,15 +130,10 @@ import TheAccountLoginModal from "@components/parts/TheAccountLoginModal.vue";
 import TheAccountCreateModal from "@components/parts/TheAccountCreateModal.vue";
 import TheAccountRecoveryModal from "@components/parts/TheAccountRecoveryModal.vue";
 import { isLoggedIn } from "@composables/isLoggedIn.js";
-import { accountLogout } from "@composables/accountLogout.js";
 
 import { ref, onMounted, watch } from "vue";
 
 const userIsLoggedIn = ref(false);
-
-const logout = function () {
-  accountLogout(userStore, router);
-};
 
 onMounted(async () => {
   if (!userStore.accountToken) {
@@ -158,7 +153,6 @@ watch(
       return (userIsLoggedIn.value = false);
     }
     if (newToken !== oldToken) {
-      console.log(userIsLoggedIn.value);
       return (userIsLoggedIn.value = await isLoggedIn());
     }
     return;

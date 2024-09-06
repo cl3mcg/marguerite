@@ -9,15 +9,17 @@ const validateToken = async function () {
         await response.json();
 
         if (response.ok) {
-            console.log('OK Token');
             return true;
         } else {
-            console.log('FAIL Token');
             return false;
         }
     } catch (error) {
-        console.error('Error:', error);
-        return;
+        userStore.triggerFlash(
+            "danger",
+            "Server error",
+            "There was an error while trying to validate the credentials token."
+        );
+        return false;
     }
 };
 

@@ -1,12 +1,12 @@
 import { accountLogout } from "@composables/accountLogout.js"
 
 const accountChangePassword = async function (userStore, router, formData) {
-    userStore.isLoading.status = true;
     if (!formData.newPassword || !formData.currentPassword) {
-        userStore.isLoading.status = false;
         return false;
     }
+
     try {
+        userStore.isLoading.status = true;
         const response = await fetch('/backend/user/changePassword', {
             method: 'POST',
             headers: {
@@ -20,7 +20,6 @@ const accountChangePassword = async function (userStore, router, formData) {
                 "Update done",
                 "Your password has been changed successfully."
             );
-            userStore.isLoading.status = false;
             accountLogout(userStore, router)
             return true;
         } else {
@@ -29,17 +28,17 @@ const accountChangePassword = async function (userStore, router, formData) {
                 "Update failed",
                 "Your password could not be updated."
             );
-            userStore.isLoading.status = false;
             return false;
         }
     } catch (error) {
         userStore.triggerFlash(
             "warning",
-            "Update failed",
+            "Server error",
             "Your password could not be updated."
         );
+        return false;
+    } finally {
         userStore.isLoading.status = false;
-        return console.error('Error:', error);
     }
 };
 

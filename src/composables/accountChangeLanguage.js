@@ -1,24 +1,28 @@
 const accountChangeLanguage = async function (userStore, languageCode) {
-    userStore.isLoading.status = true;
     try {
+        userStore.isLoading.status = true;
         localStorage.setItem('language', languageCode)
         userStore.language = languageCode;
+        // userStore.triggerFlash(
+        //     "success",
+        //     "Language updated",
+        //     "The application language has been updated."
+        // );
         userStore.triggerFlash(
-            "success",
-            "Language updated",
-            "The application language has been updated."
+            "info",
+            "Work in Progress",
+            "The application language change feature is currently under development. For the time being, the application is only available in English."
         );
-        userStore.isLoading.status = false;
         return true
     } catch (error) {
         userStore.triggerFlash(
             "warning",
-            "Update failed",
+            "Application error",
             "The application language could not be updated."
         );
-        userStore.isLoading.status = false;
-        console.error('Error:', error);
         return false
+    } finally {
+        userStore.isLoading.status = false;
     }
 };
 

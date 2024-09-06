@@ -278,14 +278,10 @@ watch(props, (newValue, oldValue) => {
 });
 
 watch(includeSurcharge, (newValue, oldValue) => {
-  // fires on nested property mutations
-  // console.log("Watcher is fired");
   updateChart();
 });
 
 watch(displaySurcharge, (newValue, oldValue) => {
-  // fires on nested property mutations
-  // console.log("Watcher is fired");
   updateChartDisplaySurcharge(newValue);
 });
 </script>

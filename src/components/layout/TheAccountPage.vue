@@ -4,7 +4,7 @@
   >
     <header class="mb-4 flex">
       <h1 class="mx-4 whitespace-nowrap pt-2 align-middle text-4xl font-bold">
-        Account page
+        Account details
       </h1>
       <div
         class="ml-auto flex justify-center justify-self-end px-4 py-4 align-top"
@@ -95,6 +95,7 @@
                       verify your email address.
                     </p>
                     <button
+                      v-on:click="sendVerificationEmail"
                       type="button"
                       class="mt-2 block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                     >
@@ -245,142 +246,22 @@ const userAccount = reactive({
   type: null,
 });
 
-const displayedItems = reactive({
-  email: false,
-  password: false,
-  danger: false,
-});
-
-const newPasswordValues = reactive({
-  newPassword1: null,
-  newPassword2: null,
-});
-
-const currentPassword = ref("");
-
-const newEmailValues = reactive({
-  newEmail1: null,
-  newEmail2: null,
-});
-
 const languagePrefered = ref("");
-
-const deleteConfirmation = ref("");
-
-const toggle = function (item) {
-  const object = displayedItems;
-  for (const key in object) {
-    if (key === item) {
-      object[key] = !object[key];
-    } else {
-      object[key] = false;
-    }
-  }
-};
-
-const checkFormValidity = function (object) {
-  let firstValue;
-  for (const key in object) {
-    if (firstValue === undefined) {
-      firstValue = object[key];
-    } else if (object[key] !== firstValue) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const newPassword = async function () {
-  if (checkFormValidity(newPasswordValues)) {
-    const newPaswordData = {
-      currentPassword: currentPassword.value,
-      newPassword: newPasswordValues.newPassword1,
-      token: localStorage.getItem("accountToken"),
-    };
-    console.log(newPaswordData);
-    try {
-      const attempt = await userStore.changePassword(
-        `/backend/user/changePassword`,
-        newPaswordData,
-      );
-      if (attempt) {
-        router.push(`/login`);
-        userStore.triggerFlash(
-          `success`,
-          `Password modified`,
-          `The password has been updated, please login again with your new credentials.`,
-        );
-        return true;
-      } else {
-        userStore.triggerFlash(
-          `danger`,
-          `Password modification failed`,
-          `The password has not been updated, please try again later.`,
-        );
-      }
-    } catch (error) {
-      console.log(error);
-      userStore.triggerFlash(
-        `danger`,
-        `Password modification failed`,
-        `The password has not been updated, please try again later.`,
-      );
-      return false;
-    }
-  }
-  return false;
-};
-
-const newEmail = async function () {
-  if (checkFormValidity(newEmailValues)) {
-    const newEmailData = {
-      newEmail: newEmailValues.newEmail1,
-      token: localStorage.getItem("accountToken"),
-    };
-    try {
-      const attempt = await userStore.changeEmail(
-        `/backend/user/changeEmail`,
-        newEmailData,
-      );
-      if (attempt) {
-        router.push(`/login`);
-        userStore.triggerFlash(
-          `success`,
-          `Email modified`,
-          `The email address has been updated, please login again with your new credentials.`,
-        );
-        return true;
-      } else {
-        userStore.triggerFlash(
-          `danger`,
-          `Email modification failed`,
-          `The email address has not been updated, please try again later.`,
-        );
-      }
-    } catch (error) {
-      console.log(error);
-      userStore.triggerFlash(
-        `danger`,
-        `Email modification failed`,
-        `The email address has not been updated, please try again later.`,
-      );
-      return false;
-    }
-  }
-  return false;
-};
 
 const logout = function () {
   accountLogout(userStore, router);
 };
 
-const deleteAccount = function () {
-  // function to send an API request to the backend to update the email of the user.
-  return false;
-};
-
 const defineLanguagePrefered = function (languageCode) {
   languagePrefered.value = languageList.find((el) => el.code === languageCode);
+};
+
+const sendVerificationEmail = function () {
+  userStore.triggerFlash(
+    "info",
+    "Work in Progress",
+    "The email address verification feature is currently under development. You can continue to use the app in its entirety even if your email is not verified.",
+  );
 };
 
 onBeforeMount(async function () {
