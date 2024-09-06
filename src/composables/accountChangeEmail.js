@@ -1,12 +1,11 @@
 import { accountLogout } from "@composables/accountLogout.js"
 
 const accountChangeEmail = async function (userStore, router, formData) {
-    userStore.isLoading.status = true;
     if (!formData.newEmail) {
-        userStore.isLoading.status = false;
         return false;
     }
     try {
+        userStore.isLoading.status = true;
         const response = await fetch('/backend/user/changeEmail', {
             method: 'POST',
             headers: {
@@ -21,7 +20,6 @@ const accountChangeEmail = async function (userStore, router, formData) {
                 "Your email address has been changed successfully."
             );
             accountLogout(userStore, router);
-            userStore.isLoading.status = false;
             return true;
         } else {
             userStore.triggerFlash(
@@ -29,7 +27,6 @@ const accountChangeEmail = async function (userStore, router, formData) {
                 "Update failed",
                 "Your email address could not be updated."
             );
-            userStore.isLoading.status = false;
             return false;
         }
     } catch (error) {
@@ -38,8 +35,9 @@ const accountChangeEmail = async function (userStore, router, formData) {
             "Update failed",
             "Your email address could not be updated."
         );
+        return false;
+    } finally {
         userStore.isLoading.status = false;
-        return console.error('Error:', error);
     }
 };
 

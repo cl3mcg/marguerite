@@ -1,6 +1,7 @@
 const accountLogin = async function (userStore, formData) {
-    userStore.isLoading.status = true;
     try {
+        userStore.isLoading.status = true;
+
         const response = await fetch('/backend/user/login', {
             method: 'POST',
             headers: {
@@ -8,7 +9,6 @@ const accountLogin = async function (userStore, formData) {
             },
             body: JSON.stringify(formData)
         });
-        // const responseData = await response.json();
 
         if (response.ok) {
             const closeModalButtons = document.querySelectorAll('.close-modal-button')
@@ -18,10 +18,7 @@ const accountLogin = async function (userStore, formData) {
             if (formData.rememberMe) {
                 localStorage.setItem("rememberMe", true)
             };
-            // userStore.accountToken = responseData.token;
             userStore.accountToken = true;
-            // localStorage.removeItem("accountToken");
-            // localStorage.setItem("accountToken", userStore.accountToken);
             localStorage.removeItem("accountToken");
             localStorage.setItem("accountToken", userStore.accountToken);
             userStore.isLoading.status = false;
@@ -32,8 +29,6 @@ const accountLogin = async function (userStore, formData) {
             );
             return true;
         } else if (response.status === 403) {
-            console.log('FAIL Login');
-            userStore.isLoading.status = false;
             userStore.triggerFlash(
                 "warning",
                 "Invalid credentials",
@@ -42,20 +37,21 @@ const accountLogin = async function (userStore, formData) {
             return false;
         } else {
             userStore.triggerFlash(
-                "danger",
+                "warning",
                 "Login error",
                 "There was an error during the login process. Please try again later."
             );
             return false;
         }
     } catch (error) {
-        userStore.isLoading.status = false;
         userStore.triggerFlash(
             "danger",
-            "Login error",
+            "Server error",
             "There was an error during the login process. Please try again later."
         );
-        return console.error('Error:', error);
+        return false;
+    } finally {
+        userStore.isLoading.status = false
     }
 };
 
