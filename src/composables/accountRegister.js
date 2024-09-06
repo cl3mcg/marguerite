@@ -11,8 +11,6 @@ const accountRegister = async function (userStore, formData) {
         await response.json();
 
         if (response.ok) {
-            userStore.isLoading.status = false;
-            console.log('OK Registration');
             userStore.triggerFlash(
                 "success",
                 "Welcome",
@@ -20,8 +18,6 @@ const accountRegister = async function (userStore, formData) {
             );
             return true;
         } else {
-            userStore.isLoading.status = false;
-            console.log('FAIL Registration');
             userStore.triggerFlash(
                 "error",
                 "Registration error",
@@ -30,13 +26,14 @@ const accountRegister = async function (userStore, formData) {
             return false;
         }
     } catch (error) {
-        userStore.isLoading.status = false;
         userStore.triggerFlash(
             "error",
-            "Registration error",
+            "Server error",
             "There was an error during the account registration process. Please try again later."
         );
-        return console.error('Error:', error);
+        return false;
+    } finally {
+        userStore.isLoading.status = false;
     }
 };
 

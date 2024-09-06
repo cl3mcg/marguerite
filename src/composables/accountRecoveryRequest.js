@@ -18,7 +18,7 @@ const accountRecoveryRequest = async function (userStore, emailProvided) {
             return true;
         } else {
             userStore.triggerFlash(
-                "error",
+                "warning",
                 "Error",
                 "There was an error during the process. Please try again later."
             );
@@ -27,7 +27,7 @@ const accountRecoveryRequest = async function (userStore, emailProvided) {
     } catch (error) {
         userStore.triggerFlash(
             "error",
-            "Error",
+            "Server error",
             "There was an error during the process. Please try again later."
         );
         return console.error('Error:', error);
