@@ -3,9 +3,11 @@
     <section
       class="mb-20 mt-20 flex flex-col items-center justify-center align-middle md:mb-40 md:mt-40"
     >
-      <div class="h-48 w-48"><iconMarguerite></iconMarguerite></div>
+      <div class="in-front-of-all h-48 w-48">
+        <iconMarguerite></iconMarguerite>
+      </div>
       <h1
-        class="mt-12 text-center text-4xl font-bold text-slate-900 dark:text-slate-100 md:text-5xl"
+        class="in-front-of-all mt-12 text-center text-4xl font-bold text-slate-900 dark:text-slate-100 md:text-5xl"
       >
         Marguerite project
       </h1>
@@ -26,3 +28,9 @@
 <script setup>
 import iconMarguerite from "@components/icons/iconMarguerite.vue";
 </script>
+
+<style scoped>
+.in-front-of-all {
+  z-index: 999;
+}
+</style>

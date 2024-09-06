@@ -15,16 +15,10 @@
 		<div class="mb-4">
 			<h2 class="text-3xl font-bold mb-3">Is this available for free?</h2>
 			<p>
-				This tool is placed under the CC BY-NC-SA 4.0 license so, if you're
-				planning to use this for personal usage, first of all, your life is not
-				really fun (seriously, there are other things to do with your life), and
-				second yeah, you can use it for free.
+				This tool is released under the CC BY-NC-SA 4.0 license. If you plan to use it for personal use, you can do so for free.
 			</p>
 			<p>
-				If you're working for a company and using this app in your professional
-				environment, you can always use this tool for free, but you may not use
-				it for commercial purposes (seriously... just don't... it's not a professional tool). You can always contribute to the code and
-				also support me.
+				If you intend to use this tool in a professional environment, you can still use it for free. However, it may not be used for commercial purposes as it is not a battle-tested tool. You are welcome to contribute to the code and support me.
 			</p>
 			<p class="flex justify-center align-middle mt-5">
 				<a
@@ -62,19 +56,27 @@
 				</a>
 			</div>
 		</div>
-		<div class="mb-3">
+		<div class="mb-4">
 			<h2 class="text-3xl font-bold mb-3">Privacy and personal data collection</h2>
 			<p>
 				This app doesn't use nasty cookies nor collect any non-essential personal data.
 				The following information provided by the user would be collected and stored:
-				<ul>
-					<li>Email address</li>
+				<ul class="max-w-md space-y-1 list-disc list-inside dark:text-gray-400">
+					<li class="ms-3">Email address</li>
 				</ul>
 				If you wish to have your previously mentioned personal data deleted, you can do so by deleting your account through the account settings page.
 				Upon deletion of your account, all information related to it, as well as any other associated information, will be removed.
 				You also have the option to modify the email address provided on your account page.
 				The app does not retain personal data nor does it sell it to third-party companies.
 				The application and databases are hosted in Germany (EU) on a server provided by <a href="https://contabo.com/en/" class="underline hover:text-purple-700">Contabo</a>.
+			</p>
+		</div>
+		<div class="mb-3">
+			<h2 class="text-3xl font-bold mb-3">Credits</h2>
+			<p>
+				The home page animations are coming from different CodePen projects, I've just put them together and made them work with Vue.js as well as removing some of the unecessary CSS, adding dark mode support etc. The original CodePen snippets are
+				<a href="https://codepen.io/Mark_Bowley/pen/LYZEBq" class="underline hover:text-purple-700"><i>Animated clouds</i></a> and 
+				<a href="https://codepen.io/beyzaozer/pen/XWONzKB" class="underline hover:text-purple-700"><i>Wavy grass</i></a>.
 			</p>
 		</div>
 	</section>
