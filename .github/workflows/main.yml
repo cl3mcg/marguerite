@@ -37,40 +37,6 @@ jobs:
         scp -i private_key.pem -o StrictHostKeyChecking=no -r dist/* $SERVER_USER@$SERVER_IP:$SERVER_PATH
         trap 'rm -f private_key.pem' EXIT # Ensure the key is deleted even if the script fails
 
-    - name: Send email notification if build and deployment fails
-      env:
-        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-        FROM_EMAIL_ADDRESS: ${{ secrets.FROM_EMAIL_ADDRESS }}
-        TO_EMAIL_ADDRESS: ${{ secrets.TO_EMAIL_ADDRESS }}
-      if: failure()
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: $SMTP_SERVER
-        server_port: 587
-        username: $SMTP_USERNAME
-        password: $SMTP_PASSWORD
-        subject: "🔴 Fail Marguerite Deployment"
-        body: "The deployment of the Marguerite app ('main' branch) failed and the site might be down."
-        from: $FROM_EMAIL_ADDRESS
-        to: $TO_EMAIL_ADDRESS
-    
-    - name: Send email notification if build and deployment is successfull
-      env:
-        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-        FROM_EMAIL_ADDRESS: ${{ secrets.FROM_EMAIL_ADDRESS }}
-        TO_EMAIL_ADDRESS: ${{ secrets.TO_EMAIL_ADDRESS }}
-      if: success()
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: $SMTP_SERVER
-        server_port: 587
-        username: $SMTP_USERNAME
-        password: $SMTP_PASSWORD
-        subject: "🟢 Success Marguerite Deployment "
         body: "The deployment of the Marguerite app ('main' branch) was successful and the site should be live. Double check this by visiting https://www.marguerite.xyz"
         from: $FROM_EMAIL_ADDRESS
         to: $TO_EMAIL_ADDRESS
