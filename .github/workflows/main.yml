@@ -36,7 +36,3 @@ jobs:
         ssh -i private_key.pem -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "rm -rf $SERVER_PATH/*"
         scp -i private_key.pem -o StrictHostKeyChecking=no -r dist/* $SERVER_USER@$SERVER_IP:$SERVER_PATH
         trap 'rm -f private_key.pem' EXIT # Ensure the key is deleted even if the script fails
-
-        body: "The deployment of the Marguerite app ('main' branch) was successful and the site should be live. Double check this by visiting https://www.marguerite.xyz"
-        from: $FROM_EMAIL_ADDRESS
-        to: $TO_EMAIL_ADDRESS
