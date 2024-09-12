@@ -7,15 +7,26 @@
         Account details
       </h1>
       <div
-        class="ml-auto flex justify-center justify-self-end px-4 py-4 align-top"
+        class="ml-auto flex justify-center justify-self-end py-4 ps-4 align-top sm:pe-4"
       >
         <button
           type="button"
           v-on:click="logout"
-          class="whitespace-nowrap rounded-lg border border-red-700 px-3 py-2 text-center text-xs font-medium text-red-700 hover:bg-red-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-500 dark:hover:text-white dark:focus:ring-red-800"
+          class="whitespace-nowrap rounded-lg border border-red-700 px-3 py-2 text-center text-xs font-medium text-red-700 hover:bg-red-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:bg-red-800 dark:text-red-200 dark:hover:bg-red-500 dark:hover:text-white dark:focus:ring-red-800"
+          data-tooltip-target="tooltip-logout"
+          data-tooltip-placement="left"
         >
-          <i class="bi bi bi-box-arrow-left me-2"></i>Logout
+          <i class="bi bi-box-arrow-left sm:me-2"></i
+          ><span class="hidden sm:inline">Logout</span>
         </button>
+        <div
+          id="tooltip-logout"
+          role="tooltip"
+          class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700 sm:hidden"
+        >
+          Logout
+          <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
       </div>
     </header>
 
@@ -106,14 +117,27 @@
                 </div>
               </td>
               <td class="px-2 py-2 sm:w-2/6 sm:px-3 md:w-1/6 md:px-6 md:py-4">
-                <button
-                  type="button"
-                  class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                  data-modal-target="account-change-email-modal"
-                  data-modal-toggle="account-change-email-modal"
-                >
-                  <i class="bi bi-pencil-square me-2"></i>Edit
-                </button>
+                <div class="flex justify-end">
+                  <button
+                    type="button"
+                    class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                    data-modal-target="account-change-email-modal"
+                    data-modal-toggle="account-change-email-modal"
+                    data-tooltip-target="tooltip-change-email"
+                    data-tooltip-placement="left"
+                  >
+                    <i class="bi bi-pencil-square sm:me-2"></i
+                    ><span class="hidden sm:inline">Edit</span>
+                  </button>
+                  <div
+                    id="tooltip-change-email"
+                    role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700 sm:hidden"
+                  >
+                    Change the email
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -129,14 +153,27 @@
                 ********
               </td>
               <td class="px-2 py-2 sm:w-2/6 sm:px-3 md:w-1/6 md:px-6 md:py-4">
-                <button
-                  type="button"
-                  class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                  data-modal-target="account-change-password-modal"
-                  data-modal-toggle="account-change-password-modal"
-                >
-                  <i class="bi bi-pencil-square me-2"></i>Edit
-                </button>
+                <div class="flex justify-end">
+                  <button
+                    type="button"
+                    class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                    data-modal-target="account-change-password-modal"
+                    data-modal-toggle="account-change-password-modal"
+                    data-tooltip-target="tooltip-change-password"
+                    data-tooltip-placement="left"
+                  >
+                    <i class="bi bi-pencil-square sm:me-2"></i
+                    ><span class="hidden sm:inline">Edit</span>
+                  </button>
+                  <div
+                    id="tooltip-change-password"
+                    role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700 sm:hidden"
+                  >
+                    Change the password
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr class="bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -145,17 +182,30 @@
                 colspan="2"
                 class="w-4/6 px-2 py-2 font-medium text-gray-900 dark:text-white sm:px-3 md:w-5/6 md:whitespace-nowrap md:px-6 md:py-4"
               >
-                Delete my account
+                Delete your account
               </th>
               <td class="px-2 py-2 sm:w-2/6 sm:px-3 md:w-1/6 md:px-6 md:py-4">
-                <button
-                  type="button"
-                  class="whitespace-nowrap rounded-lg border border-red-700 px-3 py-2 text-center text-xs font-medium text-red-700 hover:bg-red-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-500 dark:hover:text-white dark:focus:ring-red-800"
-                  data-modal-target="account-deletion-modal"
-                  data-modal-toggle="account-deletion-modal"
-                >
-                  <i class="bi bi-trash3-fill me-2"></i>Delete
-                </button>
+                <div class="flex justify-end">
+                  <button
+                    type="button"
+                    class="whitespace-nowrap rounded-lg border border-red-700 px-3 py-2 text-center text-xs font-medium text-red-700 hover:bg-red-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:bg-red-800 dark:text-red-200 dark:hover:bg-red-500 dark:hover:text-white dark:focus:ring-red-800"
+                    data-modal-target="account-deletion-modal"
+                    data-modal-toggle="account-deletion-modal"
+                    data-tooltip-target="tooltip-deletion"
+                    data-tooltip-placement="left"
+                  >
+                    <i class="bi bi-trash3-fill sm:me-2"></i>
+                    <span class="hidden sm:inline">Delete</span>
+                  </button>
+                  <div
+                    id="tooltip-deletion"
+                    role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-red-900 px-3 py-2 text-sm font-medium text-red-100 opacity-0 shadow-sm dark:bg-red-700 sm:hidden"
+                  >
+                    ⚠️ Delete your account
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -186,7 +236,7 @@
                 Language
               </th>
               <td
-                class="w-2/6 px-2 py-2 text-xs sm:px-3 md:w-4/6 md:px-6 md:py-4 md:text-sm"
+                class="w-2/6 px-2 py-2 font-mono text-xs sm:px-3 md:w-4/6 md:px-6 md:py-4 md:text-sm"
               >
                 <span class="mr-3 align-middle text-base">{{
                   languagePrefered.flag
@@ -195,15 +245,30 @@
                   languagePrefered.name
                 }}</span>
               </td>
-              <td class="px-2 py-2 sm:w-2/6 sm:px-3 md:w-1/6 md:px-6 md:py-4">
-                <button
-                  type="button"
-                  class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                  data-modal-target="account-change-language-modal"
-                  data-modal-toggle="account-change-language-modal"
-                >
-                  <i class="bi bi-pencil-square me-2"></i>Edit
-                </button>
+              <td
+                class="justify-end px-2 py-2 sm:w-2/6 sm:px-3 md:w-1/6 md:px-6 md:py-4"
+              >
+                <div class="flex justify-end">
+                  <button
+                    type="button"
+                    class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                    data-modal-target="account-change-language-modal"
+                    data-modal-toggle="account-change-language-modal"
+                    data-tooltip-target="tooltip-change-language"
+                    data-tooltip-placement="left"
+                  >
+                    <i class="bi bi-pencil-square sm:me-2"></i
+                    ><span class="hidden sm:inline">Edit</span>
+                  </button>
+                  <div
+                    id="tooltip-change-language"
+                    role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700 sm:hidden"
+                  >
+                    Change the language
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>
