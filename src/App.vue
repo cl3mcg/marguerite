@@ -85,7 +85,7 @@ onBeforeMount(function () {
 #background-wrap {
   bottom: 0;
   left: 0;
-  padding-top: 175px;
+  padding-top: 25vh;
   position: fixed;
   right: 0;
   top: 0;
