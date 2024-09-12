@@ -104,7 +104,7 @@
                 data-modal-hide="account-login-modal"
                 data-modal-target="account-recovery-modal"
                 data-modal-toggle="account-recovery-modal"
-                class="text-sm text-purple-700 hover:underline dark:text-purple-500"
+                class="text-sm text-purple-700 hover:underline dark:text-purple-400"
               >
                 Lost Password?
               </button>
@@ -144,7 +144,7 @@
                 data-modal-hide="account-login-modal"
                 data-modal-target="account-create-modal"
                 data-modal-toggle="account-create-modal"
-                class="text-purple-700 hover:underline dark:text-purple-500"
+                class="text-purple-700 hover:underline dark:text-purple-400"
               >
                 Create an account
               </button>

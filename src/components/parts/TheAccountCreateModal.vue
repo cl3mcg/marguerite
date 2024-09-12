@@ -132,7 +132,7 @@
                 data-modal-hide="account-create-modal"
                 data-modal-target="account-login-modal"
                 data-modal-toggle="account-login-modal"
-                class="text-purple-700 hover:underline dark:text-purple-500"
+                class="text-purple-700 hover:underline dark:text-purple-400"
               >
                 Login your account
               </button>

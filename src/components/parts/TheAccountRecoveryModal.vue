@@ -43,7 +43,9 @@
         </div>
         <!-- Modal body -->
         <div class="container p-4 md:p-5">
-          <div class="mb-4 text-justify text-sm md:mb-5">
+          <div
+            class="mb-4 text-justify text-sm text-gray-900 dark:text-white md:mb-5"
+          >
             If you lost your password, please provide your email address
             below.<br />If it matches our records, you will recieve an email
             with further instructions to recover access to your account.
@@ -102,7 +104,7 @@
                 data-modal-hide="account-recovery-modal"
                 data-modal-target="account-login-modal"
                 data-modal-toggle="account-login-modal"
-                class="text-purple-700 hover:underline dark:text-purple-500"
+                class="text-purple-700 hover:underline dark:text-purple-400"
               >
                 Back to the login form
               </button>
