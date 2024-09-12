@@ -23,7 +23,7 @@
 <script setup>
 import { ref } from "vue";
 
-const blades = ref(Array.from({ length: 100 }, (_, index) => index + 1));
+const blades = ref(Array.from({ length: 150 }, (_, index) => index + 1));
 </script>
 
 <style scoped>
