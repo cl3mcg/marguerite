@@ -9,6 +9,7 @@
         v-bind:toolData="tool"
         key="tool.toolName"
         v-bind:userIsLoggedIn="userIsLoggedIn"
+        v-bind:userIsAdmin="userIsAdmin"
         v-bind:isAvailable="tool.isAvailable"
       ></TheToolCard>
     </div>
@@ -22,16 +23,21 @@ import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
 import { isLoggedIn } from "@composables/isLoggedIn.js";
+import { validateAdminToken } from "@composables/validateAdminToken.js";
 
 import TheToolCard from "@components/ui/TheToolCard.vue";
 
 const userIsLoggedIn = ref(false);
+const userIsAdmin = ref(false);
 
 onMounted(async () => {
   if (!userStore.accountToken) {
     return (userIsLoggedIn.value = false);
   }
-  return (userIsLoggedIn.value = await isLoggedIn());
+  userIsLoggedIn.value = await isLoggedIn();
+  userIsLoggedIn.value
+    ? (userIsAdmin.value = await validateAdminToken())
+    : (userIsAdmin.value = false);
 });
 
 watch(
@@ -41,7 +47,10 @@ watch(
       return (userIsLoggedIn.value = false);
     }
     if (newToken !== oldToken) {
-      return (userIsLoggedIn.value = await isLoggedIn());
+      userIsLoggedIn.value = await isLoggedIn();
+      userIsLoggedIn.value
+        ? (userIsAdmin.value = await validateAdminToken())
+        : (userIsAdmin.value = false);
     }
     return;
   },

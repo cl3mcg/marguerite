@@ -17,7 +17,7 @@ const validateAdminToken = async function () {
         }
     } catch (error) {
         console.error('Error:', error);
-        return;
+        return false;
     }
 };
 

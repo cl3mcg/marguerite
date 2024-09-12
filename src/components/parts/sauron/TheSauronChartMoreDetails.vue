@@ -3,7 +3,7 @@
     v-bind:id="`dropdown-button_${props.indicatorCode}`"
     v-bind:data-dropdown-toggle="`dropdown-details_${props.indicatorCode}`"
     data-dropdown-placement="left"
-    data-dropdown-offset-skidding="100"
+    data-dropdown-offset-skidding="200"
     class="dark:gray-100 inline-flex items-center rounded-full bg-transparent p-1 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:focus:ring-gray-600 md:p-2"
     type="button"
   >
@@ -27,14 +27,14 @@
     <div
       class="flex flex-col items-start p-3 text-center align-middle text-sm font-medium focus:outline-none"
     >
-      <header
-        class="text-start text-base font-semibold text-gray-800 dark:text-gray-100"
-      >
-        {{ indicators.filter((el) => el.code === props.indicatorCode)[0].name }}
-      </header>
       <main
         class="space-y-2 p-3 text-start text-sm text-gray-500 dark:text-gray-400"
       >
+        <header class="text-base font-semibold text-gray-900 dark:text-white">
+          {{
+            indicators.filter((el) => el.code === props.indicatorCode)[0].name
+          }}
+        </header>
         <p>
           {{
             indicators.filter((el) => el.code === props.indicatorCode)[0]

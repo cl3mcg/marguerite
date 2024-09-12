@@ -10,6 +10,9 @@
     "
   > -->
   <router-link
+    v-if="
+      !props.toolData.isAdminOnly || (props.toolData.isAdminOnly && userIsAdmin)
+    "
     v-bind:disabled="!userIsLoggedIn || !props.isAvailable"
     v-bind:to="props.isAvailable ? props.toolData.toolRoute : ''"
     class="relative block w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 md:py-12"
@@ -108,6 +111,9 @@ const props = defineProps({
     type: Object,
   },
   userIsLoggedIn: {
+    type: Boolean,
+  },
+  userIsAdmin: {
     type: Boolean,
   },
   isAvailable: {
