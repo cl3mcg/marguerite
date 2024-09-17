@@ -3,6 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 // Import the Pinia store
 import { useUserStore } from "@stores/UserStore.js";
 
+// Import the flowbite logic
+import { initFlowbite } from "flowbite";
+
 // Import required composables
 import { validateToken } from "@composables/validateToken.js";
 import { validateAdminToken } from "@composables/validateAdminToken.js";
@@ -22,21 +25,17 @@ const TheSuperviseurPage = () => import('@components/layout/TheSuperviseurPage.v
 const The404Page = () => import('@components/layout/The404Page.vue')
 const TheErrorPage = () => import('@components/layout/TheErrorPage.vue')
 
-
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: "/home",
-            redirect: "/"
+            redirect: "/",
         },
         {
             path: "/",
             component: TheHomePage,
-            name: "home",
-            meta: {
-                requiresAuth: false,
-            }
+            name: "home"
         },
         {
             path: "/tools",
@@ -44,6 +43,7 @@ const router = createRouter({
             name: "tools",
             meta: {
                 requiresAuth: false,
+                isAvailable: true
             }
         },
         {
@@ -52,6 +52,7 @@ const router = createRouter({
             name: "contact",
             meta: {
                 requiresAuth: false,
+                isAvailable: true
             }
         },
         {
@@ -60,6 +61,7 @@ const router = createRouter({
             name: "about",
             meta: {
                 requiresAuth: false,
+                isAvailable: true
             }
         },
         // {
@@ -76,6 +78,7 @@ const router = createRouter({
             name: "account",
             meta: {
                 requiresAuth: true,
+                isAvailable: true
             }
         },
         {
@@ -84,6 +87,7 @@ const router = createRouter({
             name: "accountrecovery",
             meta: {
                 requiresAuth: false,
+                isAvailable: true
             },
             beforeEnter: async (to, from, next) => {
                 try {
@@ -113,6 +117,7 @@ const router = createRouter({
             name: "error",
             meta: {
                 requiresAuth: false,
+                isAvailable: true
             }
         },
         {
@@ -121,6 +126,7 @@ const router = createRouter({
             name: "notfound",
             meta: {
                 requiresAuth: false,
+                isAvailable: true
             }
         },
         {
@@ -129,6 +135,7 @@ const router = createRouter({
             name: "sonar",
             meta: {
                 requiresAuth: true,
+                isAvailable: true
             }
         },
         {
@@ -137,6 +144,7 @@ const router = createRouter({
             name: "sauron",
             meta: {
                 requiresAuth: true,
+                isAvailable: true
             }
         },
         {
@@ -145,7 +153,17 @@ const router = createRouter({
             name: "superviseur",
             meta: {
                 requiresAdmin: true,
+                isAvailable: true
             }
+        },
+        {
+            path: "/tools/sanitizer",
+            component: TheSuperviseurPage,
+            name: "sanitizer",
+            meta: {
+                requiresAuth: true,
+                isAvailable: false
+            },
         },
         {
             path: "/:notFound(.*)",
@@ -156,6 +174,15 @@ const router = createRouter({
 
 router.beforeEach(async function (to, from, next) {
     useUserStore().intendedRoute = null;
+    if (to.meta && to.meta.isAvailable !== undefined && !to.meta.isAvailable) {
+        useUserStore().triggerFlash(
+            "warning",
+            "Not available",
+            "This resource is not available. Please try again later."
+        );
+        next(from.fullPath); // Cancel navigation
+        return;
+    }
     if ((to.meta.requiresAuth || to.meta.requiresAdmin) && !localStorage.getItem("accountToken")) {
         useUserStore().intendedRoute = to.fullPath;
         useUserStore().triggerFlash(
@@ -186,7 +213,7 @@ router.beforeEach(async function (to, from, next) {
             useUserStore().triggerFlash(
                 "warning",
                 "Admin rights required",
-                "You need to have administrative priviledges to access this resource."
+                "You need to have administrative privileges to access this resource."
             );
             next(from.fullPath); // Cancel navigation
             return;
@@ -201,13 +228,13 @@ router.beforeEach(async function (to, from, next) {
     }
 });
 
-// router.beforeEach(function (to, from, next) {
-//     try {
-//         modalClose()
-//     } catch (error) {
-//         console.log(error)
-//     }
-//     return next()
-// })
+router.beforeEach(function (to, from, next) {
+    try {
+        initFlowbite()
+    } catch (error) {
+        console.log(error)
+    }
+    return next()
+})
 
 export default router
