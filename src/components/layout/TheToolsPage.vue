@@ -85,5 +85,15 @@ const toolsList = ref([
     imgPath: "/src/assets/icons/superviseurProjectLogo.svg",
     imgAlt: "A logo used for the Superviseur tool",
   },
+  {
+    toolName: "Sanitizer",
+    toolRoute: "tools/sanitizer",
+    isAvailable: false,
+    isAdminOnly: false,
+    toolDescription:
+      "A set of tools to clean and validate data from Excel rate cards.",
+    imgPath: "/src/assets/icons/sanitizerProjectLogo.svg",
+    imgAlt: "A logo used for the Sanitizer tool",
+  },
 ]);
 </script>

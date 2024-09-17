@@ -119,11 +119,6 @@
 import { useUserStore } from "@stores/UserStore.js";
 const userStore = useUserStore();
 
-import { useRouter } from "vue-router";
-const router = useRouter();
-
-import { initFlowbite } from "flowbite";
-
 import iconMarguerite from "@components/icons/iconMarguerite.vue";
 import TheDarkModeButton from "@components/ui/TheDarkModeButton.vue";
 import TheAccountLoginModal from "@components/parts/TheAccountLoginModal.vue";
@@ -142,10 +137,6 @@ onMounted(async () => {
   return (userIsLoggedIn.value = await isLoggedIn());
 });
 
-onMounted(() => {
-  initFlowbite();
-});
-
 watch(
   () => userStore.accountToken,
   async (newToken, oldToken) => {
@@ -159,3 +150,9 @@ watch(
   },
 );
 </script>
+
+<style>
+#navbar-solid-bg {
+  z-index: 10;
+}
+</style>
