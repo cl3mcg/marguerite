@@ -38,22 +38,11 @@
     <div class="mt-4 text-sm">
       <slot name="message"></slot>
     </div>
-    <!-- <div class="flex mt-4">
-    <button type="button" class="text-white bg-purple-800 hover:bg-purple-900 focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
-      <svg class="me-2 h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
-        <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
-      </svg>
-      View more
-    </button>
-    <button type="button" class="text-purple-800 bg-transparent border border-purple-800 hover:bg-purple-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-purple-600 dark:border-purple-600 dark:text-purple-400 dark:hover:text-white dark:focus:ring-purple-800" v-bind:data-dismiss-target="`flash-message-${props.id}`" aria-label="Close">
-      Dismiss
-    </button>
-  </div> -->
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { reactive } from "vue";
 
 const props = defineProps(["id", "type"]);
 
