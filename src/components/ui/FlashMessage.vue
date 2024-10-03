@@ -1,7 +1,7 @@
 <template>
   <div
     v-bind:id="`flash-message-${props.id}`"
-    class="z-50 mb-4 w-full rounded-lg border p-4 shadow-lg dark:bg-gray-800"
+    class="relative z-50 mb-4 w-full min-w-80 rounded-lg border p-4 shadow-lg dark:bg-gray-800"
     v-bind:class="flashMessageProperties.class()"
     role="alert"
   >
@@ -14,38 +14,37 @@
         type="button"
         class="-mx-1.5 -my-1.5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg p-1.5 text-gray-400 hover:text-gray-900 focus:ring-2 dark:text-gray-500 dark:hover:text-white"
         v-bind:class="flashMessageProperties.classCloseButton()"
-        v-bind:data-dismiss-target="`flash-message-${props.id}`"
         aria-label="Close"
       >
         <span class="sr-only">Close</span>
-        <svg
-          class="h-3 w-3"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 14"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-          />
-        </svg>
+        <i class="bi bi-x-lg"></i>
       </button>
     </div>
     <div class="mt-4 text-sm">
       <slot name="message"></slot>
     </div>
+
+    <!-- Timeout progress bar -->
+    <div
+      class="absolute bottom-0 left-0 mt-3 h-2 rounded-bl-lg"
+      v-if="!props.permanent"
+      v-bind:class="flashMessageProperties.classProgressBar()"
+      :style="{ width: progressBarWidth + '%' }"
+    ></div>
   </div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { onMounted, ref, reactive } from "vue";
 
-const props = defineProps(["id", "type"]);
+const props = defineProps(["id", "type", "permanent"]);
+const emit = defineEmits(["close-flash"]);
+const timeoutId = ref(null); // Timeout for automatic dismissal
+const intervalId = ref(null); // Interval to reduce the progress bar width
+const duration = 5000; // Total duration (5 seconds)
+const progressBarWidth = ref(100); // Starting width of the progress bar
 
+// Flash message properties for dynamic class generation
 const flashMessageProperties = reactive({
   class: function () {
     switch (props.type) {
@@ -95,10 +94,43 @@ const flashMessageProperties = reactive({
         return "Information icon";
     }
   },
+  classProgressBar: function () {
+    switch (props.type) {
+      case "success":
+        return "bg-green-600 dark:bg-green-500";
+      case "error":
+        return "bg-red-600 dark:bg-red-500";
+      case "warning":
+        return "bg-orange-600 dark:bg-orange-500";
+      default:
+        return "bg-purple-600 dark:bg-purple-500";
+    }
+  },
 });
 
-const emit = defineEmits(["close-flash"]);
+// Emit the event to close the flash message
 const closeFlash = function () {
-  emit("close-flash", props.id);
+  emit("close-flash", props.id); // Emit close event
 };
+
+// Setup automatic dismissal and progress bar reduction
+onMounted(() => {
+  // Start a 5-second timer for automatic dismissal
+  timeoutId.value = setTimeout(() => {
+    closeFlash();
+  }, duration);
+
+  // Reduce the progress bar width every 25ms
+  const intervalDuration = 25;
+  const decrement = (intervalDuration / (duration * 0.7)) * 100; // Decrease width proportionally
+  intervalId.value =
+    props.permanent === true
+      ? null
+      : setInterval(() => {
+          progressBarWidth.value -= decrement;
+          if (progressBarWidth.value <= 0) {
+            closeFlash();
+          }
+        }, intervalDuration);
+});
 </script>
