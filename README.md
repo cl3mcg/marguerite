@@ -58,7 +58,20 @@ The _Sauron_ tool is helping me to quickly retrieve macroeconomic data about spe
 
 Based on the publicly available API from The World Bank, the _Sauron_ project helps me to quickly have access to key macro-econmic indicators of specific countries such as the unemployment rate, the level of souvereign debt of a country etc...
 
-**Note:** Initially developed with hand made CSS, I am currently refactoring the components and transitioning this small app from hand-made custom CSS to something more flexible based on the [Flowbite component library](https://flowbite.com/)
+### Sanitizer
+
+#### The idea behind the project
+
+I work in the industry of freight forwarding, specifically in the tender department of a freight forwarding company. A part of my job is to receive tender rate cards from different companies that have cargo to transport all over the world. Because there is no standards to how these tender rate cards are formatted, the team I work with has to manually clean the data provided by the tendering company to make sure that the data initially provided matches the industry standards and denominations. While there are several providers that can do this job for us, I am looking to build my own solution to be able to customize it to my needs and to be able to integrate it with my existing workflow.
+
+#### About the tool
+
+The _Sanitizer_ tool is used to clean Excel files that I receive from customers specifically pseudo TI-contract (or Transporeon) templates that resemble, but are not identical to, TI-Contract templates. The main functionality of the _Sanitizer_ tool is to analyze an Excel file and to clean it by standardizing country data contained within the Excel file. This feature ensures that the proper country code is returned for each entry, making it especially useful for datasets with approximate country names, typos, or inconsistent formatting.
+
+Initially designed to clean country data, the _Sanitizer_ tool will be improved over time to display volumes flow between different trade lanes in order to quickly generate a volume and geographic report based on the lanes mentionned in a bidding sheet, regardless of the data quality contained in it.
+
+## Note
+Initially developed with hand-made CSS, I am currently refactoring the components and transitioning this small app from custom CSS to something more flexible based on the [Flowbite component library](https://flowbite.com/)
 
 ## License
 
