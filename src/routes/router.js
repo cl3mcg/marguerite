@@ -22,6 +22,7 @@ const TheAccountRecoveryPage = () => import('@components/layout/TheAccountRecove
 const TheSonarPage = () => import('@components/layout/TheSonarPage.vue')
 const TheSauronPage = () => import('@components/layout/TheSauronPage.vue')
 const TheSuperviseurPage = () => import('@components/layout/TheSuperviseurPage.vue')
+const TheSanitizerPage = () => import('@components/layout/TheSanitizerPage.vue')
 const The404Page = () => import('@components/layout/The404Page.vue')
 const TheErrorPage = () => import('@components/layout/TheErrorPage.vue')
 
@@ -158,10 +159,10 @@ const router = createRouter({
         },
         {
             path: "/tools/sanitizer",
-            component: TheSuperviseurPage,
+            component: TheSanitizerPage,
             name: "sanitizer",
             meta: {
-                requiresAuth: true,
+                requiresAuth: false,
                 isAvailable: false
             },
         },
