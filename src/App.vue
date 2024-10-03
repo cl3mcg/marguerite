@@ -22,8 +22,11 @@
       <div class="cloud"></div>
     </div>
   </div>
-  <RouterView></RouterView>
-
+  <RouterView v-slot="{ Component }">
+    <TransitionFade mode="out-in" appear>
+      <component :is="Component" />
+    </TransitionFade>
+  </RouterView>
   <!-- Render TheGrassEffect.vue only when on the home page -->
   <div v-if="isHomePage" class="fixed bottom-0 left-0 w-full">
     <TheGrassEffect></TheGrassEffect>
@@ -34,8 +37,9 @@
 import TheTopNavBar from "@components/parts/TheTopNavBar.vue";
 import FlashMessageWrapper from "@components/parts/FlashMessageWrapper.vue";
 import TheGrassEffect from "@components/layout/TheGrassEffect.vue"; // Import the component
+import { TransitionFade } from "@morev/vue-transitions";
 
-import { ref, watch, onBeforeMount, computed } from "vue";
+import { ref, watch, onBeforeMount, computed, onMounted } from "vue";
 import { useUserStore } from "@stores/UserStore.js";
 import { useRouter, useRoute } from "vue-router";
 import { accountLogout } from "@composables/accountLogout.js";
@@ -56,8 +60,12 @@ watch(
     displayLoadingModal.value = newValue;
   },
 );
-watch(userStore.flashMessages, function () {
-  displayFlash.value = true;
+watch(userStore.flashMessages, function (newValue) {
+  if (newValue.length > 0) {
+    displayFlash.value = true;
+  } else {
+    displayFlash.value = false;
+  }
 });
 
 onBeforeMount(function () {
@@ -77,6 +85,12 @@ onBeforeMount(function () {
   } else {
     userStore.language = "en-GB";
     localStorage.setItem("language", "en-GB");
+  }
+});
+
+onMounted(() => {
+  if (route.path === "/") {
+    isHomePage.value = true;
   }
 });
 </script>
