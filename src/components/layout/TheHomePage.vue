@@ -18,7 +18,7 @@
           A launchpad for freight forwarding <br class="inline sm:hidden" />
           and logistics
           <br />
-          tools and projects
+          tools or projects
         </span>
       </div>
     </section>
