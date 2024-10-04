@@ -162,7 +162,7 @@ const router = createRouter({
             component: TheSanitizerPage,
             name: "sanitizer",
             meta: {
-                requiresAuth: false,
+                requiresAuth: true,
                 isAvailable: false
             },
         },
