@@ -41,7 +41,7 @@ const retrieveRates = async function (userStore, selection) {
         userStore.triggerFlash(
             "danger",
             "Server error",
-            "The rates cannot be retrived for the time being."
+            "The rates cannot be retrieved for the time being."
         );
         return false
     }
