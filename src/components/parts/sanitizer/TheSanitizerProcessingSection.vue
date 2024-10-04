@@ -96,7 +96,7 @@ import { storeToRefs } from "pinia";
 
 import TheSanitizerProcessSectionHeaderRowConfirmation from "./TheSanitizerProcessSectionHeaderRowConfirmation.vue";
 
-import { useSanitizerStore } from "@/stores/sanitizerStore";
+import { useSanitizerStore } from "@/stores/SanitizerStore.js";
 const sanitizerStore = useSanitizerStore();
 
 const { sheetsDetected } = storeToRefs(sanitizerStore);
