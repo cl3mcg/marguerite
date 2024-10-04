@@ -19,7 +19,7 @@ const accountChangeEmail = async function (userStore, router, formData) {
                 "Update done",
                 "Your email address has been changed successfully."
             );
-            accountLogout(userStore, router);
+            await accountLogout(userStore, router);
             return true;
         } else {
             userStore.triggerFlash(

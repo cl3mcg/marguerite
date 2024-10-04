@@ -20,7 +20,7 @@ const accountChangePassword = async function (userStore, router, formData) {
                 "Update done",
                 "Your password has been changed successfully."
             );
-            accountLogout(userStore, router)
+            await accountLogout(userStore, router)
             return true;
         } else {
             userStore.triggerFlash(
