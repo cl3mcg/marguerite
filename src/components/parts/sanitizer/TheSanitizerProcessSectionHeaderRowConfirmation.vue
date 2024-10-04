@@ -89,7 +89,7 @@
 <script setup>
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useSanitizerStore } from "@/stores/sanitizerStore";
+import { useSanitizerStore } from "@/stores/SanitizerStore.js";
 const sanitizerStore = useSanitizerStore();
 
 const props = defineProps({
