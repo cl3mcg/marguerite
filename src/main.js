@@ -1,7 +1,9 @@
 // import './styles/reset.css';
 import './styles/fonts.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/global.css';
+
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import '@morev/vue-transitions/styles';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

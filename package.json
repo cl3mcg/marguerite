@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@morev/vue-transitions": "^3.0.2",
     "@vueuse/components": "^10.9.0",
     "@vueuse/core": "^10.9.0",
     "bootstrap-icons": "^1.11.3",

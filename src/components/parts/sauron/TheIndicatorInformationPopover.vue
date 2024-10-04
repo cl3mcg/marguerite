@@ -28,7 +28,7 @@
       </p>
       <a
         v-bind:href="indicatorObject.link"
-        class="flex items-center font-medium text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-500 dark:hover:text-blue-600"
+        class="flex items-center font-medium text-purple-600 hover:text-purple-700 hover:underline dark:text-purple-500 dark:hover:text-purple-600"
         >Read more
         <svg
           class="ms-1.5 h-2 w-2 rtl:rotate-180"

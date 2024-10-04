@@ -7,12 +7,7 @@ const validateToken = async function () {
             },
         });
         await response.json();
-
-        if (response.ok) {
-            return true;
-        } else {
-            return false;
-        }
+        return response.ok ? true : false
     } catch (error) {
         userStore.triggerFlash(
             "danger",

@@ -68,17 +68,10 @@ const getArrayAverage = function (array) {
 const formatRatesData = function (containerType, displaySurcharge) {
   let dataArray = [];
   for (let month of props.data.months) {
-    console.log("Month:", month);
-    console.log("props.data.absolute[month]:", props.data.absolute[month]);
-    console.log(
-      "props.data.absolute[month].oceanFreight:",
-      props.data.absolute[month]?.oceanFreight,
-    );
-    console.log("containerType:", containerType);
     const arrayOfOceanFreight =
-      props.data.absolute[month]?.oceanFreight[containerType];
+      props.data.absolute[month]?.["Ocean Freight"][containerType];
     const arrayOfSurcharge =
-      props.data.absolute[month]?.surcharge[containerType];
+      props.data.absolute[month]?.["Surcharge"][containerType];
 
     const averageOceanFreight = arrayOfOceanFreight
       ? getArrayAverage(arrayOfOceanFreight)
@@ -101,7 +94,6 @@ const formatRatesData = function (containerType, displaySurcharge) {
       dataArray.push(averageOceanFreight);
     }
   }
-  // console.log("Data array used for the graphs:", dataArray);
   return dataArray;
 };
 
@@ -129,8 +121,8 @@ onMounted(() => {
         labels: props.data.months,
         datasets: [
           {
-            label: "20GP Rates",
-            data: formatRatesData("20GP"),
+            label: "20'GP Rates",
+            data: formatRatesData("20'GP"),
             fill: false,
             borderColor: "#6B68FD",
             tension: 0.15,
@@ -142,8 +134,8 @@ onMounted(() => {
             pointHoverBorderWidth: "4px",
           },
           {
-            label: "40GP Rates",
-            data: formatRatesData("40GP"),
+            label: "40'GP Rates",
+            data: formatRatesData("40'GP"),
             fill: false,
             borderColor: "#0703D8",
             tension: 0.15,
@@ -155,8 +147,8 @@ onMounted(() => {
             pointHoverBorderWidth: "4px",
           },
           {
-            label: "40HC Rates",
-            data: formatRatesData("40HC"),
+            label: "40'HC Rates",
+            data: formatRatesData("40'HC"),
             fill: false,
             borderColor: "#03015B",
             tension: 0.15,
@@ -196,9 +188,9 @@ onMounted(() => {
 const updateChart = () => {
   if (chartInstance) {
     chartInstance.data.labels = props.data.months;
-    chartInstance.data.datasets[0].data = formatRatesData("20GP");
-    chartInstance.data.datasets[1].data = formatRatesData("40GP");
-    chartInstance.data.datasets[2].data = formatRatesData("40HC");
+    chartInstance.data.datasets[0].data = formatRatesData("20'GP");
+    chartInstance.data.datasets[1].data = formatRatesData("40'GP");
+    chartInstance.data.datasets[2].data = formatRatesData("40'HC");
     chartInstance.update();
   }
 };
@@ -207,11 +199,11 @@ const updateChartDisplaySurcharge = (displayed) => {
   if (chartInstance && displayed === true) {
     chartInstance.data.labels = props.data.months;
     if (chartInstance.data.datasets[3]) {
-      chartInstance.data.datasets[3].data = formatRatesData("20GP", true);
+      chartInstance.data.datasets[3].data = formatRatesData("20'GP", true);
     } else {
       chartInstance.data.datasets[3] = {
-        label: "20GP All-in",
-        data: formatRatesData("20GP", true),
+        label: "20'GP All-in",
+        data: formatRatesData("20'GP", true),
         fill: false,
         borderColor: "#FB923C",
         tension: 0.15,
@@ -224,11 +216,11 @@ const updateChartDisplaySurcharge = (displayed) => {
       };
     }
     if (chartInstance.data.datasets[4]) {
-      chartInstance.data.datasets[4].data = formatRatesData("40GP", true);
+      chartInstance.data.datasets[4].data = formatRatesData("40'GP", true);
     } else {
       chartInstance.data.datasets[4] = {
-        label: "40GP All-in",
-        data: formatRatesData("40GP", true),
+        label: "40'GP All-in",
+        data: formatRatesData("40'GP", true),
         fill: false,
         borderColor: "#EA580C",
         tension: 0.15,
@@ -241,11 +233,11 @@ const updateChartDisplaySurcharge = (displayed) => {
       };
     }
     if (chartInstance.data.datasets[5]) {
-      chartInstance.data.datasets[5].data = formatRatesData("40HC", true);
+      chartInstance.data.datasets[5].data = formatRatesData("40'HC", true);
     } else {
       chartInstance.data.datasets[5] = {
-        label: "40HC All-in",
-        data: formatRatesData("40HC", true),
+        label: "40'HC All-in",
+        data: formatRatesData("40'HC", true),
         fill: false,
         borderColor: "#7C2D12",
         tension: 0.15,

@@ -20,14 +20,14 @@ const accountLogout = async function (userStore, router) {
             userStore.triggerFlash(
                 "warning",
                 "Whoops...",
-                "An error occured during the disconnection process."
+                "An error occurred during the disconnection process."
             );
         }
     } catch (error) {
         userStore.triggerFlash(
             "error",
             "Server error",
-            "An error occured during the disconnection process."
+            "An error occurred during the disconnection process."
         );
     }
 };

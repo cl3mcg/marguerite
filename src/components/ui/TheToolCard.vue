@@ -1,21 +1,11 @@
 <template>
-  <!-- <router-link
-    v-bind:disabled="!userIsLoggedIn || !isAvailable"
-    v-bind:to="userIsLoggedIn && isAvailable ? toolData.toolRoute : ''"
-    class="relative block w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 md:py-12"
-    v-bind:class="
-      userIsLoggedIn && isAvailable
-        ? 'hover:bg-gray-100 dark:hover:bg-gray-700'
-        : 'cursor-not-allowed'
-    "
-  > -->
   <router-link
     v-if="
       !props.toolData.isAdminOnly || (props.toolData.isAdminOnly && userIsAdmin)
     "
     v-bind:disabled="!userIsLoggedIn || !props.isAvailable"
     v-bind:to="props.isAvailable ? props.toolData.toolRoute : ''"
-    class="relative block w-full overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 md:py-12"
+    class="relative flex h-40 w-full flex-col justify-center overflow-hidden rounded-lg border border-gray-200 bg-white px-6 shadow dark:border-gray-700 dark:bg-gray-800 md:min-h-full"
     v-bind:class="
       props.isAvailable
         ? 'hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -27,7 +17,9 @@
     >
       {{ toolData.toolName }}
     </h5>
-    <p class="font-normal text-gray-700 dark:text-gray-400">
+    <p
+      class="w-full font-normal text-gray-700 dark:text-gray-400 sm:w-9/12 lg:w-10/12"
+    >
       {{ toolData.toolDescription }}
     </p>
     <div
@@ -97,6 +89,9 @@
       <iconSuperviseur
         v-if="toolData.toolName.toLowerCase() === 'superviseur'"
       ></iconSuperviseur>
+      <iconSanitizer
+        v-if="toolData.toolName.toLowerCase() === 'sanitizer'"
+      ></iconSanitizer>
     </div>
   </router-link>
 </template>
@@ -105,6 +100,7 @@
 import iconSonar from "@components/icons/iconSonar.vue";
 import iconSauron from "@components/icons/iconSauron.vue";
 import iconSuperviseur from "@components/icons/iconSuperviseur.vue";
+import iconSanitizer from "@components/icons/iconSanitizer.vue";
 
 const props = defineProps({
   toolData: {

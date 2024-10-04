@@ -76,6 +76,16 @@ const toolsList = ref([
     imgAlt: "A logo used for the Sauron tool",
   },
   {
+    toolName: "Sanitizer",
+    toolRoute: "tools/sanitizer",
+    isAvailable: false,
+    isAdminOnly: false,
+    toolDescription:
+      "A set of tools to clean and validate data from Excel rate cards, in the context of a freight forwarding bidding process.",
+    imgPath: "/src/assets/icons/sanitizerProjectLogo.svg",
+    imgAlt: "A logo used for the Sanitizer tool",
+  },
+  {
     toolName: "Superviseur",
     toolRoute: "tools/superviseur",
     isAvailable: false,
