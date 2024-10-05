@@ -8,7 +8,7 @@
       <p>
         I needed a quick tool to help me visualize and get a grasp on ocean
         freight rates fluctuations on an handful of trade lanes. Additionally I
-        was tired of having to rely on pricy third-party tools, so I made my
+        was tired of having to rely on expensive third-party tools, so I made my
         own:
         <router-link to="/tools/sonar" class="underline hover:text-purple-700"
           ><i>Sonar</i></router-link
@@ -26,8 +26,8 @@
         >.<br />
         At a later stage, I am planning to develop a tool used to build freight
         forwarding rate cards used in the management of tenders. Not that I am
-        specifically fond of this, but I beleive that it can be interesting to
-        experiment with Excel manipulation programatically.
+        specifically fond of this, but I believe that it can be interesting to
+        experiment with Excel manipulation programmatically.
       </p>
     </div>
     <div class="mb-4">
@@ -45,7 +45,7 @@
       <p class="mt-5 flex justify-center align-middle">
         <a
           class="m-2 mb-2 me-2 flex w-40 justify-center rounded-lg border border-gray-300 bg-white p-2 px-5 py-2.5 align-middle text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1"
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1"
         >
           <img
             class="ms-1 h-6 align-middle"
@@ -70,7 +70,7 @@
       <h2 class="mb-3 text-3xl font-bold">Can I check the code?</h2>
       <p>
         Yes of course you can, long-life to open source. Feel free to check
-        everything you want (as long as you feel comfortable reading spaghettis
+        everything you want (as long as you feel comfortable reading spaghetti
         code).
       </p>
       <div class="mt-5 flex justify-center align-middle">
@@ -115,7 +115,7 @@
       <p>
         The home page animations are coming from different CodePen projects,
         I've just put them together and made them work with Vue.js as well as
-        removing some of the unecessary CSS, adding dark mode support etc. The
+        removing some of the unnecessary CSS, adding dark mode support etc. The
         original CodePen snippets are
         <a
           href="https://codepen.io/Mark_Bowley/pen/LYZEBq"
